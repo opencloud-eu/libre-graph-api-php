@@ -1,6 +1,6 @@
 # OpenAPI\Client\UserApi
 
-All URIs are relative to https://ocis.ocis.rolling.owncloud.works/graph, except if the operation defines another base path.
+All URIs are relative to https://localhost:9200/graph, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |

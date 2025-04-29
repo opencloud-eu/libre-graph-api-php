@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **drives** | [**\OpenAPI\Client\Model\Drive[]**](Drive.md) | A collection of drives available for this user. Read-only. | [optional] [readonly]
 **drive** | [**\OpenAPI\Client\Model\Drive**](Drive.md) |  | [optional]
 **identities** | [**\OpenAPI\Client\Model\ObjectIdentity[]**](ObjectIdentity.md) | Identities associated with this account. | [optional]
-**mail** | **string** | The SMTP address for the user, for example, &#39;jeff@contoso.onowncloud.com&#39;. Returned by default. | [optional]
+**mail** | **string** | The SMTP address for the user, for example, &#39;jeff@contoso.opencloud.com&#39;. Returned by default. | [optional]
 **member_of** | [**\OpenAPI\Client\Model\Group[]**](Group.md) | Groups that this user is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand. | [optional]
 **on_premises_sam_account_name** | **string** | Contains the on-premises SAM account name synchronized from the on-premises directory. Read-only. | [optional]
 **password_profile** | [**\OpenAPI\Client\Model\PasswordProfile**](PasswordProfile.md) |  | [optional]
