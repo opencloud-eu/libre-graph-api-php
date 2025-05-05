@@ -1,4 +1,5 @@
 {
+    "name": "opencloud-eu/libre-graph-api-php",
     "description": "Libre Graph is a free API for cloud collaboration inspired by the MS Graph API.",
     "keywords": [
         "openapitools",
