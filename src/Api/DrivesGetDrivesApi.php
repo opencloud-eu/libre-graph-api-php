@@ -508,6 +508,7 @@ class DrivesGetDrivesApi
      *
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
+     * @param  string|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAllDrivesBeta'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -517,10 +518,11 @@ class DrivesGetDrivesApi
     public function listAllDrivesBeta(
         ??string $orderby = null,
         ??string $filter = null,
+        ??string $expand = null,
         string $contentType = self::contentTypes['listAllDrivesBeta'][0]
     )
     {
-        list($response) = $this->listAllDrivesBetaWithHttpInfo($orderby, $filter, $contentType);
+        list($response) = $this->listAllDrivesBetaWithHttpInfo($orderby, $filter, $expand, $contentType);
         return $response;
     }
 
@@ -531,6 +533,7 @@ class DrivesGetDrivesApi
      *
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
+     * @param  string|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAllDrivesBeta'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -540,10 +543,11 @@ class DrivesGetDrivesApi
     public function listAllDrivesBetaWithHttpInfo(
         ??string $orderby = null,
         ??string $filter = null,
+        ??string $expand = null,
         string $contentType = self::contentTypes['listAllDrivesBeta'][0]
     ): array
     {
-        $request = $this->listAllDrivesBetaRequest($orderby, $filter, $contentType);
+        $request = $this->listAllDrivesBetaRequest($orderby, $filter, $expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -695,6 +699,7 @@ class DrivesGetDrivesApi
      *
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
+     * @param  string|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAllDrivesBeta'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -703,10 +708,11 @@ class DrivesGetDrivesApi
     public function listAllDrivesBetaAsync(
         ??string $orderby = null,
         ??string $filter = null,
+        ??string $expand = null,
         string $contentType = self::contentTypes['listAllDrivesBeta'][0]
     ): PromiseInterface
     {
-        return $this->listAllDrivesBetaAsyncWithHttpInfo($orderby, $filter, $contentType)
+        return $this->listAllDrivesBetaAsyncWithHttpInfo($orderby, $filter, $expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -721,6 +727,7 @@ class DrivesGetDrivesApi
      *
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
+     * @param  string|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAllDrivesBeta'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -729,11 +736,12 @@ class DrivesGetDrivesApi
     public function listAllDrivesBetaAsyncWithHttpInfo(
         $orderby = null,
         $filter = null,
+        $expand = null,
         string $contentType = self::contentTypes['listAllDrivesBeta'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\CollectionOfDrives1';
-        $request = $this->listAllDrivesBetaRequest($orderby, $filter, $contentType);
+        $request = $this->listAllDrivesBetaRequest($orderby, $filter, $expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -776,6 +784,7 @@ class DrivesGetDrivesApi
      *
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
+     * @param  string|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAllDrivesBeta'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -784,9 +793,11 @@ class DrivesGetDrivesApi
     public function listAllDrivesBetaRequest(
         $orderby = null,
         $filter = null,
+        $expand = null,
         string $contentType = self::contentTypes['listAllDrivesBeta'][0]
     ): Request
     {
+
 
 
 
@@ -811,6 +822,15 @@ class DrivesGetDrivesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $filter,
             '$filter', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            '$expand', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
