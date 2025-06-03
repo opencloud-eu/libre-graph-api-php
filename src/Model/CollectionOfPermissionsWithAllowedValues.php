@@ -60,7 +60,8 @@ class CollectionOfPermissionsWithAllowedValues implements ModelInterface, ArrayA
     protected static array $openAPITypes = [
         'at_libre_graph_permissions_roles_allowed_values' => '\OpenAPI\Client\Model\UnifiedRoleDefinition[]',
         'at_libre_graph_permissions_actions_allowed_values' => 'string[]',
-        'value' => '\OpenAPI\Client\Model\Permission[]'
+        'value' => '\OpenAPI\Client\Model\Permission[]',
+        'at_odata_count' => 'int'
     ];
 
     /**
@@ -71,7 +72,8 @@ class CollectionOfPermissionsWithAllowedValues implements ModelInterface, ArrayA
     protected static array $openAPIFormats = [
         'at_libre_graph_permissions_roles_allowed_values' => null,
         'at_libre_graph_permissions_actions_allowed_values' => null,
-        'value' => null
+        'value' => null,
+        'at_odata_count' => null
     ];
 
     /**
@@ -82,7 +84,8 @@ class CollectionOfPermissionsWithAllowedValues implements ModelInterface, ArrayA
     protected static array $openAPINullables = [
         'at_libre_graph_permissions_roles_allowed_values' => false,
         'at_libre_graph_permissions_actions_allowed_values' => false,
-        'value' => false
+        'value' => false,
+        'at_odata_count' => false
     ];
 
     /**
@@ -173,7 +176,8 @@ class CollectionOfPermissionsWithAllowedValues implements ModelInterface, ArrayA
     protected static array $attributeMap = [
         'at_libre_graph_permissions_roles_allowed_values' => '@libre.graph.permissions.roles.allowedValues',
         'at_libre_graph_permissions_actions_allowed_values' => '@libre.graph.permissions.actions.allowedValues',
-        'value' => 'value'
+        'value' => 'value',
+        'at_odata_count' => '@odata.count'
     ];
 
     /**
@@ -184,7 +188,8 @@ class CollectionOfPermissionsWithAllowedValues implements ModelInterface, ArrayA
     protected static array $setters = [
         'at_libre_graph_permissions_roles_allowed_values' => 'setAtLibreGraphPermissionsRolesAllowedValues',
         'at_libre_graph_permissions_actions_allowed_values' => 'setAtLibreGraphPermissionsActionsAllowedValues',
-        'value' => 'setValue'
+        'value' => 'setValue',
+        'at_odata_count' => 'setAtOdataCount'
     ];
 
     /**
@@ -195,7 +200,8 @@ class CollectionOfPermissionsWithAllowedValues implements ModelInterface, ArrayA
     protected static array $getters = [
         'at_libre_graph_permissions_roles_allowed_values' => 'getAtLibreGraphPermissionsRolesAllowedValues',
         'at_libre_graph_permissions_actions_allowed_values' => 'getAtLibreGraphPermissionsActionsAllowedValues',
-        'value' => 'getValue'
+        'value' => 'getValue',
+        'at_odata_count' => 'getAtOdataCount'
     ];
 
     /**
@@ -257,6 +263,7 @@ class CollectionOfPermissionsWithAllowedValues implements ModelInterface, ArrayA
         $this->setIfExists('at_libre_graph_permissions_roles_allowed_values', $data ?? [], null);
         $this->setIfExists('at_libre_graph_permissions_actions_allowed_values', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('at_odata_count', $data ?? [], null);
     }
 
     /**
@@ -378,6 +385,33 @@ class CollectionOfPermissionsWithAllowedValues implements ModelInterface, ArrayA
             throw new InvalidArgumentException('non-nullable value cannot be null');
         }
         $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_odata_count
+     *
+     * @return int|null
+     */
+    public function getAtOdataCount(): ?int
+    {
+        return $this->container['at_odata_count'];
+    }
+
+    /**
+     * Sets at_odata_count
+     *
+     * @param int|null $at_odata_count The total number of permissions available, only present if the `count` query parameter is set to true.
+     *
+     * @return $this
+     */
+    public function setAtOdataCount(?int $at_odata_count): static
+    {
+        if (is_null($at_odata_count)) {
+            throw new InvalidArgumentException('non-nullable at_odata_count cannot be null');
+        }
+        $this->container['at_odata_count'] = $at_odata_count;
 
         return $this;
     }

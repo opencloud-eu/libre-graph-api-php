@@ -103,4 +103,13 @@ class CollectionOfPermissionsWithAllowedValuesTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "at_odata_count"
+     */
+    public function testPropertyAtOdataCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

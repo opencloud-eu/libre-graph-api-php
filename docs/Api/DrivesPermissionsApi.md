@@ -283,7 +283,7 @@ try {
 ## `listPermissions()`
 
 ```php
-listPermissions($drive_id, $item_id, $filter, $select): \OpenAPI\Client\Model\CollectionOfPermissionsWithAllowedValues
+listPermissions($drive_id, $item_id, $filter, $select, $count, $top): \OpenAPI\Client\Model\CollectionOfPermissionsWithAllowedValues
 ```
 
 List the effective sharing permissions on a driveItem.
@@ -314,9 +314,11 @@ $drive_id = 'drive_id_example'; // string | key: id of drive
 $item_id = 'item_id_example'; // string | key: id of item
 $filter = @libre.graph.permissions.roles.allowedValues/rolePermissions/any(p:contains(p/condition, '@Subject.UserType=="Federated"')); // string | Filter items by property values. By default all permissions are returned and the avalable sharing roles are limited to normal users. To get a list of sharing roles applicable to federated users use the example $select query and combine it with $filter to omit the list of permissions.
 $select = array('select_example'); // string[] | Select properties to be returned. By default all properties are returned. Select the roles property to fetch the available sharing roles without resolving all the permissions. Combine this with the $filter parameter to fetch the actions applicable to federated users.
+$count = True; // bool | Include count of items
+$top = 50; // int | Show only the first n items
 
 try {
-    $result = $apiInstance->listPermissions($drive_id, $item_id, $filter, $select);
+    $result = $apiInstance->listPermissions($drive_id, $item_id, $filter, $select, $count, $top);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DrivesPermissionsApi->listPermissions: ', $e->getMessage(), PHP_EOL;
@@ -331,6 +333,8 @@ try {
 | **item_id** | **string**| key: id of item | |
 | **filter** | **string**| Filter items by property values. By default all permissions are returned and the avalable sharing roles are limited to normal users. To get a list of sharing roles applicable to federated users use the example $select query and combine it with $filter to omit the list of permissions. | [optional] |
 | **select** | [**string[]**](../Model/string.md)| Select properties to be returned. By default all properties are returned. Select the roles property to fetch the available sharing roles without resolving all the permissions. Combine this with the $filter parameter to fetch the actions applicable to federated users. | [optional] |
+| **count** | **bool**| Include count of items | [optional] |
+| **top** | **int**| Show only the first n items | [optional] |
 
 ### Return type
 

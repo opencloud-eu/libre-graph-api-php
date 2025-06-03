@@ -2354,6 +2354,8 @@ class DrivesRootApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string|null $filter Filter items by property values. By default all permissions are returned and the avalable sharing roles are limited to normal users. To get a list of sharing roles applicable to federated users use the example $select query and combine it with $filter to omit the list of permissions. (optional)
      * @param  string[]|null $select Select properties to be returned. By default all properties are returned. Select the roles property to fetch the available sharing roles without resolving all the permissions. Combine this with the $filter parameter to fetch the actions applicable to federated users. (optional)
+     * @param  bool|null $count Include count of items (optional)
+     * @param  int|null $top Show only the first n items (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPermissionsSpaceRoot'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -2364,10 +2366,12 @@ class DrivesRootApi
         string $drive_id,
         ??string $filter = null,
         ??array $select = null,
+        ??bool $count = null,
+        ??int $top = null,
         string $contentType = self::contentTypes['listPermissionsSpaceRoot'][0]
     )
     {
-        list($response) = $this->listPermissionsSpaceRootWithHttpInfo($drive_id, $filter, $select, $contentType);
+        list($response) = $this->listPermissionsSpaceRootWithHttpInfo($drive_id, $filter, $select, $count, $top, $contentType);
         return $response;
     }
 
@@ -2379,6 +2383,8 @@ class DrivesRootApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string|null $filter Filter items by property values. By default all permissions are returned and the avalable sharing roles are limited to normal users. To get a list of sharing roles applicable to federated users use the example $select query and combine it with $filter to omit the list of permissions. (optional)
      * @param  string[]|null $select Select properties to be returned. By default all properties are returned. Select the roles property to fetch the available sharing roles without resolving all the permissions. Combine this with the $filter parameter to fetch the actions applicable to federated users. (optional)
+     * @param  bool|null $count Include count of items (optional)
+     * @param  int|null $top Show only the first n items (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPermissionsSpaceRoot'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -2389,10 +2395,12 @@ class DrivesRootApi
         string $drive_id,
         ??string $filter = null,
         ??array $select = null,
+        ??bool $count = null,
+        ??int $top = null,
         string $contentType = self::contentTypes['listPermissionsSpaceRoot'][0]
     ): array
     {
-        $request = $this->listPermissionsSpaceRootRequest($drive_id, $filter, $select, $contentType);
+        $request = $this->listPermissionsSpaceRootRequest($drive_id, $filter, $select, $count, $top, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2545,6 +2553,8 @@ class DrivesRootApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string|null $filter Filter items by property values. By default all permissions are returned and the avalable sharing roles are limited to normal users. To get a list of sharing roles applicable to federated users use the example $select query and combine it with $filter to omit the list of permissions. (optional)
      * @param  string[]|null $select Select properties to be returned. By default all properties are returned. Select the roles property to fetch the available sharing roles without resolving all the permissions. Combine this with the $filter parameter to fetch the actions applicable to federated users. (optional)
+     * @param  bool|null $count Include count of items (optional)
+     * @param  int|null $top Show only the first n items (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPermissionsSpaceRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -2554,10 +2564,12 @@ class DrivesRootApi
         string $drive_id,
         ??string $filter = null,
         ??array $select = null,
+        ??bool $count = null,
+        ??int $top = null,
         string $contentType = self::contentTypes['listPermissionsSpaceRoot'][0]
     ): PromiseInterface
     {
-        return $this->listPermissionsSpaceRootAsyncWithHttpInfo($drive_id, $filter, $select, $contentType)
+        return $this->listPermissionsSpaceRootAsyncWithHttpInfo($drive_id, $filter, $select, $count, $top, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2573,6 +2585,8 @@ class DrivesRootApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string|null $filter Filter items by property values. By default all permissions are returned and the avalable sharing roles are limited to normal users. To get a list of sharing roles applicable to federated users use the example $select query and combine it with $filter to omit the list of permissions. (optional)
      * @param  string[]|null $select Select properties to be returned. By default all properties are returned. Select the roles property to fetch the available sharing roles without resolving all the permissions. Combine this with the $filter parameter to fetch the actions applicable to federated users. (optional)
+     * @param  bool|null $count Include count of items (optional)
+     * @param  int|null $top Show only the first n items (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPermissionsSpaceRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -2582,11 +2596,13 @@ class DrivesRootApi
         $drive_id,
         $filter = null,
         $select = null,
+        $count = null,
+        $top = null,
         string $contentType = self::contentTypes['listPermissionsSpaceRoot'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\CollectionOfPermissionsWithAllowedValues';
-        $request = $this->listPermissionsSpaceRootRequest($drive_id, $filter, $select, $contentType);
+        $request = $this->listPermissionsSpaceRootRequest($drive_id, $filter, $select, $count, $top, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2630,6 +2646,8 @@ class DrivesRootApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string|null $filter Filter items by property values. By default all permissions are returned and the avalable sharing roles are limited to normal users. To get a list of sharing roles applicable to federated users use the example $select query and combine it with $filter to omit the list of permissions. (optional)
      * @param  string[]|null $select Select properties to be returned. By default all properties are returned. Select the roles property to fetch the available sharing roles without resolving all the permissions. Combine this with the $filter parameter to fetch the actions applicable to federated users. (optional)
+     * @param  bool|null $count Include count of items (optional)
+     * @param  int|null $top Show only the first n items (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPermissionsSpaceRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -2639,6 +2657,8 @@ class DrivesRootApi
         $drive_id,
         $filter = null,
         $select = null,
+        $count = null,
+        $top = null,
         string $contentType = self::contentTypes['listPermissionsSpaceRoot'][0]
     ): Request
     {
@@ -2651,6 +2671,11 @@ class DrivesRootApi
         }
 
 
+        
+
+        if ($top !== null && $top < 0) {
+            throw new InvalidArgumentException('invalid value for "$top" when calling DrivesRootApi.listPermissionsSpaceRoot, must be bigger than or equal to 0.');
+        }
         
 
         $resourcePath = '/v1beta1/drives/{drive-id}/root/permissions';
@@ -2676,6 +2701,24 @@ class DrivesRootApi
             'array', // openApiType
             'form', // style
             false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $count,
+            '$count', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $top,
+            '$top', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
             false // required
         ) ?? []);
 
