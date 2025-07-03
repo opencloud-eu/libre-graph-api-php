@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **items** | [**\OpenAPI\Client\Model\DriveItem[]**](DriveItem.md) | All items contained in the drive. Read-only. Nullable. | [optional] [readonly]
 **root** | [**\OpenAPI\Client\Model\DriveItem**](DriveItem.md) |  | [optional]
 **special** | [**\OpenAPI\Client\Model\DriveItem[]**](DriveItem.md) | A collection of special drive resources. | [optional]
+**at_libre_graph_has_trashed_items** | **bool** | Indicates whether the drive has items in the trash. Read-only. | [optional] [readonly]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -229,4 +229,13 @@ class DriveTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "at_libre_graph_has_trashed_items"
+     */
+    public function testPropertyAtLibreGraphHasTrashedItems()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

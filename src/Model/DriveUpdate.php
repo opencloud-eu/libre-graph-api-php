@@ -75,7 +75,8 @@ class DriveUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'quota' => '\OpenAPI\Client\Model\Quota',
         'items' => '\OpenAPI\Client\Model\DriveItem[]',
         'root' => '\OpenAPI\Client\Model\DriveItem',
-        'special' => '\OpenAPI\Client\Model\DriveItem[]'
+        'special' => '\OpenAPI\Client\Model\DriveItem[]',
+        'at_libre_graph_has_trashed_items' => 'bool'
     ];
 
     /**
@@ -100,7 +101,8 @@ class DriveUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'quota' => null,
         'items' => null,
         'root' => null,
-        'special' => null
+        'special' => null,
+        'at_libre_graph_has_trashed_items' => null
     ];
 
     /**
@@ -125,7 +127,8 @@ class DriveUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'quota' => false,
         'items' => false,
         'root' => false,
-        'special' => false
+        'special' => false,
+        'at_libre_graph_has_trashed_items' => false
     ];
 
     /**
@@ -230,7 +233,8 @@ class DriveUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'quota' => 'quota',
         'items' => 'items',
         'root' => 'root',
-        'special' => 'special'
+        'special' => 'special',
+        'at_libre_graph_has_trashed_items' => '@libre.graph.hasTrashedItems'
     ];
 
     /**
@@ -255,7 +259,8 @@ class DriveUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'quota' => 'setQuota',
         'items' => 'setItems',
         'root' => 'setRoot',
-        'special' => 'setSpecial'
+        'special' => 'setSpecial',
+        'at_libre_graph_has_trashed_items' => 'setAtLibreGraphHasTrashedItems'
     ];
 
     /**
@@ -280,7 +285,8 @@ class DriveUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'quota' => 'getQuota',
         'items' => 'getItems',
         'root' => 'getRoot',
-        'special' => 'getSpecial'
+        'special' => 'getSpecial',
+        'at_libre_graph_has_trashed_items' => 'getAtLibreGraphHasTrashedItems'
     ];
 
     /**
@@ -356,6 +362,7 @@ class DriveUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('items', $data ?? [], null);
         $this->setIfExists('root', $data ?? [], null);
         $this->setIfExists('special', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_has_trashed_items', $data ?? [], null);
     }
 
     /**
@@ -873,6 +880,33 @@ class DriveUpdate implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable special cannot be null');
         }
         $this->container['special'] = $special;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_libre_graph_has_trashed_items
+     *
+     * @return bool|null
+     */
+    public function getAtLibreGraphHasTrashedItems(): ?bool
+    {
+        return $this->container['at_libre_graph_has_trashed_items'];
+    }
+
+    /**
+     * Sets at_libre_graph_has_trashed_items
+     *
+     * @param bool|null $at_libre_graph_has_trashed_items Indicates whether the drive has items in the trash. Read-only.
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphHasTrashedItems(?bool $at_libre_graph_has_trashed_items): static
+    {
+        if (is_null($at_libre_graph_has_trashed_items)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_has_trashed_items cannot be null');
+        }
+        $this->container['at_libre_graph_has_trashed_items'] = $at_libre_graph_has_trashed_items;
 
         return $this;
     }
