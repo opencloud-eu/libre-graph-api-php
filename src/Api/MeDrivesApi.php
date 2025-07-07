@@ -509,6 +509,7 @@ class MeDrivesApi
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
      * @param  string|null $expand Expand related entities (optional)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMyDrivesBeta'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -519,10 +520,11 @@ class MeDrivesApi
         ??string $orderby = null,
         ??string $filter = null,
         ??string $expand = null,
+        ??array $select = null,
         string $contentType = self::contentTypes['listMyDrivesBeta'][0]
     )
     {
-        list($response) = $this->listMyDrivesBetaWithHttpInfo($orderby, $filter, $expand, $contentType);
+        list($response) = $this->listMyDrivesBetaWithHttpInfo($orderby, $filter, $expand, $select, $contentType);
         return $response;
     }
 
@@ -534,6 +536,7 @@ class MeDrivesApi
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
      * @param  string|null $expand Expand related entities (optional)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMyDrivesBeta'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -544,10 +547,11 @@ class MeDrivesApi
         ??string $orderby = null,
         ??string $filter = null,
         ??string $expand = null,
+        ??array $select = null,
         string $contentType = self::contentTypes['listMyDrivesBeta'][0]
     ): array
     {
-        $request = $this->listMyDrivesBetaRequest($orderby, $filter, $expand, $contentType);
+        $request = $this->listMyDrivesBetaRequest($orderby, $filter, $expand, $select, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -700,6 +704,7 @@ class MeDrivesApi
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
      * @param  string|null $expand Expand related entities (optional)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMyDrivesBeta'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -709,10 +714,11 @@ class MeDrivesApi
         ??string $orderby = null,
         ??string $filter = null,
         ??string $expand = null,
+        ??array $select = null,
         string $contentType = self::contentTypes['listMyDrivesBeta'][0]
     ): PromiseInterface
     {
-        return $this->listMyDrivesBetaAsyncWithHttpInfo($orderby, $filter, $expand, $contentType)
+        return $this->listMyDrivesBetaAsyncWithHttpInfo($orderby, $filter, $expand, $select, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -728,6 +734,7 @@ class MeDrivesApi
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
      * @param  string|null $expand Expand related entities (optional)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMyDrivesBeta'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -737,11 +744,12 @@ class MeDrivesApi
         $orderby = null,
         $filter = null,
         $expand = null,
+        $select = null,
         string $contentType = self::contentTypes['listMyDrivesBeta'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\CollectionOfDrives';
-        $request = $this->listMyDrivesBetaRequest($orderby, $filter, $expand, $contentType);
+        $request = $this->listMyDrivesBetaRequest($orderby, $filter, $expand, $select, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -785,6 +793,7 @@ class MeDrivesApi
      * @param  string|null $orderby The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. (optional)
      * @param  string|null $filter Filter items by property values (optional)
      * @param  string|null $expand Expand related entities (optional)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMyDrivesBeta'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -794,6 +803,7 @@ class MeDrivesApi
         $orderby = null,
         $filter = null,
         $expand = null,
+        $select = null,
         string $contentType = self::contentTypes['listMyDrivesBeta'][0]
     ): Request
     {
@@ -801,6 +811,7 @@ class MeDrivesApi
 
 
 
+        
 
         $resourcePath = '/v1beta1/me/drives';
         $formParams = [];
@@ -834,6 +845,15 @@ class MeDrivesApi
             'string', // openApiType
             'form', // style
             true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $select,
+            '$select', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
             false // required
         ) ?? []);
 

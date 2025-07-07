@@ -768,6 +768,7 @@ class DrivesApi
      * Get drive by id
      *
      * @param  string $drive_id key: id of drive (required)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDrive'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -776,10 +777,11 @@ class DrivesApi
      */
     public function getDrive(
         string $drive_id,
+        ??array $select = null,
         string $contentType = self::contentTypes['getDrive'][0]
     )
     {
-        list($response) = $this->getDriveWithHttpInfo($drive_id, $contentType);
+        list($response) = $this->getDriveWithHttpInfo($drive_id, $select, $contentType);
         return $response;
     }
 
@@ -789,6 +791,7 @@ class DrivesApi
      * Get drive by id
      *
      * @param  string $drive_id key: id of drive (required)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDrive'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -797,10 +800,11 @@ class DrivesApi
      */
     public function getDriveWithHttpInfo(
         string $drive_id,
+        ??array $select = null,
         string $contentType = self::contentTypes['getDrive'][0]
     ): array
     {
-        $request = $this->getDriveRequest($drive_id, $contentType);
+        $request = $this->getDriveRequest($drive_id, $select, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -951,6 +955,7 @@ class DrivesApi
      * Get drive by id
      *
      * @param  string $drive_id key: id of drive (required)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDrive'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -958,10 +963,11 @@ class DrivesApi
      */
     public function getDriveAsync(
         string $drive_id,
+        ??array $select = null,
         string $contentType = self::contentTypes['getDrive'][0]
     ): PromiseInterface
     {
-        return $this->getDriveAsyncWithHttpInfo($drive_id, $contentType)
+        return $this->getDriveAsyncWithHttpInfo($drive_id, $select, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -975,6 +981,7 @@ class DrivesApi
      * Get drive by id
      *
      * @param  string $drive_id key: id of drive (required)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDrive'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -982,11 +989,12 @@ class DrivesApi
      */
     public function getDriveAsyncWithHttpInfo(
         $drive_id,
+        $select = null,
         string $contentType = self::contentTypes['getDrive'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\Drive';
-        $request = $this->getDriveRequest($drive_id, $contentType);
+        $request = $this->getDriveRequest($drive_id, $select, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1028,6 +1036,7 @@ class DrivesApi
      * Create request for operation 'getDrive'
      *
      * @param  string $drive_id key: id of drive (required)
+     * @param  string[]|null $select Select properties to be returned. By default all properties are returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDrive'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1035,6 +1044,7 @@ class DrivesApi
      */
     public function getDriveRequest(
         $drive_id,
+        $select = null,
         string $contentType = self::contentTypes['getDrive'][0]
     ): Request
     {
@@ -1046,6 +1056,7 @@ class DrivesApi
             );
         }
 
+        
 
         $resourcePath = '/v1.0/drives/{drive-id}';
         $formParams = [];
@@ -1054,6 +1065,15 @@ class DrivesApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $select,
+            '$select', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
 
 
         // path params

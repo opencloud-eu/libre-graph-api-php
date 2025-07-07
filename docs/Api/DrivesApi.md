@@ -136,7 +136,7 @@ void (empty response body)
 ## `getDrive()`
 
 ```php
-getDrive($drive_id): \OpenAPI\Client\Model\Drive
+getDrive($drive_id, $select): \OpenAPI\Client\Model\Drive
 ```
 
 Get drive by id
@@ -162,9 +162,10 @@ $apiInstance = new OpenAPI\Client\Api\DrivesApi(
     $config
 );
 $drive_id = 'drive_id_example'; // string | key: id of drive
+$select = array('select_example'); // string[] | Select properties to be returned. By default all properties are returned.
 
 try {
-    $result = $apiInstance->getDrive($drive_id);
+    $result = $apiInstance->getDrive($drive_id, $select);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DrivesApi->getDrive: ', $e->getMessage(), PHP_EOL;
@@ -176,6 +177,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **drive_id** | **string**| key: id of drive | |
+| **select** | [**string[]**](../Model/string.md)| Select properties to be returned. By default all properties are returned. | [optional] |
 
 ### Return type
 

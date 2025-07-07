@@ -74,7 +74,7 @@ try {
 ## `listAllDrivesBeta()`
 
 ```php
-listAllDrivesBeta($orderby, $filter, $expand): \OpenAPI\Client\Model\CollectionOfDrives1
+listAllDrivesBeta($orderby, $filter, $expand, $select): \OpenAPI\Client\Model\CollectionOfDrives1
 ```
 
 Alias for '/v1.0/drives', the difference is that grantedtoV2 is used and roles contain unified roles instead of cs3 roles
@@ -102,9 +102,10 @@ $apiInstance = new OpenAPI\Client\Api\DrivesGetDrivesApi(
 $orderby = lastModifiedDateTime desc; // string | The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc.
 $filter = driveType eq 'project'; // string | Filter items by property values
 $expand = root($expand=permissions); // string | Expand related entities
+$select = array('select_example'); // string[] | Select properties to be returned. By default all properties are returned.
 
 try {
-    $result = $apiInstance->listAllDrivesBeta($orderby, $filter, $expand);
+    $result = $apiInstance->listAllDrivesBeta($orderby, $filter, $expand, $select);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DrivesGetDrivesApi->listAllDrivesBeta: ', $e->getMessage(), PHP_EOL;
@@ -118,6 +119,7 @@ try {
 | **orderby** | **string**| The $orderby system query option allows clients to request resources in either ascending order using asc or descending order using desc. | [optional] |
 | **filter** | **string**| Filter items by property values | [optional] |
 | **expand** | **string**| Expand related entities | [optional] |
+| **select** | [**string[]**](../Model/string.md)| Select properties to be returned. By default all properties are returned. | [optional] |
 
 ### Return type
 
