@@ -70,7 +70,7 @@ This endpoint does not need any parameter.
 ## `listSharedByMe()`
 
 ```php
-listSharedByMe(): \OpenAPI\Client\Model\CollectionOfDriveItems1
+listSharedByMe($expand): \OpenAPI\Client\Model\CollectionOfDriveItems1
 ```
 
 Get a list of driveItem objects shared by the current user.
@@ -97,9 +97,10 @@ $apiInstance = new OpenAPI\Client\Api\MeDriveApi(
     new GuzzleHttp\Client(),
     $config
 );
+$expand = array('expand_example'); // string[] | Expand related entities
 
 try {
-    $result = $apiInstance->listSharedByMe();
+    $result = $apiInstance->listSharedByMe($expand);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeDriveApi->listSharedByMe: ', $e->getMessage(), PHP_EOL;
@@ -108,7 +109,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **expand** | [**string[]**](../Model/string.md)| Expand related entities | [optional] |
 
 ### Return type
 
@@ -130,7 +133,7 @@ This endpoint does not need any parameter.
 ## `listSharedWithMe()`
 
 ```php
-listSharedWithMe(): \OpenAPI\Client\Model\CollectionOfDriveItems1
+listSharedWithMe($expand): \OpenAPI\Client\Model\CollectionOfDriveItems1
 ```
 
 Get a list of driveItem objects shared with the owner of a drive.
@@ -157,9 +160,10 @@ $apiInstance = new OpenAPI\Client\Api\MeDriveApi(
     new GuzzleHttp\Client(),
     $config
 );
+$expand = array('expand_example'); // string[] | Expand related entities
 
 try {
-    $result = $apiInstance->listSharedWithMe();
+    $result = $apiInstance->listSharedWithMe($expand);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeDriveApi->listSharedWithMe: ', $e->getMessage(), PHP_EOL;
@@ -168,7 +172,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **expand** | [**string[]**](../Model/string.md)| Expand related entities | [optional] |
 
 ### Return type
 

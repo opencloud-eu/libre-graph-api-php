@@ -469,6 +469,7 @@ class MeDriveApi
      *
      * Get a list of driveItem objects shared by the current user.
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedByMe'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -476,10 +477,11 @@ class MeDriveApi
      * @return \OpenAPI\Client\Model\CollectionOfDriveItems1|\OpenAPI\Client\Model\OdataError
      */
     public function listSharedByMe(
+        ??array $expand = null,
         string $contentType = self::contentTypes['listSharedByMe'][0]
     )
     {
-        list($response) = $this->listSharedByMeWithHttpInfo($contentType);
+        list($response) = $this->listSharedByMeWithHttpInfo($expand, $contentType);
         return $response;
     }
 
@@ -488,6 +490,7 @@ class MeDriveApi
      *
      * Get a list of driveItem objects shared by the current user.
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedByMe'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -495,10 +498,11 @@ class MeDriveApi
      * @return array of \OpenAPI\Client\Model\CollectionOfDriveItems1|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listSharedByMeWithHttpInfo(
+        ??array $expand = null,
         string $contentType = self::contentTypes['listSharedByMe'][0]
     ): array
     {
-        $request = $this->listSharedByMeRequest($contentType);
+        $request = $this->listSharedByMeRequest($expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -648,16 +652,18 @@ class MeDriveApi
      *
      * Get a list of driveItem objects shared by the current user.
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedByMe'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function listSharedByMeAsync(
+        ??array $expand = null,
         string $contentType = self::contentTypes['listSharedByMe'][0]
     ): PromiseInterface
     {
-        return $this->listSharedByMeAsyncWithHttpInfo($contentType)
+        return $this->listSharedByMeAsyncWithHttpInfo($expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -670,17 +676,19 @@ class MeDriveApi
      *
      * Get a list of driveItem objects shared by the current user.
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedByMe'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function listSharedByMeAsyncWithHttpInfo(
+        $expand = null,
         string $contentType = self::contentTypes['listSharedByMe'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\CollectionOfDriveItems1';
-        $request = $this->listSharedByMeRequest($contentType);
+        $request = $this->listSharedByMeRequest($expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -721,16 +729,19 @@ class MeDriveApi
     /**
      * Create request for operation 'listSharedByMe'
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedByMe'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function listSharedByMeRequest(
+        $expand = null,
         string $contentType = self::contentTypes['listSharedByMe'][0]
     ): Request
     {
 
+        
 
         $resourcePath = '/v1beta1/me/drive/sharedByMe';
         $formParams = [];
@@ -739,6 +750,15 @@ class MeDriveApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            '$expand', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -805,6 +825,7 @@ class MeDriveApi
      *
      * Get a list of driveItem objects shared with the owner of a drive.
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedWithMe'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -812,10 +833,11 @@ class MeDriveApi
      * @return \OpenAPI\Client\Model\CollectionOfDriveItems1|\OpenAPI\Client\Model\OdataError
      */
     public function listSharedWithMe(
+        ??array $expand = null,
         string $contentType = self::contentTypes['listSharedWithMe'][0]
     )
     {
-        list($response) = $this->listSharedWithMeWithHttpInfo($contentType);
+        list($response) = $this->listSharedWithMeWithHttpInfo($expand, $contentType);
         return $response;
     }
 
@@ -824,6 +846,7 @@ class MeDriveApi
      *
      * Get a list of driveItem objects shared with the owner of a drive.
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedWithMe'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -831,10 +854,11 @@ class MeDriveApi
      * @return array of \OpenAPI\Client\Model\CollectionOfDriveItems1|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listSharedWithMeWithHttpInfo(
+        ??array $expand = null,
         string $contentType = self::contentTypes['listSharedWithMe'][0]
     ): array
     {
-        $request = $this->listSharedWithMeRequest($contentType);
+        $request = $this->listSharedWithMeRequest($expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -984,16 +1008,18 @@ class MeDriveApi
      *
      * Get a list of driveItem objects shared with the owner of a drive.
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedWithMe'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function listSharedWithMeAsync(
+        ??array $expand = null,
         string $contentType = self::contentTypes['listSharedWithMe'][0]
     ): PromiseInterface
     {
-        return $this->listSharedWithMeAsyncWithHttpInfo($contentType)
+        return $this->listSharedWithMeAsyncWithHttpInfo($expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1006,17 +1032,19 @@ class MeDriveApi
      *
      * Get a list of driveItem objects shared with the owner of a drive.
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedWithMe'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function listSharedWithMeAsyncWithHttpInfo(
+        $expand = null,
         string $contentType = self::contentTypes['listSharedWithMe'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\CollectionOfDriveItems1';
-        $request = $this->listSharedWithMeRequest($contentType);
+        $request = $this->listSharedWithMeRequest($expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1057,16 +1085,19 @@ class MeDriveApi
     /**
      * Create request for operation 'listSharedWithMe'
      *
+     * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSharedWithMe'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function listSharedWithMeRequest(
+        $expand = null,
         string $contentType = self::contentTypes['listSharedWithMe'][0]
     ): Request
     {
 
+        
 
         $resourcePath = '/v1beta1/me/drive/sharedWithMe';
         $formParams = [];
@@ -1075,6 +1106,15 @@ class MeDriveApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            '$expand', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
 
 
 
