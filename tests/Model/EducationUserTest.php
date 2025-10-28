@@ -123,6 +123,15 @@ class EducationUserTest extends TestCase
     }
 
     /**
+     * Test attribute "external_id"
+     */
+    public function testPropertyExternalId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "identities"
      */
     public function testPropertyIdentities()

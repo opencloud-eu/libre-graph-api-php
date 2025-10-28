@@ -499,7 +499,7 @@ class EducationUserApi
      *
      * Delete educationUser
      *
-     * @param  string $user_id key: id or username of user (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -519,7 +519,7 @@ class EducationUserApi
      *
      * Delete educationUser
      *
-     * @param  string $user_id key: id or username of user (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -590,7 +590,7 @@ class EducationUserApi
      *
      * Delete educationUser
      *
-     * @param  string $user_id key: id or username of user (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -614,7 +614,7 @@ class EducationUserApi
      *
      * Delete educationUser
      *
-     * @param  string $user_id key: id or username of user (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -654,7 +654,7 @@ class EducationUserApi
     /**
      * Create request for operation 'deleteEducationUser'
      *
-     * @param  string $user_id key: id or username of user (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1136,6 +1136,7 @@ class EducationUserApi
      *
      * Get entities from education users
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string[]|null $orderby Order items by property values (optional)
      * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEducationUsers'] to see the possible values for this operation
@@ -1145,12 +1146,13 @@ class EducationUserApi
      * @return \OpenAPI\Client\Model\CollectionOfEducationUser|\OpenAPI\Client\Model\OdataError
      */
     public function listEducationUsers(
+        ??string $filter = null,
         ??array $orderby = null,
         ??array $expand = null,
         string $contentType = self::contentTypes['listEducationUsers'][0]
     )
     {
-        list($response) = $this->listEducationUsersWithHttpInfo($orderby, $expand, $contentType);
+        list($response) = $this->listEducationUsersWithHttpInfo($filter, $orderby, $expand, $contentType);
         return $response;
     }
 
@@ -1159,6 +1161,7 @@ class EducationUserApi
      *
      * Get entities from education users
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string[]|null $orderby Order items by property values (optional)
      * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEducationUsers'] to see the possible values for this operation
@@ -1168,12 +1171,13 @@ class EducationUserApi
      * @return array of \OpenAPI\Client\Model\CollectionOfEducationUser|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listEducationUsersWithHttpInfo(
+        ??string $filter = null,
         ??array $orderby = null,
         ??array $expand = null,
         string $contentType = self::contentTypes['listEducationUsers'][0]
     ): array
     {
-        $request = $this->listEducationUsersRequest($orderby, $expand, $contentType);
+        $request = $this->listEducationUsersRequest($filter, $orderby, $expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1323,6 +1327,7 @@ class EducationUserApi
      *
      * Get entities from education users
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string[]|null $orderby Order items by property values (optional)
      * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEducationUsers'] to see the possible values for this operation
@@ -1331,12 +1336,13 @@ class EducationUserApi
      * @return PromiseInterface
      */
     public function listEducationUsersAsync(
+        ??string $filter = null,
         ??array $orderby = null,
         ??array $expand = null,
         string $contentType = self::contentTypes['listEducationUsers'][0]
     ): PromiseInterface
     {
-        return $this->listEducationUsersAsyncWithHttpInfo($orderby, $expand, $contentType)
+        return $this->listEducationUsersAsyncWithHttpInfo($filter, $orderby, $expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1349,6 +1355,7 @@ class EducationUserApi
      *
      * Get entities from education users
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string[]|null $orderby Order items by property values (optional)
      * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEducationUsers'] to see the possible values for this operation
@@ -1357,13 +1364,14 @@ class EducationUserApi
      * @return PromiseInterface
      */
     public function listEducationUsersAsyncWithHttpInfo(
+        $filter = null,
         $orderby = null,
         $expand = null,
         string $contentType = self::contentTypes['listEducationUsers'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\CollectionOfEducationUser';
-        $request = $this->listEducationUsersRequest($orderby, $expand, $contentType);
+        $request = $this->listEducationUsersRequest($filter, $orderby, $expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1404,6 +1412,7 @@ class EducationUserApi
     /**
      * Create request for operation 'listEducationUsers'
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string[]|null $orderby Order items by property values (optional)
      * @param  string[]|null $expand Expand related entities (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEducationUsers'] to see the possible values for this operation
@@ -1412,11 +1421,13 @@ class EducationUserApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function listEducationUsersRequest(
+        $filter = null,
         $orderby = null,
         $expand = null,
         string $contentType = self::contentTypes['listEducationUsers'][0]
     ): Request
     {
+
 
         
         
@@ -1428,6 +1439,15 @@ class EducationUserApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $filter,
+            '$filter', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $orderby,

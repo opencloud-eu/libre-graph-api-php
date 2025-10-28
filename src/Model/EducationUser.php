@@ -64,6 +64,7 @@ class EducationUser implements ModelInterface, ArrayAccess, JsonSerializable
         'display_name' => 'string',
         'drives' => '\OpenAPI\Client\Model\Drive[]',
         'drive' => '\OpenAPI\Client\Model\Drive',
+        'external_id' => 'string',
         'identities' => '\OpenAPI\Client\Model\ObjectIdentity[]',
         'mail' => 'string',
         'member_of' => '\OpenAPI\Client\Model\Group[]',
@@ -86,6 +87,7 @@ class EducationUser implements ModelInterface, ArrayAccess, JsonSerializable
         'display_name' => null,
         'drives' => null,
         'drive' => null,
+        'external_id' => null,
         'identities' => null,
         'mail' => null,
         'member_of' => null,
@@ -108,6 +110,7 @@ class EducationUser implements ModelInterface, ArrayAccess, JsonSerializable
         'display_name' => false,
         'drives' => false,
         'drive' => false,
+        'external_id' => false,
         'identities' => false,
         'mail' => false,
         'member_of' => false,
@@ -210,6 +213,7 @@ class EducationUser implements ModelInterface, ArrayAccess, JsonSerializable
         'display_name' => 'displayName',
         'drives' => 'drives',
         'drive' => 'drive',
+        'external_id' => 'externalId',
         'identities' => 'identities',
         'mail' => 'mail',
         'member_of' => 'memberOf',
@@ -232,6 +236,7 @@ class EducationUser implements ModelInterface, ArrayAccess, JsonSerializable
         'display_name' => 'setDisplayName',
         'drives' => 'setDrives',
         'drive' => 'setDrive',
+        'external_id' => 'setExternalId',
         'identities' => 'setIdentities',
         'mail' => 'setMail',
         'member_of' => 'setMemberOf',
@@ -254,6 +259,7 @@ class EducationUser implements ModelInterface, ArrayAccess, JsonSerializable
         'display_name' => 'getDisplayName',
         'drives' => 'getDrives',
         'drive' => 'getDrive',
+        'external_id' => 'getExternalId',
         'identities' => 'getIdentities',
         'mail' => 'getMail',
         'member_of' => 'getMemberOf',
@@ -326,6 +332,7 @@ class EducationUser implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('display_name', $data ?? [], null);
         $this->setIfExists('drives', $data ?? [], null);
         $this->setIfExists('drive', $data ?? [], null);
+        $this->setIfExists('external_id', $data ?? [], null);
         $this->setIfExists('identities', $data ?? [], null);
         $this->setIfExists('mail', $data ?? [], null);
         $this->setIfExists('member_of', $data ?? [], null);
@@ -518,6 +525,33 @@ class EducationUser implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable drive cannot be null');
         }
         $this->container['drive'] = $drive;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_id
+     *
+     * @return string|null
+     */
+    public function getExternalId(): ?string
+    {
+        return $this->container['external_id'];
+    }
+
+    /**
+     * Sets external_id
+     *
+     * @param string|null $external_id An external unique ID for the user. Use it to associate a user in another system, such as a student or employee ID number.
+     *
+     * @return $this
+     */
+    public function setExternalId(?string $external_id): static
+    {
+        if (is_null($external_id)) {
+            throw new InvalidArgumentException('non-nullable external_id cannot be null');
+        }
+        $this->container['external_id'] = $external_id;
 
         return $this;
     }
