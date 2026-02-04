@@ -105,6 +105,15 @@ class EducationSchoolTest extends TestCase
     }
 
     /**
+     * Test attribute "external_id"
+     */
+    public function testPropertyExternalId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "termination_date"
      */
     public function testPropertyTerminationDate()

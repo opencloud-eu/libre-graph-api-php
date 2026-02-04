@@ -62,6 +62,7 @@ class EducationSchool implements ModelInterface, ArrayAccess, JsonSerializable
         'id' => 'string',
         'display_name' => 'string',
         'school_number' => 'string',
+        'external_id' => 'string',
         'termination_date' => '\DateTime'
     ];
 
@@ -74,6 +75,7 @@ class EducationSchool implements ModelInterface, ArrayAccess, JsonSerializable
         'id' => null,
         'display_name' => null,
         'school_number' => null,
+        'external_id' => null,
         'termination_date' => 'date-time'
     ];
 
@@ -86,6 +88,7 @@ class EducationSchool implements ModelInterface, ArrayAccess, JsonSerializable
         'id' => false,
         'display_name' => false,
         'school_number' => false,
+        'external_id' => false,
         'termination_date' => true
     ];
 
@@ -178,6 +181,7 @@ class EducationSchool implements ModelInterface, ArrayAccess, JsonSerializable
         'id' => 'id',
         'display_name' => 'displayName',
         'school_number' => 'schoolNumber',
+        'external_id' => 'externalId',
         'termination_date' => 'terminationDate'
     ];
 
@@ -190,6 +194,7 @@ class EducationSchool implements ModelInterface, ArrayAccess, JsonSerializable
         'id' => 'setId',
         'display_name' => 'setDisplayName',
         'school_number' => 'setSchoolNumber',
+        'external_id' => 'setExternalId',
         'termination_date' => 'setTerminationDate'
     ];
 
@@ -202,6 +207,7 @@ class EducationSchool implements ModelInterface, ArrayAccess, JsonSerializable
         'id' => 'getId',
         'display_name' => 'getDisplayName',
         'school_number' => 'getSchoolNumber',
+        'external_id' => 'getExternalId',
         'termination_date' => 'getTerminationDate'
     ];
 
@@ -264,6 +270,7 @@ class EducationSchool implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('display_name', $data ?? [], null);
         $this->setIfExists('school_number', $data ?? [], null);
+        $this->setIfExists('external_id', $data ?? [], null);
         $this->setIfExists('termination_date', $data ?? [], null);
     }
 
@@ -386,6 +393,33 @@ class EducationSchool implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable school_number cannot be null');
         }
         $this->container['school_number'] = $school_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_id
+     *
+     * @return string|null
+     */
+    public function getExternalId(): ?string
+    {
+        return $this->container['external_id'];
+    }
+
+    /**
+     * Sets external_id
+     *
+     * @param string|null $external_id External identifier of the school
+     *
+     * @return $this
+     */
+    public function setExternalId(?string $external_id): static
+    {
+        if (is_null($external_id)) {
+            throw new InvalidArgumentException('non-nullable external_id cannot be null');
+        }
+        $this->container['external_id'] = $external_id;
 
         return $this;
     }
