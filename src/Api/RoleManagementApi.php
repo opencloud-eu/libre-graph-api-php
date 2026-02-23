@@ -495,7 +495,7 @@ class RoleManagementApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\UnifiedRoleDefinition|\OpenAPI\Client\Model\OdataError
+     * @return \OpenAPI\Client\Model\UnifiedRoleDefinition[]|\OpenAPI\Client\Model\OdataError
      */
     public function listPermissionRoleDefinitions(
         string $contentType = self::contentTypes['listPermissionRoleDefinitions'][0]
@@ -514,7 +514,7 @@ class RoleManagementApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\UnifiedRoleDefinition|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\UnifiedRoleDefinition[]|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listPermissionRoleDefinitionsWithHttpInfo(
         string $contentType = self::contentTypes['listPermissionRoleDefinitions'][0]
@@ -559,11 +559,11 @@ class RoleManagementApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\UnifiedRoleDefinition' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\UnifiedRoleDefinition[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\UnifiedRoleDefinition' !== 'string') {
+                        if ('\OpenAPI\Client\Model\UnifiedRoleDefinition[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -581,7 +581,7 @@ class RoleManagementApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\UnifiedRoleDefinition', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\UnifiedRoleDefinition[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -614,7 +614,7 @@ class RoleManagementApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\UnifiedRoleDefinition';
+            $returnType = '\OpenAPI\Client\Model\UnifiedRoleDefinition[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -647,7 +647,7 @@ class RoleManagementApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\UnifiedRoleDefinition',
+                        '\OpenAPI\Client\Model\UnifiedRoleDefinition[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -701,7 +701,7 @@ class RoleManagementApi
         string $contentType = self::contentTypes['listPermissionRoleDefinitions'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\UnifiedRoleDefinition';
+        $returnType = '\OpenAPI\Client\Model\UnifiedRoleDefinition[]';
         $request = $this->listPermissionRoleDefinitionsRequest($contentType);
 
         return $this->client

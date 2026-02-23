@@ -74,7 +74,7 @@ try {
 ## `listPermissionRoleDefinitions()`
 
 ```php
-listPermissionRoleDefinitions(): \OpenAPI\Client\Model\UnifiedRoleDefinition
+listPermissionRoleDefinitions(): \OpenAPI\Client\Model\UnifiedRoleDefinition[]
 ```
 
 List roleDefinitions
@@ -116,7 +116,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UnifiedRoleDefinition**](../Model/UnifiedRoleDefinition.md)
+[**\OpenAPI\Client\Model\UnifiedRoleDefinition[]**](../Model/UnifiedRoleDefinition.md)
 
 ### Authorization
 
