@@ -2978,6 +2978,7 @@ class EducationSchoolApi
      *
      * Get a list of schools and their properties
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSchools'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -2985,10 +2986,11 @@ class EducationSchoolApi
      * @return \OpenAPI\Client\Model\CollectionOfSchools|\OpenAPI\Client\Model\OdataError
      */
     public function listSchools(
+        ??string $filter = null,
         string $contentType = self::contentTypes['listSchools'][0]
     )
     {
-        list($response) = $this->listSchoolsWithHttpInfo($contentType);
+        list($response) = $this->listSchoolsWithHttpInfo($filter, $contentType);
         return $response;
     }
 
@@ -2997,6 +2999,7 @@ class EducationSchoolApi
      *
      * Get a list of schools and their properties
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSchools'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -3004,10 +3007,11 @@ class EducationSchoolApi
      * @return array of \OpenAPI\Client\Model\CollectionOfSchools|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listSchoolsWithHttpInfo(
+        ??string $filter = null,
         string $contentType = self::contentTypes['listSchools'][0]
     ): array
     {
-        $request = $this->listSchoolsRequest($contentType);
+        $request = $this->listSchoolsRequest($filter, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3157,16 +3161,18 @@ class EducationSchoolApi
      *
      * Get a list of schools and their properties
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSchools'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function listSchoolsAsync(
+        ??string $filter = null,
         string $contentType = self::contentTypes['listSchools'][0]
     ): PromiseInterface
     {
-        return $this->listSchoolsAsyncWithHttpInfo($contentType)
+        return $this->listSchoolsAsyncWithHttpInfo($filter, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3179,17 +3185,19 @@ class EducationSchoolApi
      *
      * Get a list of schools and their properties
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSchools'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function listSchoolsAsyncWithHttpInfo(
+        $filter = null,
         string $contentType = self::contentTypes['listSchools'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\CollectionOfSchools';
-        $request = $this->listSchoolsRequest($contentType);
+        $request = $this->listSchoolsRequest($filter, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3230,15 +3238,18 @@ class EducationSchoolApi
     /**
      * Create request for operation 'listSchools'
      *
+     * @param  string|null $filter Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listSchools'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function listSchoolsRequest(
+        $filter = null,
         string $contentType = self::contentTypes['listSchools'][0]
     ): Request
     {
+
 
 
         $resourcePath = '/v1.0/education/schools';
@@ -3248,6 +3259,15 @@ class EducationSchoolApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $filter,
+            '$filter', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
 

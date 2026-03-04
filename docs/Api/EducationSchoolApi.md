@@ -547,10 +547,12 @@ try {
 ## `listSchools()`
 
 ```php
-listSchools(): \OpenAPI\Client\Model\CollectionOfSchools
+listSchools($filter): \OpenAPI\Client\Model\CollectionOfSchools
 ```
 
 Get a list of schools and their properties
+
+Retrieves a collection of education schools with optional filtering and ordering.  **Filtering by external ID:** Use `$filter` to query schools by their external identifier, for example: `$filter=externalId eq 'EX12345'`
 
 ### Example
 
@@ -569,9 +571,10 @@ $apiInstance = new OpenAPI\Client\Api\EducationSchoolApi(
     new GuzzleHttp\Client(),
     $config
 );
+$filter = externalId eq 'ext_12345'; // string | Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: `externalId eq 'ext_12345'`
 
 try {
-    $result = $apiInstance->listSchools();
+    $result = $apiInstance->listSchools($filter);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EducationSchoolApi->listSchools: ', $e->getMessage(), PHP_EOL;
@@ -580,7 +583,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **filter** | **string**| Filter items by property values. Supports a subset of OData filter expressions.  **Supported filters:** - By external ID: &#x60;externalId eq &#39;ext_12345&#39;&#x60; | [optional] |
 
 ### Return type
 
