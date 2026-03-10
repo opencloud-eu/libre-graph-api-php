@@ -96,7 +96,7 @@ $apiInstance = new OpenAPI\Client\Api\EducationUserApi(
     new GuzzleHttp\Client(),
     $config
 );
-$user_id = 90eedea1-dea1-90ee-a1de-ee90a1deee90; // string | key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with `GET /graph/v1.0/education/users?$filter=externalId eq '{value}'`  to retrieve the internal ID.
+$user_id = 90eedea1-dea1-90ee-a1de-ee90a1deee90; // string | key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user with `GET /graph/v1.0/education/users?$filter=externalId eq '{value}'` to retrieve the internal ID.
 
 try {
     $apiInstance->deleteEducationUser($user_id);
@@ -109,7 +109,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. | |
+| **user_id** | **string**| key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60; to retrieve the internal ID. | |
 
 ### Return type
 

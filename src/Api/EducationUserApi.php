@@ -499,7 +499,7 @@ class EducationUserApi
      *
      * Delete educationUser
      *
-     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60; to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -519,7 +519,7 @@ class EducationUserApi
      *
      * Delete educationUser
      *
-     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60; to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -590,7 +590,7 @@ class EducationUserApi
      *
      * Delete educationUser
      *
-     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60; to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -614,7 +614,7 @@ class EducationUserApi
      *
      * Delete educationUser
      *
-     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60; to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -654,7 +654,7 @@ class EducationUserApi
     /**
      * Create request for operation 'deleteEducationUser'
      *
-     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user  with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60;  to retrieve the internal ID. (required)
+     * @param  string $user_id key: internal user id (UUID format) or username of user.  **Note:** If you only have an external ID, first query the user with &#x60;GET /graph/v1.0/education/users?$filter&#x3D;externalId eq &#39;{value}&#39;&#x60; to retrieve the internal ID. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEducationUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException

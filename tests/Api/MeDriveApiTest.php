@@ -70,6 +70,18 @@ class MeDriveApiTest extends TestCase
     }
 
     /**
+     * Test case for followDriveItem
+     *
+     * Follow a DriveItem.
+     *
+     */
+    public function testFollowDriveItem()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getHome
      *
      * Get personal space for user.
@@ -100,6 +112,18 @@ class MeDriveApiTest extends TestCase
      *
      */
     public function testListSharedWithMe()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for unfollowDriveItem
+     *
+     * Unfollow a DriveItem.
+     *
+     */
+    public function testUnfollowDriveItem()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
