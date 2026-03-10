@@ -17,6 +17,7 @@ docs/Api/EducationSchoolApi.md
 docs/Api/EducationUserApi.md
 docs/Api/GroupApi.md
 docs/Api/GroupsApi.md
+docs/Api/InvitationsApi.md
 docs/Api/MeChangepasswordApi.md
 docs/Api/MeDriveApi.md
 docs/Api/MeDriveRootApi.md
@@ -51,6 +52,7 @@ docs/Model/CollectionOfDrives1.md
 docs/Model/CollectionOfEducationClass.md
 docs/Model/CollectionOfEducationUser.md
 docs/Model/CollectionOfGroup.md
+docs/Model/CollectionOfInvitations.md
 docs/Model/CollectionOfPermissions.md
 docs/Model/CollectionOfPermissionsWithAllowedValues.md
 docs/Model/CollectionOfSchools.md
@@ -68,6 +70,7 @@ docs/Model/EducationClass.md
 docs/Model/EducationSchool.md
 docs/Model/EducationUser.md
 docs/Model/EducationUserReference.md
+docs/Model/EmailAddress.md
 docs/Model/ExportPersonalDataRequest.md
 docs/Model/FileSystemInfo.md
 docs/Model/Folder.md
@@ -78,6 +81,8 @@ docs/Model/Hashes.md
 docs/Model/Identity.md
 docs/Model/IdentitySet.md
 docs/Model/Image.md
+docs/Model/Invitation.md
+docs/Model/InvitedUserMessageInfo.md
 docs/Model/ItemReference.md
 docs/Model/MemberReference.md
 docs/Model/ObjectIdentity.md
@@ -90,6 +95,7 @@ docs/Model/PasswordProfile.md
 docs/Model/Permission.md
 docs/Model/Photo.md
 docs/Model/Quota.md
+docs/Model/Recipient.md
 docs/Model/RemoteItem.md
 docs/Model/SharePointIdentitySet.md
 docs/Model/SharingInvitation.md
@@ -123,6 +129,7 @@ src/Api/EducationSchoolApi.php
 src/Api/EducationUserApi.php
 src/Api/GroupApi.php
 src/Api/GroupsApi.php
+src/Api/InvitationsApi.php
 src/Api/MeChangepasswordApi.php
 src/Api/MeDriveApi.php
 src/Api/MeDriveRootApi.php
@@ -161,6 +168,7 @@ src/Model/CollectionOfDrives1.php
 src/Model/CollectionOfEducationClass.php
 src/Model/CollectionOfEducationUser.php
 src/Model/CollectionOfGroup.php
+src/Model/CollectionOfInvitations.php
 src/Model/CollectionOfPermissions.php
 src/Model/CollectionOfPermissionsWithAllowedValues.php
 src/Model/CollectionOfSchools.php
@@ -178,6 +186,7 @@ src/Model/EducationClass.php
 src/Model/EducationSchool.php
 src/Model/EducationUser.php
 src/Model/EducationUserReference.php
+src/Model/EmailAddress.php
 src/Model/ExportPersonalDataRequest.php
 src/Model/FileSystemInfo.php
 src/Model/Folder.php
@@ -188,6 +197,8 @@ src/Model/Hashes.php
 src/Model/Identity.php
 src/Model/IdentitySet.php
 src/Model/Image.php
+src/Model/Invitation.php
+src/Model/InvitedUserMessageInfo.php
 src/Model/ItemReference.php
 src/Model/MemberReference.php
 src/Model/ModelInterface.php
@@ -201,6 +212,7 @@ src/Model/PasswordProfile.php
 src/Model/Permission.php
 src/Model/Photo.php
 src/Model/Quota.php
+src/Model/Recipient.php
 src/Model/RemoteItem.php
 src/Model/SharePointIdentitySet.php
 src/Model/SharingInvitation.php
@@ -233,6 +245,7 @@ tests/Api/EducationSchoolApiTest.php
 tests/Api/EducationUserApiTest.php
 tests/Api/GroupApiTest.php
 tests/Api/GroupsApiTest.php
+tests/Api/InvitationsApiTest.php
 tests/Api/MeChangepasswordApiTest.php
 tests/Api/MeDriveApiTest.php
 tests/Api/MeDriveRootApiTest.php
@@ -267,6 +280,7 @@ tests/Model/CollectionOfDrivesTest.php
 tests/Model/CollectionOfEducationClassTest.php
 tests/Model/CollectionOfEducationUserTest.php
 tests/Model/CollectionOfGroupTest.php
+tests/Model/CollectionOfInvitationsTest.php
 tests/Model/CollectionOfPermissionsTest.php
 tests/Model/CollectionOfPermissionsWithAllowedValuesTest.php
 tests/Model/CollectionOfSchoolsTest.php
@@ -284,6 +298,7 @@ tests/Model/EducationClassTest.php
 tests/Model/EducationSchoolTest.php
 tests/Model/EducationUserReferenceTest.php
 tests/Model/EducationUserTest.php
+tests/Model/EmailAddressTest.php
 tests/Model/ExportPersonalDataRequestTest.php
 tests/Model/FileSystemInfoTest.php
 tests/Model/FolderTest.php
@@ -294,6 +309,8 @@ tests/Model/HashesTest.php
 tests/Model/IdentitySetTest.php
 tests/Model/IdentityTest.php
 tests/Model/ImageTest.php
+tests/Model/InvitationTest.php
+tests/Model/InvitedUserMessageInfoTest.php
 tests/Model/ItemReferenceTest.php
 tests/Model/MemberReferenceTest.php
 tests/Model/ObjectIdentityTest.php
@@ -306,6 +323,7 @@ tests/Model/PasswordProfileTest.php
 tests/Model/PermissionTest.php
 tests/Model/PhotoTest.php
 tests/Model/QuotaTest.php
+tests/Model/RecipientTest.php
 tests/Model/RemoteItemTest.php
 tests/Model/SharePointIdentitySetTest.php
 tests/Model/SharingInvitationTest.php

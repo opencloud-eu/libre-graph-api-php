@@ -141,6 +141,9 @@ Class | Method | HTTP request | Description
 *GroupApi* | [**updateGroup**](docs/Api/GroupApi.md#updategroup) | **PATCH** /v1.0/groups/{group-id} | Update entity in groups
 *GroupsApi* | [**createGroup**](docs/Api/GroupsApi.md#creategroup) | **POST** /v1.0/groups | Add new entity to groups
 *GroupsApi* | [**listGroups**](docs/Api/GroupsApi.md#listgroups) | **GET** /v1.0/groups | Get entities from groups
+*InvitationsApi* | [**createInvitation**](docs/Api/InvitationsApi.md#createinvitation) | **POST** /v1.0/invitations | Create a new invitation
+*InvitationsApi* | [**getInvitation**](docs/Api/InvitationsApi.md#getinvitation) | **GET** /v1.0/invitations/{invitation-id} | Get an invitation by key
+*InvitationsApi* | [**listInvitations**](docs/Api/InvitationsApi.md#listinvitations) | **GET** /v1.0/invitations | Get a list of invitations
 *MeChangepasswordApi* | [**changeOwnPassword**](docs/Api/MeChangepasswordApi.md#changeownpassword) | **POST** /v1.0/me/changePassword | Change your own password
 *MeDriveApi* | [**followDriveItem**](docs/Api/MeDriveApi.md#followdriveitem) | **POST** /v1.0/me/drive/items/{item-id}/follow | Follow a DriveItem
 *MeDriveApi* | [**getHome**](docs/Api/MeDriveApi.md#gethome) | **GET** /v1.0/me/drive | Get personal space for user
@@ -196,6 +199,7 @@ Class | Method | HTTP request | Description
 - [CollectionOfEducationClass](docs/Model/CollectionOfEducationClass.md)
 - [CollectionOfEducationUser](docs/Model/CollectionOfEducationUser.md)
 - [CollectionOfGroup](docs/Model/CollectionOfGroup.md)
+- [CollectionOfInvitations](docs/Model/CollectionOfInvitations.md)
 - [CollectionOfPermissions](docs/Model/CollectionOfPermissions.md)
 - [CollectionOfPermissionsWithAllowedValues](docs/Model/CollectionOfPermissionsWithAllowedValues.md)
 - [CollectionOfSchools](docs/Model/CollectionOfSchools.md)
@@ -213,6 +217,7 @@ Class | Method | HTTP request | Description
 - [EducationSchool](docs/Model/EducationSchool.md)
 - [EducationUser](docs/Model/EducationUser.md)
 - [EducationUserReference](docs/Model/EducationUserReference.md)
+- [EmailAddress](docs/Model/EmailAddress.md)
 - [ExportPersonalDataRequest](docs/Model/ExportPersonalDataRequest.md)
 - [FileSystemInfo](docs/Model/FileSystemInfo.md)
 - [Folder](docs/Model/Folder.md)
@@ -223,6 +228,8 @@ Class | Method | HTTP request | Description
 - [Identity](docs/Model/Identity.md)
 - [IdentitySet](docs/Model/IdentitySet.md)
 - [Image](docs/Model/Image.md)
+- [Invitation](docs/Model/Invitation.md)
+- [InvitedUserMessageInfo](docs/Model/InvitedUserMessageInfo.md)
 - [ItemReference](docs/Model/ItemReference.md)
 - [MemberReference](docs/Model/MemberReference.md)
 - [ObjectIdentity](docs/Model/ObjectIdentity.md)
@@ -235,6 +242,7 @@ Class | Method | HTTP request | Description
 - [Permission](docs/Model/Permission.md)
 - [Photo](docs/Model/Photo.md)
 - [Quota](docs/Model/Quota.md)
+- [Recipient](docs/Model/Recipient.md)
 - [RemoteItem](docs/Model/RemoteItem.md)
 - [SharePointIdentitySet](docs/Model/SharePointIdentitySet.md)
 - [SharingInvitation](docs/Model/SharingInvitation.md)
