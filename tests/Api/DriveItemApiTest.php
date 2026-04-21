@@ -94,6 +94,18 @@ class DriveItemApiTest extends TestCase
     }
 
     /**
+     * Test case for getDriveItemContent
+     *
+     * Download the content of a DriveItem.
+     *
+     */
+    public function testGetDriveItemContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateDriveItem
      *
      * Update a DriveItem..

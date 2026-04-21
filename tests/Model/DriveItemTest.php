@@ -357,6 +357,15 @@ class DriveItemTest extends TestCase
     }
 
     /**
+     * Test attribute "at_microsoft_graph_download_url"
+     */
+    public function testPropertyAtMicrosoftGraphDownloadUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "at_ui_hidden"
      */
     public function testPropertyAtUiHidden()

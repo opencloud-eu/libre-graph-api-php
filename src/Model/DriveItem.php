@@ -90,6 +90,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => '\OpenAPI\Client\Model\Audio',
         'video' => '\OpenAPI\Client\Model\Video',
         'at_client_synchronize' => 'bool',
+        'at_microsoft_graph_download_url' => 'string',
         'at_ui_hidden' => 'bool'
     ];
 
@@ -130,6 +131,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => null,
         'video' => null,
         'at_client_synchronize' => null,
+        'at_microsoft_graph_download_url' => null,
         'at_ui_hidden' => null
     ];
 
@@ -170,6 +172,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => false,
         'video' => false,
         'at_client_synchronize' => false,
+        'at_microsoft_graph_download_url' => false,
         'at_ui_hidden' => false
     ];
 
@@ -290,6 +293,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => 'audio',
         'video' => 'video',
         'at_client_synchronize' => '@client.synchronize',
+        'at_microsoft_graph_download_url' => '@microsoft.graph.downloadUrl',
         'at_ui_hidden' => '@UI.Hidden'
     ];
 
@@ -330,6 +334,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => 'setAudio',
         'video' => 'setVideo',
         'at_client_synchronize' => 'setAtClientSynchronize',
+        'at_microsoft_graph_download_url' => 'setAtMicrosoftGraphDownloadUrl',
         'at_ui_hidden' => 'setAtUiHidden'
     ];
 
@@ -370,6 +375,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => 'getAudio',
         'video' => 'getVideo',
         'at_client_synchronize' => 'getAtClientSynchronize',
+        'at_microsoft_graph_download_url' => 'getAtMicrosoftGraphDownloadUrl',
         'at_ui_hidden' => 'getAtUiHidden'
     ];
 
@@ -460,6 +466,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('audio', $data ?? [], null);
         $this->setIfExists('video', $data ?? [], null);
         $this->setIfExists('at_client_synchronize', $data ?? [], null);
+        $this->setIfExists('at_microsoft_graph_download_url', $data ?? [], null);
         $this->setIfExists('at_ui_hidden', $data ?? [], null);
     }
 
@@ -1356,6 +1363,33 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable at_client_synchronize cannot be null');
         }
         $this->container['at_client_synchronize'] = $at_client_synchronize;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_microsoft_graph_download_url
+     *
+     * @return string|null
+     */
+    public function getAtMicrosoftGraphDownloadUrl(): ?string
+    {
+        return $this->container['at_microsoft_graph_download_url'];
+    }
+
+    /**
+     * Sets at_microsoft_graph_download_url
+     *
+     * @param string|null $at_microsoft_graph_download_url A pre-authenticated URL that can be used to download the item's content without providing an Authorization header. The URL is short-lived and cannot be cached.  This annotation is only populated when explicitly requested via `$select`, and only for items that have a `file` facet. The returned URL is valid for a limited time and should be used promptly.
+     *
+     * @return $this
+     */
+    public function setAtMicrosoftGraphDownloadUrl(?string $at_microsoft_graph_download_url): static
+    {
+        if (is_null($at_microsoft_graph_download_url)) {
+            throw new InvalidArgumentException('non-nullable at_microsoft_graph_download_url cannot be null');
+        }
+        $this->container['at_microsoft_graph_download_url'] = $at_microsoft_graph_download_url;
 
         return $this;
     }

@@ -6,6 +6,7 @@ All URIs are relative to https://localhost:9200/graph, except if the operation d
 | ------------- | ------------- | ------------- |
 | [**deleteDriveItem()**](DriveItemApi.md#deleteDriveItem) | **DELETE** /v1beta1/drives/{drive-id}/items/{item-id} | Delete a DriveItem. |
 | [**getDriveItem()**](DriveItemApi.md#getDriveItem) | **GET** /v1beta1/drives/{drive-id}/items/{item-id} | Get a DriveItem. |
+| [**getDriveItemContent()**](DriveItemApi.md#getDriveItemContent) | **GET** /v1beta1/drives/{drive-id}/items/{item-id}/content | Download the content of a DriveItem |
 | [**updateDriveItem()**](DriveItemApi.md#updateDriveItem) | **PATCH** /v1beta1/drives/{drive-id}/items/{item-id} | Update a DriveItem. |
 
 
@@ -76,7 +77,7 @@ void (empty response body)
 ## `getDriveItem()`
 
 ```php
-getDriveItem($drive_id, $item_id): \OpenAPI\Client\Model\DriveItem
+getDriveItem($drive_id, $item_id, $select): \OpenAPI\Client\Model\DriveItem
 ```
 
 Get a DriveItem.
@@ -105,9 +106,10 @@ $apiInstance = new OpenAPI\Client\Api\DriveItemApi(
 );
 $drive_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668; // string | key: id of drive
 $item_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668!share-id; // string | key: id of item
+$select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
 
 try {
-    $result = $apiInstance->getDriveItem($drive_id, $item_id);
+    $result = $apiInstance->getDriveItem($drive_id, $item_id, $select);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DriveItemApi->getDriveItem: ', $e->getMessage(), PHP_EOL;
@@ -120,10 +122,76 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **drive_id** | **string**| key: id of drive | |
 | **item_id** | **string**| key: id of item | |
+| **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
 
 ### Return type
 
 [**\OpenAPI\Client\Model\DriveItem**](../Model/DriveItem.md)
+
+### Authorization
+
+[openId](../../README.md#openId), [basicAuth](../../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getDriveItemContent()`
+
+```php
+getDriveItemContent($drive_id, $item_id): \OpenAPI\Client\Model\OdataError
+```
+
+Download the content of a DriveItem
+
+Download the contents of the primary stream (file) of a driveItem. Only driveItem objects with a `file` facet can be downloaded.  The response is a `302 Found` redirecting to a pre-authenticated download URL for the file. This is the same URL that is returned via the `@microsoft.graph.downloadUrl` instance annotation on the driveItem when requested via `$select`. Choose between the two based on whether you want to call the redirecting `/content` endpoint directly (for example, with a client that follows redirects automatically) or you want to inspect / schedule / prefetch the URL yourself via the annotation.  The pre-authenticated URL is short-lived and does not require an `Authorization` header.  To download a partial range of bytes, apply the `Range` header to the redirect target (the pre-authenticated URL), not to the `/content` request.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new OpenAPI\Client\Api\DriveItemApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$drive_id = 'drive_id_example'; // string | key: id of drive
+$item_id = 'item_id_example'; // string | key: id of item
+
+try {
+    $result = $apiInstance->getDriveItemContent($drive_id, $item_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DriveItemApi->getDriveItemContent: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **drive_id** | **string**| key: id of drive | |
+| **item_id** | **string**| key: id of item | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\OdataError**](../Model/OdataError.md)
 
 ### Authorization
 
