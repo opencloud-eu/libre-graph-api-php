@@ -348,6 +348,15 @@ class DriveItemTest extends TestCase
     }
 
     /**
+     * Test attribute "at_libre_graph_motion_photo"
+     */
+    public function testPropertyAtLibreGraphMotionPhoto()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "at_client_synchronize"
      */
     public function testPropertyAtClientSynchronize()

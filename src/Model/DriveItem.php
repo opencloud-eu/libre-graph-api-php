@@ -89,6 +89,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'permissions' => '\OpenAPI\Client\Model\Permission[]',
         'audio' => '\OpenAPI\Client\Model\Audio',
         'video' => '\OpenAPI\Client\Model\Video',
+        'at_libre_graph_motion_photo' => '\OpenAPI\Client\Model\MotionPhoto',
         'at_client_synchronize' => 'bool',
         'at_microsoft_graph_download_url' => 'string',
         'at_ui_hidden' => 'bool'
@@ -130,6 +131,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'permissions' => null,
         'audio' => null,
         'video' => null,
+        'at_libre_graph_motion_photo' => null,
         'at_client_synchronize' => null,
         'at_microsoft_graph_download_url' => null,
         'at_ui_hidden' => null
@@ -171,6 +173,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'permissions' => false,
         'audio' => false,
         'video' => false,
+        'at_libre_graph_motion_photo' => false,
         'at_client_synchronize' => false,
         'at_microsoft_graph_download_url' => false,
         'at_ui_hidden' => false
@@ -292,6 +295,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'permissions' => 'permissions',
         'audio' => 'audio',
         'video' => 'video',
+        'at_libre_graph_motion_photo' => '@libre.graph.motionPhoto',
         'at_client_synchronize' => '@client.synchronize',
         'at_microsoft_graph_download_url' => '@microsoft.graph.downloadUrl',
         'at_ui_hidden' => '@UI.Hidden'
@@ -333,6 +337,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'permissions' => 'setPermissions',
         'audio' => 'setAudio',
         'video' => 'setVideo',
+        'at_libre_graph_motion_photo' => 'setAtLibreGraphMotionPhoto',
         'at_client_synchronize' => 'setAtClientSynchronize',
         'at_microsoft_graph_download_url' => 'setAtMicrosoftGraphDownloadUrl',
         'at_ui_hidden' => 'setAtUiHidden'
@@ -374,6 +379,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'permissions' => 'getPermissions',
         'audio' => 'getAudio',
         'video' => 'getVideo',
+        'at_libre_graph_motion_photo' => 'getAtLibreGraphMotionPhoto',
         'at_client_synchronize' => 'getAtClientSynchronize',
         'at_microsoft_graph_download_url' => 'getAtMicrosoftGraphDownloadUrl',
         'at_ui_hidden' => 'getAtUiHidden'
@@ -465,6 +471,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('permissions', $data ?? [], null);
         $this->setIfExists('audio', $data ?? [], null);
         $this->setIfExists('video', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_motion_photo', $data ?? [], null);
         $this->setIfExists('at_client_synchronize', $data ?? [], null);
         $this->setIfExists('at_microsoft_graph_download_url', $data ?? [], null);
         $this->setIfExists('at_ui_hidden', $data ?? [], null);
@@ -1336,6 +1343,33 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable video cannot be null');
         }
         $this->container['video'] = $video;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_libre_graph_motion_photo
+     *
+     * @return \OpenAPI\Client\Model\MotionPhoto|null
+     */
+    public function getAtLibreGraphMotionPhoto(): ?\OpenAPI\Client\Model\MotionPhoto
+    {
+        return $this->container['at_libre_graph_motion_photo'];
+    }
+
+    /**
+     * Sets at_libre_graph_motion_photo
+     *
+     * @param \OpenAPI\Client\Model\MotionPhoto|null $at_libre_graph_motion_photo at_libre_graph_motion_photo
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphMotionPhoto(?\OpenAPI\Client\Model\MotionPhoto $at_libre_graph_motion_photo): static
+    {
+        if (is_null($at_libre_graph_motion_photo)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_motion_photo cannot be null');
+        }
+        $this->container['at_libre_graph_motion_photo'] = $at_libre_graph_motion_photo;
 
         return $this;
     }

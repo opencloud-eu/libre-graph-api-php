@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **permissions** | [**\OpenAPI\Client\Model\Permission[]**](Permission.md) | The set of permissions for the item. Read-only. Nullable. | [optional] [readonly]
 **audio** | [**\OpenAPI\Client\Model\Audio**](Audio.md) |  | [optional]
 **video** | [**\OpenAPI\Client\Model\Video**](Video.md) |  | [optional]
+**at_libre_graph_motion_photo** | [**\OpenAPI\Client\Model\MotionPhoto**](MotionPhoto.md) |  | [optional]
 **at_client_synchronize** | **bool** | Indicates if the item is synchronized with the underlying storage provider. Read-only. | [optional]
 **at_microsoft_graph_download_url** | **string** | A pre-authenticated URL that can be used to download the item&#39;s content without providing an Authorization header. The URL is short-lived and cannot be cached.  This annotation is only populated when explicitly requested via &#x60;$select&#x60;, and only for items that have a &#x60;file&#x60; facet. The returned URL is valid for a limited time and should be used promptly. | [optional] [readonly]
 **at_ui_hidden** | **bool** | Properties or facets (see UI.Facet) annotated with this term will not be rendered if the annotation evaluates to true. Users can set this to hide permissions. | [optional]

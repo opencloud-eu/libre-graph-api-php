@@ -233,6 +233,7 @@ Class | Method | HTTP request | Description
 - [InvitedUserMessageInfo](docs/Model/InvitedUserMessageInfo.md)
 - [ItemReference](docs/Model/ItemReference.md)
 - [MemberReference](docs/Model/MemberReference.md)
+- [MotionPhoto](docs/Model/MotionPhoto.md)
 - [ObjectIdentity](docs/Model/ObjectIdentity.md)
 - [OdataError](docs/Model/OdataError.md)
 - [OdataErrorDetail](docs/Model/OdataErrorDetail.md)

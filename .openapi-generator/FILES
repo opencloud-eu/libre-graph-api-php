@@ -85,6 +85,7 @@ docs/Model/Invitation.md
 docs/Model/InvitedUserMessageInfo.md
 docs/Model/ItemReference.md
 docs/Model/MemberReference.md
+docs/Model/MotionPhoto.md
 docs/Model/ObjectIdentity.md
 docs/Model/OdataError.md
 docs/Model/OdataErrorDetail.md
@@ -202,6 +203,7 @@ src/Model/InvitedUserMessageInfo.php
 src/Model/ItemReference.php
 src/Model/MemberReference.php
 src/Model/ModelInterface.php
+src/Model/MotionPhoto.php
 src/Model/ObjectIdentity.php
 src/Model/OdataError.php
 src/Model/OdataErrorDetail.php
@@ -313,6 +315,7 @@ tests/Model/InvitationTest.php
 tests/Model/InvitedUserMessageInfoTest.php
 tests/Model/ItemReferenceTest.php
 tests/Model/MemberReferenceTest.php
+tests/Model/MotionPhotoTest.php
 tests/Model/ObjectIdentityTest.php
 tests/Model/OdataErrorDetailTest.php
 tests/Model/OdataErrorMainTest.php
