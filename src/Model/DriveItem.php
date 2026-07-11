@@ -90,9 +90,12 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => '\OpenAPI\Client\Model\Audio',
         'video' => '\OpenAPI\Client\Model\Video',
         'at_libre_graph_motion_photo' => '\OpenAPI\Client\Model\MotionPhoto',
+        'at_libre_graph_live_photo' => '\OpenAPI\Client\Model\LivePhoto',
         'at_client_synchronize' => 'bool',
         'at_microsoft_graph_download_url' => 'string',
-        'at_ui_hidden' => 'bool'
+        'at_ui_hidden' => 'bool',
+        'at_libre_graph_me_following' => 'bool',
+        'at_libre_graph_tags' => 'string[]'
     ];
 
     /**
@@ -132,9 +135,12 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => null,
         'video' => null,
         'at_libre_graph_motion_photo' => null,
+        'at_libre_graph_live_photo' => null,
         'at_client_synchronize' => null,
         'at_microsoft_graph_download_url' => null,
-        'at_ui_hidden' => null
+        'at_ui_hidden' => null,
+        'at_libre_graph_me_following' => null,
+        'at_libre_graph_tags' => null
     ];
 
     /**
@@ -174,9 +180,12 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => false,
         'video' => false,
         'at_libre_graph_motion_photo' => false,
+        'at_libre_graph_live_photo' => false,
         'at_client_synchronize' => false,
         'at_microsoft_graph_download_url' => false,
-        'at_ui_hidden' => false
+        'at_ui_hidden' => false,
+        'at_libre_graph_me_following' => false,
+        'at_libre_graph_tags' => false
     ];
 
     /**
@@ -296,9 +305,12 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => 'audio',
         'video' => 'video',
         'at_libre_graph_motion_photo' => '@libre.graph.motionPhoto',
+        'at_libre_graph_live_photo' => '@libre.graph.livePhoto',
         'at_client_synchronize' => '@client.synchronize',
         'at_microsoft_graph_download_url' => '@microsoft.graph.downloadUrl',
-        'at_ui_hidden' => '@UI.Hidden'
+        'at_ui_hidden' => '@UI.Hidden',
+        'at_libre_graph_me_following' => '@libre.graph.me.following',
+        'at_libre_graph_tags' => '@libre.graph.tags'
     ];
 
     /**
@@ -338,9 +350,12 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => 'setAudio',
         'video' => 'setVideo',
         'at_libre_graph_motion_photo' => 'setAtLibreGraphMotionPhoto',
+        'at_libre_graph_live_photo' => 'setAtLibreGraphLivePhoto',
         'at_client_synchronize' => 'setAtClientSynchronize',
         'at_microsoft_graph_download_url' => 'setAtMicrosoftGraphDownloadUrl',
-        'at_ui_hidden' => 'setAtUiHidden'
+        'at_ui_hidden' => 'setAtUiHidden',
+        'at_libre_graph_me_following' => 'setAtLibreGraphMeFollowing',
+        'at_libre_graph_tags' => 'setAtLibreGraphTags'
     ];
 
     /**
@@ -380,9 +395,12 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'audio' => 'getAudio',
         'video' => 'getVideo',
         'at_libre_graph_motion_photo' => 'getAtLibreGraphMotionPhoto',
+        'at_libre_graph_live_photo' => 'getAtLibreGraphLivePhoto',
         'at_client_synchronize' => 'getAtClientSynchronize',
         'at_microsoft_graph_download_url' => 'getAtMicrosoftGraphDownloadUrl',
-        'at_ui_hidden' => 'getAtUiHidden'
+        'at_ui_hidden' => 'getAtUiHidden',
+        'at_libre_graph_me_following' => 'getAtLibreGraphMeFollowing',
+        'at_libre_graph_tags' => 'getAtLibreGraphTags'
     ];
 
     /**
@@ -472,9 +490,12 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('audio', $data ?? [], null);
         $this->setIfExists('video', $data ?? [], null);
         $this->setIfExists('at_libre_graph_motion_photo', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_live_photo', $data ?? [], null);
         $this->setIfExists('at_client_synchronize', $data ?? [], null);
         $this->setIfExists('at_microsoft_graph_download_url', $data ?? [], null);
         $this->setIfExists('at_ui_hidden', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_me_following', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_tags', $data ?? [], null);
     }
 
     /**
@@ -1375,6 +1396,33 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Gets at_libre_graph_live_photo
+     *
+     * @return \OpenAPI\Client\Model\LivePhoto|null
+     */
+    public function getAtLibreGraphLivePhoto(): ?\OpenAPI\Client\Model\LivePhoto
+    {
+        return $this->container['at_libre_graph_live_photo'];
+    }
+
+    /**
+     * Sets at_libre_graph_live_photo
+     *
+     * @param \OpenAPI\Client\Model\LivePhoto|null $at_libre_graph_live_photo at_libre_graph_live_photo
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphLivePhoto(?\OpenAPI\Client\Model\LivePhoto $at_libre_graph_live_photo): static
+    {
+        if (is_null($at_libre_graph_live_photo)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_live_photo cannot be null');
+        }
+        $this->container['at_libre_graph_live_photo'] = $at_libre_graph_live_photo;
+
+        return $this;
+    }
+
+    /**
      * Gets at_client_synchronize
      *
      * @return bool|null
@@ -1451,6 +1499,60 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable at_ui_hidden cannot be null');
         }
         $this->container['at_ui_hidden'] = $at_ui_hidden;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_libre_graph_me_following
+     *
+     * @return bool|null
+     */
+    public function getAtLibreGraphMeFollowing(): ?bool
+    {
+        return $this->container['at_libre_graph_me_following'];
+    }
+
+    /**
+     * Sets at_libre_graph_me_following
+     *
+     * @param bool|null $at_libre_graph_me_following Indicates whether the current user is following this DriveItem. Read-only. Use the FollowDriveItem and UnfollowDriveItem operations to change the following state.
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphMeFollowing(?bool $at_libre_graph_me_following): static
+    {
+        if (is_null($at_libre_graph_me_following)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_me_following cannot be null');
+        }
+        $this->container['at_libre_graph_me_following'] = $at_libre_graph_me_following;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_libre_graph_tags
+     *
+     * @return string[]|null
+     */
+    public function getAtLibreGraphTags(): ?array
+    {
+        return $this->container['at_libre_graph_tags'];
+    }
+
+    /**
+     * Sets at_libre_graph_tags
+     *
+     * @param string[]|null $at_libre_graph_tags The list of tags assigned to this DriveItem. Read-only. Use the AssignTags and UnassignTags operations to modify tags.
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphTags(?array $at_libre_graph_tags): static
+    {
+        if (is_null($at_libre_graph_tags)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_tags cannot be null');
+        }
+        $this->container['at_libre_graph_tags'] = $at_libre_graph_tags;
 
         return $this;
     }

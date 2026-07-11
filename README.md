@@ -81,8 +81,10 @@ Class | Method | HTTP request | Description
 *ActivitiesApi* | [**getActivities**](docs/Api/ActivitiesApi.md#getactivities) | **GET** /v1beta1/extensions/org.libregraph/activities | Get activities
 *ApplicationsApi* | [**getApplication**](docs/Api/ApplicationsApi.md#getapplication) | **GET** /v1.0/applications/{application-id} | Get application by id
 *ApplicationsApi* | [**listApplications**](docs/Api/ApplicationsApi.md#listapplications) | **GET** /v1.0/applications | Get all applications
+*DriveItemApi* | [**createChildDriveItem**](docs/Api/DriveItemApi.md#createchilddriveitem) | **POST** /v1beta1/drives/{drive-id}/items/{item-id}/children | Create a new DriveItem under a parent item
 *DriveItemApi* | [**deleteDriveItem**](docs/Api/DriveItemApi.md#deletedriveitem) | **DELETE** /v1beta1/drives/{drive-id}/items/{item-id} | Delete a DriveItem.
 *DriveItemApi* | [**getDriveItem**](docs/Api/DriveItemApi.md#getdriveitem) | **GET** /v1beta1/drives/{drive-id}/items/{item-id} | Get a DriveItem.
+*DriveItemApi* | [**getDriveItemChildren**](docs/Api/DriveItemApi.md#getdriveitemchildren) | **GET** /v1.0/drives/{drive-id}/items/{item-id}/children | List children of a DriveItem
 *DriveItemApi* | [**getDriveItemContent**](docs/Api/DriveItemApi.md#getdriveitemcontent) | **GET** /v1beta1/drives/{drive-id}/items/{item-id}/content | Download the content of a DriveItem
 *DriveItemApi* | [**updateDriveItem**](docs/Api/DriveItemApi.md#updatedriveitem) | **PATCH** /v1beta1/drives/{drive-id}/items/{item-id} | Update a DriveItem.
 *DrivesApi* | [**createDrive**](docs/Api/DrivesApi.md#createdrive) | **POST** /v1.0/drives | Create a new drive of a specific type
@@ -98,7 +100,7 @@ Class | Method | HTTP request | Description
 *DrivesPermissionsApi* | [**listPermissions**](docs/Api/DrivesPermissionsApi.md#listpermissions) | **GET** /v1beta1/drives/{drive-id}/items/{item-id}/permissions | List the effective sharing permissions on a driveItem.
 *DrivesPermissionsApi* | [**setPermissionPassword**](docs/Api/DrivesPermissionsApi.md#setpermissionpassword) | **POST** /v1beta1/drives/{drive-id}/items/{item-id}/permissions/{perm-id}/setPassword | Set sharing link password
 *DrivesPermissionsApi* | [**updatePermission**](docs/Api/DrivesPermissionsApi.md#updatepermission) | **PATCH** /v1beta1/drives/{drive-id}/items/{item-id}/permissions/{perm-id} | Update sharing permission
-*DrivesRootApi* | [**createDriveItem**](docs/Api/DrivesRootApi.md#createdriveitem) | **POST** /v1beta1/drives/{drive-id}/root/children | Create a drive item
+*DrivesRootApi* | [**createDriveItem**](docs/Api/DrivesRootApi.md#createdriveitem) | **POST** /v1beta1/drives/{drive-id}/root/children | Create a new DriveItem at the drive root
 *DrivesRootApi* | [**createLinkSpaceRoot**](docs/Api/DrivesRootApi.md#createlinkspaceroot) | **POST** /v1beta1/drives/{drive-id}/root/createLink | Create a sharing link for the root item of a Drive
 *DrivesRootApi* | [**deletePermissionSpaceRoot**](docs/Api/DrivesRootApi.md#deletepermissionspaceroot) | **DELETE** /v1beta1/drives/{drive-id}/root/permissions/{perm-id} | Remove access to a Drive
 *DrivesRootApi* | [**getPermissionSpaceRoot**](docs/Api/DrivesRootApi.md#getpermissionspaceroot) | **GET** /v1beta1/drives/{drive-id}/root/permissions/{perm-id} | Get a single sharing permission for the root item of a drive
@@ -232,6 +234,7 @@ Class | Method | HTTP request | Description
 - [Invitation](docs/Model/Invitation.md)
 - [InvitedUserMessageInfo](docs/Model/InvitedUserMessageInfo.md)
 - [ItemReference](docs/Model/ItemReference.md)
+- [LivePhoto](docs/Model/LivePhoto.md)
 - [MemberReference](docs/Model/MemberReference.md)
 - [MotionPhoto](docs/Model/MotionPhoto.md)
 - [ObjectIdentity](docs/Model/ObjectIdentity.md)

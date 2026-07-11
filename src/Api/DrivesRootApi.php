@@ -149,10 +149,12 @@ class DrivesRootApi
     /**
      * Operation createDriveItem
      *
-     * Create a drive item
+     * Create a new DriveItem at the drive root
      *
      * @param  string $drive_id key: id of drive (required)
-     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object with the following parameters. For mounting a share the necessary remoteItem id and permission id can be taken from the [sharedWithMe](#/me.drive/ListSharedWithMe) endpoint. (optional)
+     * @param  string|null $at_libre_graph_conflict_behavior Controls what happens when a child with the same name already exists. &#x60;fail&#x60; (default) returns 409; &#x60;replace&#x60; overwrites the existing item. MS Graph&#39;s &#x60;rename&#x60; value is not supported. (optional, default to 'fail')
+     * @param  string|null $at_libre_graph_missing_parents_behavior Controls what happens when a colon-syntax URL refers to a path whose intermediate folders don&#39;t all exist yet. &#x60;fail&#x60; (default) returns 404; &#x60;create&#x60; creates the missing intermediate folders before creating the final item. Only meaningful for colon-syntax URLs; ignored otherwise. (optional, default to 'fail')
+     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object describing the new driveItem. Must specify exactly one of &#x60;folder&#x60;, &#x60;file&#x60;, or &#x60;remoteItem&#x60;. For mount-share, see [sharedWithMe](#/me.drive/ListSharedWithMe) for obtaining the source &#x60;remoteItem.id&#x60; and &#x60;permission&#x60; id. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDriveItem'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -161,21 +163,25 @@ class DrivesRootApi
      */
     public function createDriveItem(
         string $drive_id,
+        ??string $at_libre_graph_conflict_behavior = 'fail',
+        ??string $at_libre_graph_missing_parents_behavior = 'fail',
         ??\OpenAPI\Client\Model\DriveItem $drive_item = null,
         string $contentType = self::contentTypes['createDriveItem'][0]
     )
     {
-        list($response) = $this->createDriveItemWithHttpInfo($drive_id, $drive_item, $contentType);
+        list($response) = $this->createDriveItemWithHttpInfo($drive_id, $at_libre_graph_conflict_behavior, $at_libre_graph_missing_parents_behavior, $drive_item, $contentType);
         return $response;
     }
 
     /**
      * Operation createDriveItemWithHttpInfo
      *
-     * Create a drive item
+     * Create a new DriveItem at the drive root
      *
      * @param  string $drive_id key: id of drive (required)
-     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object with the following parameters. For mounting a share the necessary remoteItem id and permission id can be taken from the [sharedWithMe](#/me.drive/ListSharedWithMe) endpoint. (optional)
+     * @param  string|null $at_libre_graph_conflict_behavior Controls what happens when a child with the same name already exists. &#x60;fail&#x60; (default) returns 409; &#x60;replace&#x60; overwrites the existing item. MS Graph&#39;s &#x60;rename&#x60; value is not supported. (optional, default to 'fail')
+     * @param  string|null $at_libre_graph_missing_parents_behavior Controls what happens when a colon-syntax URL refers to a path whose intermediate folders don&#39;t all exist yet. &#x60;fail&#x60; (default) returns 404; &#x60;create&#x60; creates the missing intermediate folders before creating the final item. Only meaningful for colon-syntax URLs; ignored otherwise. (optional, default to 'fail')
+     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object describing the new driveItem. Must specify exactly one of &#x60;folder&#x60;, &#x60;file&#x60;, or &#x60;remoteItem&#x60;. For mount-share, see [sharedWithMe](#/me.drive/ListSharedWithMe) for obtaining the source &#x60;remoteItem.id&#x60; and &#x60;permission&#x60; id. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDriveItem'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -184,11 +190,13 @@ class DrivesRootApi
      */
     public function createDriveItemWithHttpInfo(
         string $drive_id,
+        ??string $at_libre_graph_conflict_behavior = 'fail',
+        ??string $at_libre_graph_missing_parents_behavior = 'fail',
         ??\OpenAPI\Client\Model\DriveItem $drive_item = null,
         string $contentType = self::contentTypes['createDriveItem'][0]
     ): array
     {
-        $request = $this->createDriveItemRequest($drive_id, $drive_item, $contentType);
+        $request = $this->createDriveItemRequest($drive_id, $at_libre_graph_conflict_behavior, $at_libre_graph_missing_parents_behavior, $drive_item, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -336,10 +344,12 @@ class DrivesRootApi
     /**
      * Operation createDriveItemAsync
      *
-     * Create a drive item
+     * Create a new DriveItem at the drive root
      *
      * @param  string $drive_id key: id of drive (required)
-     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object with the following parameters. For mounting a share the necessary remoteItem id and permission id can be taken from the [sharedWithMe](#/me.drive/ListSharedWithMe) endpoint. (optional)
+     * @param  string|null $at_libre_graph_conflict_behavior Controls what happens when a child with the same name already exists. &#x60;fail&#x60; (default) returns 409; &#x60;replace&#x60; overwrites the existing item. MS Graph&#39;s &#x60;rename&#x60; value is not supported. (optional, default to 'fail')
+     * @param  string|null $at_libre_graph_missing_parents_behavior Controls what happens when a colon-syntax URL refers to a path whose intermediate folders don&#39;t all exist yet. &#x60;fail&#x60; (default) returns 404; &#x60;create&#x60; creates the missing intermediate folders before creating the final item. Only meaningful for colon-syntax URLs; ignored otherwise. (optional, default to 'fail')
+     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object describing the new driveItem. Must specify exactly one of &#x60;folder&#x60;, &#x60;file&#x60;, or &#x60;remoteItem&#x60;. For mount-share, see [sharedWithMe](#/me.drive/ListSharedWithMe) for obtaining the source &#x60;remoteItem.id&#x60; and &#x60;permission&#x60; id. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDriveItem'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -347,11 +357,13 @@ class DrivesRootApi
      */
     public function createDriveItemAsync(
         string $drive_id,
+        ??string $at_libre_graph_conflict_behavior = 'fail',
+        ??string $at_libre_graph_missing_parents_behavior = 'fail',
         ??\OpenAPI\Client\Model\DriveItem $drive_item = null,
         string $contentType = self::contentTypes['createDriveItem'][0]
     ): PromiseInterface
     {
-        return $this->createDriveItemAsyncWithHttpInfo($drive_id, $drive_item, $contentType)
+        return $this->createDriveItemAsyncWithHttpInfo($drive_id, $at_libre_graph_conflict_behavior, $at_libre_graph_missing_parents_behavior, $drive_item, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -362,10 +374,12 @@ class DrivesRootApi
     /**
      * Operation createDriveItemAsyncWithHttpInfo
      *
-     * Create a drive item
+     * Create a new DriveItem at the drive root
      *
      * @param  string $drive_id key: id of drive (required)
-     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object with the following parameters. For mounting a share the necessary remoteItem id and permission id can be taken from the [sharedWithMe](#/me.drive/ListSharedWithMe) endpoint. (optional)
+     * @param  string|null $at_libre_graph_conflict_behavior Controls what happens when a child with the same name already exists. &#x60;fail&#x60; (default) returns 409; &#x60;replace&#x60; overwrites the existing item. MS Graph&#39;s &#x60;rename&#x60; value is not supported. (optional, default to 'fail')
+     * @param  string|null $at_libre_graph_missing_parents_behavior Controls what happens when a colon-syntax URL refers to a path whose intermediate folders don&#39;t all exist yet. &#x60;fail&#x60; (default) returns 404; &#x60;create&#x60; creates the missing intermediate folders before creating the final item. Only meaningful for colon-syntax URLs; ignored otherwise. (optional, default to 'fail')
+     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object describing the new driveItem. Must specify exactly one of &#x60;folder&#x60;, &#x60;file&#x60;, or &#x60;remoteItem&#x60;. For mount-share, see [sharedWithMe](#/me.drive/ListSharedWithMe) for obtaining the source &#x60;remoteItem.id&#x60; and &#x60;permission&#x60; id. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDriveItem'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -373,12 +387,14 @@ class DrivesRootApi
      */
     public function createDriveItemAsyncWithHttpInfo(
         $drive_id,
+        $at_libre_graph_conflict_behavior = 'fail',
+        $at_libre_graph_missing_parents_behavior = 'fail',
         $drive_item = null,
         string $contentType = self::contentTypes['createDriveItem'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\DriveItem';
-        $request = $this->createDriveItemRequest($drive_id, $drive_item, $contentType);
+        $request = $this->createDriveItemRequest($drive_id, $at_libre_graph_conflict_behavior, $at_libre_graph_missing_parents_behavior, $drive_item, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -420,7 +436,9 @@ class DrivesRootApi
      * Create request for operation 'createDriveItem'
      *
      * @param  string $drive_id key: id of drive (required)
-     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object with the following parameters. For mounting a share the necessary remoteItem id and permission id can be taken from the [sharedWithMe](#/me.drive/ListSharedWithMe) endpoint. (optional)
+     * @param  string|null $at_libre_graph_conflict_behavior Controls what happens when a child with the same name already exists. &#x60;fail&#x60; (default) returns 409; &#x60;replace&#x60; overwrites the existing item. MS Graph&#39;s &#x60;rename&#x60; value is not supported. (optional, default to 'fail')
+     * @param  string|null $at_libre_graph_missing_parents_behavior Controls what happens when a colon-syntax URL refers to a path whose intermediate folders don&#39;t all exist yet. &#x60;fail&#x60; (default) returns 404; &#x60;create&#x60; creates the missing intermediate folders before creating the final item. Only meaningful for colon-syntax URLs; ignored otherwise. (optional, default to 'fail')
+     * @param  \OpenAPI\Client\Model\DriveItem|null $drive_item In the request body, provide a JSON object describing the new driveItem. Must specify exactly one of &#x60;folder&#x60;, &#x60;file&#x60;, or &#x60;remoteItem&#x60;. For mount-share, see [sharedWithMe](#/me.drive/ListSharedWithMe) for obtaining the source &#x60;remoteItem.id&#x60; and &#x60;permission&#x60; id. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDriveItem'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -428,6 +446,8 @@ class DrivesRootApi
      */
     public function createDriveItemRequest(
         $drive_id,
+        $at_libre_graph_conflict_behavior = 'fail',
+        $at_libre_graph_missing_parents_behavior = 'fail',
         $drive_item = null,
         string $contentType = self::contentTypes['createDriveItem'][0]
     ): Request
@@ -442,6 +462,8 @@ class DrivesRootApi
 
 
 
+
+
         $resourcePath = '/v1beta1/drives/{drive-id}/root/children';
         $formParams = [];
         $queryParams = [];
@@ -449,6 +471,24 @@ class DrivesRootApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $at_libre_graph_conflict_behavior,
+            '@libre.graph.conflictBehavior', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $at_libre_graph_missing_parents_behavior,
+            '@libre.graph.missingParentsBehavior', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
         // path params

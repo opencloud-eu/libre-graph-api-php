@@ -357,6 +357,15 @@ class DriveItemTest extends TestCase
     }
 
     /**
+     * Test attribute "at_libre_graph_live_photo"
+     */
+    public function testPropertyAtLibreGraphLivePhoto()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "at_client_synchronize"
      */
     public function testPropertyAtClientSynchronize()
@@ -378,6 +387,24 @@ class DriveItemTest extends TestCase
      * Test attribute "at_ui_hidden"
      */
     public function testPropertyAtUiHidden()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "at_libre_graph_me_following"
+     */
+    public function testPropertyAtLibreGraphMeFollowing()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "at_libre_graph_tags"
+     */
+    public function testPropertyAtLibreGraphTags()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

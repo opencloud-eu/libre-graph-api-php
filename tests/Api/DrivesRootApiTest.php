@@ -72,7 +72,7 @@ class DrivesRootApiTest extends TestCase
     /**
      * Test case for createDriveItem
      *
-     * Create a drive item.
+     * Create a new DriveItem at the drive root.
      *
      */
     public function testCreateDriveItem()
