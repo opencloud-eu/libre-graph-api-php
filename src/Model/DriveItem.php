@@ -95,7 +95,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_microsoft_graph_download_url' => 'string',
         'at_ui_hidden' => 'bool',
         'at_libre_graph_me_following' => 'bool',
-        'at_libre_graph_tags' => 'string[]'
+        'at_libre_graph_tags' => 'string[]',
+        'at_libre_graph_permissions_actions_allowed_values' => 'string[]'
     ];
 
     /**
@@ -140,7 +141,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_microsoft_graph_download_url' => null,
         'at_ui_hidden' => null,
         'at_libre_graph_me_following' => null,
-        'at_libre_graph_tags' => null
+        'at_libre_graph_tags' => null,
+        'at_libre_graph_permissions_actions_allowed_values' => null
     ];
 
     /**
@@ -185,7 +187,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_microsoft_graph_download_url' => false,
         'at_ui_hidden' => false,
         'at_libre_graph_me_following' => false,
-        'at_libre_graph_tags' => false
+        'at_libre_graph_tags' => false,
+        'at_libre_graph_permissions_actions_allowed_values' => false
     ];
 
     /**
@@ -310,7 +313,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_microsoft_graph_download_url' => '@microsoft.graph.downloadUrl',
         'at_ui_hidden' => '@UI.Hidden',
         'at_libre_graph_me_following' => '@libre.graph.me.following',
-        'at_libre_graph_tags' => '@libre.graph.tags'
+        'at_libre_graph_tags' => '@libre.graph.tags',
+        'at_libre_graph_permissions_actions_allowed_values' => '@libre.graph.permissions.actions.allowedValues'
     ];
 
     /**
@@ -355,7 +359,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_microsoft_graph_download_url' => 'setAtMicrosoftGraphDownloadUrl',
         'at_ui_hidden' => 'setAtUiHidden',
         'at_libre_graph_me_following' => 'setAtLibreGraphMeFollowing',
-        'at_libre_graph_tags' => 'setAtLibreGraphTags'
+        'at_libre_graph_tags' => 'setAtLibreGraphTags',
+        'at_libre_graph_permissions_actions_allowed_values' => 'setAtLibreGraphPermissionsActionsAllowedValues'
     ];
 
     /**
@@ -400,7 +405,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_microsoft_graph_download_url' => 'getAtMicrosoftGraphDownloadUrl',
         'at_ui_hidden' => 'getAtUiHidden',
         'at_libre_graph_me_following' => 'getAtLibreGraphMeFollowing',
-        'at_libre_graph_tags' => 'getAtLibreGraphTags'
+        'at_libre_graph_tags' => 'getAtLibreGraphTags',
+        'at_libre_graph_permissions_actions_allowed_values' => 'getAtLibreGraphPermissionsActionsAllowedValues'
     ];
 
     /**
@@ -496,6 +502,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('at_ui_hidden', $data ?? [], null);
         $this->setIfExists('at_libre_graph_me_following', $data ?? [], null);
         $this->setIfExists('at_libre_graph_tags', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_permissions_actions_allowed_values', $data ?? [], null);
     }
 
     /**
@@ -1553,6 +1560,33 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable at_libre_graph_tags cannot be null');
         }
         $this->container['at_libre_graph_tags'] = $at_libre_graph_tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_libre_graph_permissions_actions_allowed_values
+     *
+     * @return string[]|null
+     */
+    public function getAtLibreGraphPermissionsActionsAllowedValues(): ?array
+    {
+        return $this->container['at_libre_graph_permissions_actions_allowed_values'];
+    }
+
+    /**
+     * Sets at_libre_graph_permissions_actions_allowed_values
+     *
+     * @param string[]|null $at_libre_graph_permissions_actions_allowed_values A list of actions the caller is allowed to perform on this item.  Only returned when explicitly requested via `$select` on endpoints that support it. Mirrors the annotation of the same name on the `/permissions` endpoint, allowing clients to learn a caller's effective actions on an item without a separate round-trip.
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphPermissionsActionsAllowedValues(?array $at_libre_graph_permissions_actions_allowed_values): static
+    {
+        if (is_null($at_libre_graph_permissions_actions_allowed_values)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_permissions_actions_allowed_values cannot be null');
+        }
+        $this->container['at_libre_graph_permissions_actions_allowed_values'] = $at_libre_graph_permissions_actions_allowed_values;
 
         return $this;
     }

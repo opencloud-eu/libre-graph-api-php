@@ -127,6 +127,7 @@ class MeDriveRootChildrenApi
      *
      * Get children from drive
      *
+     * @param  string[]|null $select Select additional properties to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetChildren'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -134,10 +135,11 @@ class MeDriveRootChildrenApi
      * @return \OpenAPI\Client\Model\CollectionOfDriveItems|\OpenAPI\Client\Model\OdataError
      */
     public function homeGetChildren(
+        ??array $select = null,
         string $contentType = self::contentTypes['homeGetChildren'][0]
     )
     {
-        list($response) = $this->homeGetChildrenWithHttpInfo($contentType);
+        list($response) = $this->homeGetChildrenWithHttpInfo($select, $contentType);
         return $response;
     }
 
@@ -146,6 +148,7 @@ class MeDriveRootChildrenApi
      *
      * Get children from drive
      *
+     * @param  string[]|null $select Select additional properties to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetChildren'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -153,10 +156,11 @@ class MeDriveRootChildrenApi
      * @return array of \OpenAPI\Client\Model\CollectionOfDriveItems|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
      */
     public function homeGetChildrenWithHttpInfo(
+        ??array $select = null,
         string $contentType = self::contentTypes['homeGetChildren'][0]
     ): array
     {
-        $request = $this->homeGetChildrenRequest($contentType);
+        $request = $this->homeGetChildrenRequest($select, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -306,16 +310,18 @@ class MeDriveRootChildrenApi
      *
      * Get children from drive
      *
+     * @param  string[]|null $select Select additional properties to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetChildren'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function homeGetChildrenAsync(
+        ??array $select = null,
         string $contentType = self::contentTypes['homeGetChildren'][0]
     ): PromiseInterface
     {
-        return $this->homeGetChildrenAsyncWithHttpInfo($contentType)
+        return $this->homeGetChildrenAsyncWithHttpInfo($select, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -328,17 +334,19 @@ class MeDriveRootChildrenApi
      *
      * Get children from drive
      *
+     * @param  string[]|null $select Select additional properties to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetChildren'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function homeGetChildrenAsyncWithHttpInfo(
+        $select = null,
         string $contentType = self::contentTypes['homeGetChildren'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\CollectionOfDriveItems';
-        $request = $this->homeGetChildrenRequest($contentType);
+        $request = $this->homeGetChildrenRequest($select, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -379,16 +387,19 @@ class MeDriveRootChildrenApi
     /**
      * Create request for operation 'homeGetChildren'
      *
+     * @param  string[]|null $select Select additional properties to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetChildren'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function homeGetChildrenRequest(
+        $select = null,
         string $contentType = self::contentTypes['homeGetChildren'][0]
     ): Request
     {
 
+        
 
         $resourcePath = '/v1.0/me/drive/root/children';
         $formParams = [];
@@ -397,6 +408,15 @@ class MeDriveRootChildrenApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $select,
+            '$select', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
 
 
 

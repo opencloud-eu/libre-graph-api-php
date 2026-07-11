@@ -10,7 +10,7 @@ All URIs are relative to https://localhost:9200/graph, except if the operation d
 ## `homeGetChildren()`
 
 ```php
-homeGetChildren(): \OpenAPI\Client\Model\CollectionOfDriveItems
+homeGetChildren($select): \OpenAPI\Client\Model\CollectionOfDriveItems
 ```
 
 Get children from drive
@@ -35,9 +35,10 @@ $apiInstance = new OpenAPI\Client\Api\MeDriveRootChildrenApi(
     new GuzzleHttp\Client(),
     $config
 );
+$select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
 
 try {
-    $result = $apiInstance->homeGetChildren();
+    $result = $apiInstance->homeGetChildren($select);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeDriveRootChildrenApi->homeGetChildren: ', $e->getMessage(), PHP_EOL;
@@ -46,7 +47,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
 
 ### Return type
 

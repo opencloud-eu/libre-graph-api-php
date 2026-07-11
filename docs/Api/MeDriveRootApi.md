@@ -10,7 +10,7 @@ All URIs are relative to https://localhost:9200/graph, except if the operation d
 ## `homeGetRoot()`
 
 ```php
-homeGetRoot(): \OpenAPI\Client\Model\DriveItem
+homeGetRoot($select): \OpenAPI\Client\Model\DriveItem
 ```
 
 Get root from personal space
@@ -35,9 +35,10 @@ $apiInstance = new OpenAPI\Client\Api\MeDriveRootApi(
     new GuzzleHttp\Client(),
     $config
 );
+$select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
 
 try {
-    $result = $apiInstance->homeGetRoot();
+    $result = $apiInstance->homeGetRoot($select);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeDriveRootApi->homeGetRoot: ', $e->getMessage(), PHP_EOL;
@@ -46,7 +47,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
 
 ### Return type
 

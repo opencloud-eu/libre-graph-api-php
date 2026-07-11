@@ -409,4 +409,13 @@ class DriveItemTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "at_libre_graph_permissions_actions_allowed_values"
+     */
+    public function testPropertyAtLibreGraphPermissionsActionsAllowedValues()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
