@@ -9,6 +9,7 @@ All URIs are relative to https://localhost:9200/graph, except if the operation d
 | [**getDriveItem()**](DriveItemApi.md#getDriveItem) | **GET** /v1beta1/drives/{drive-id}/items/{item-id} | Get a DriveItem. |
 | [**getDriveItemChildren()**](DriveItemApi.md#getDriveItemChildren) | **GET** /v1.0/drives/{drive-id}/items/{item-id}/children | List children of a DriveItem |
 | [**getDriveItemContent()**](DriveItemApi.md#getDriveItemContent) | **GET** /v1beta1/drives/{drive-id}/items/{item-id}/content | Download the content of a DriveItem |
+| [**getDriveItemV1()**](DriveItemApi.md#getDriveItemV1) | **GET** /v1.0/drives/{drive-id}/items/{item-id} | Get a DriveItem. |
 | [**updateDriveItem()**](DriveItemApi.md#updateDriveItem) | **PATCH** /v1beta1/drives/{drive-id}/items/{item-id} | Update a DriveItem. |
 
 
@@ -330,6 +331,73 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\OdataError**](../Model/OdataError.md)
+
+### Authorization
+
+[openId](../../README.md#openId), [basicAuth](../../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getDriveItemV1()`
+
+```php
+getDriveItemV1($drive_id, $item_id, $select): \OpenAPI\Client\Model\DriveItem
+```
+
+Get a DriveItem.
+
+Get a DriveItem by using its ID.  Modeled on the MS Graph get driveItem endpoint (https://learn.microsoft.com/en-us/graph/api/driveitem-get).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new OpenAPI\Client\Api\DriveItemApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$drive_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668; // string | key: id of drive
+$item_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668!item-id; // string | key: id of item
+$select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
+
+try {
+    $result = $apiInstance->getDriveItemV1($drive_id, $item_id, $select);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DriveItemApi->getDriveItemV1: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **drive_id** | **string**| key: id of drive | |
+| **item_id** | **string**| key: id of item | |
+| **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\DriveItem**](../Model/DriveItem.md)
 
 ### Authorization
 

@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
 *DriveItemApi* | [**getDriveItem**](docs/Api/DriveItemApi.md#getdriveitem) | **GET** /v1beta1/drives/{drive-id}/items/{item-id} | Get a DriveItem.
 *DriveItemApi* | [**getDriveItemChildren**](docs/Api/DriveItemApi.md#getdriveitemchildren) | **GET** /v1.0/drives/{drive-id}/items/{item-id}/children | List children of a DriveItem
 *DriveItemApi* | [**getDriveItemContent**](docs/Api/DriveItemApi.md#getdriveitemcontent) | **GET** /v1beta1/drives/{drive-id}/items/{item-id}/content | Download the content of a DriveItem
+*DriveItemApi* | [**getDriveItemV1**](docs/Api/DriveItemApi.md#getdriveitemv1) | **GET** /v1.0/drives/{drive-id}/items/{item-id} | Get a DriveItem.
 *DriveItemApi* | [**updateDriveItem**](docs/Api/DriveItemApi.md#updatedriveitem) | **PATCH** /v1beta1/drives/{drive-id}/items/{item-id} | Update a DriveItem.
 *DrivesApi* | [**createDrive**](docs/Api/DrivesApi.md#createdrive) | **POST** /v1.0/drives | Create a new drive of a specific type
 *DrivesApi* | [**deleteDrive**](docs/Api/DrivesApi.md#deletedrive) | **DELETE** /v1.0/drives/{drive-id} | Delete a specific space
