@@ -218,7 +218,7 @@ try {
 ## `getDriveItemChildren()`
 
 ```php
-getDriveItemChildren($drive_id, $item_id): \OpenAPI\Client\Model\CollectionOfDriveItems
+getDriveItemChildren($drive_id, $item_id, $select): \OpenAPI\Client\Model\CollectionOfDriveItems
 ```
 
 List children of a DriveItem
@@ -247,9 +247,10 @@ $apiInstance = new OpenAPI\Client\Api\DriveItemApi(
 );
 $drive_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668; // string | key: id of drive
 $item_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668!share-id; // string | key: id of item
+$select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
 
 try {
-    $result = $apiInstance->getDriveItemChildren($drive_id, $item_id);
+    $result = $apiInstance->getDriveItemChildren($drive_id, $item_id, $select);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DriveItemApi->getDriveItemChildren: ', $e->getMessage(), PHP_EOL;
@@ -262,6 +263,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **drive_id** | **string**| key: id of drive | |
 | **item_id** | **string**| key: id of item | |
+| **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
 
 ### Return type
 
