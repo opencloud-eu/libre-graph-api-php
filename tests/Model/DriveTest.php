@@ -238,4 +238,13 @@ class DriveTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "at_ui_extension"
+     */
+    public function testPropertyAtUiExtension()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

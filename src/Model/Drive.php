@@ -76,7 +76,8 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'items' => '\OpenAPI\Client\Model\DriveItem[]',
         'root' => '\OpenAPI\Client\Model\DriveItem',
         'special' => '\OpenAPI\Client\Model\DriveItem[]',
-        'at_libre_graph_has_trashed_items' => 'bool'
+        'at_libre_graph_has_trashed_items' => 'bool',
+        'at_ui_extension' => 'string'
     ];
 
     /**
@@ -102,7 +103,8 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'items' => null,
         'root' => null,
         'special' => null,
-        'at_libre_graph_has_trashed_items' => null
+        'at_libre_graph_has_trashed_items' => null,
+        'at_ui_extension' => null
     ];
 
     /**
@@ -128,7 +130,8 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'items' => false,
         'root' => false,
         'special' => false,
-        'at_libre_graph_has_trashed_items' => false
+        'at_libre_graph_has_trashed_items' => false,
+        'at_ui_extension' => false
     ];
 
     /**
@@ -234,7 +237,8 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'items' => 'items',
         'root' => 'root',
         'special' => 'special',
-        'at_libre_graph_has_trashed_items' => '@libre.graph.hasTrashedItems'
+        'at_libre_graph_has_trashed_items' => '@libre.graph.hasTrashedItems',
+        'at_ui_extension' => '@UI.extension'
     ];
 
     /**
@@ -260,7 +264,8 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'items' => 'setItems',
         'root' => 'setRoot',
         'special' => 'setSpecial',
-        'at_libre_graph_has_trashed_items' => 'setAtLibreGraphHasTrashedItems'
+        'at_libre_graph_has_trashed_items' => 'setAtLibreGraphHasTrashedItems',
+        'at_ui_extension' => 'setAtUiExtension'
     ];
 
     /**
@@ -286,7 +291,8 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'items' => 'getItems',
         'root' => 'getRoot',
         'special' => 'getSpecial',
-        'at_libre_graph_has_trashed_items' => 'getAtLibreGraphHasTrashedItems'
+        'at_libre_graph_has_trashed_items' => 'getAtLibreGraphHasTrashedItems',
+        'at_ui_extension' => 'getAtUiExtension'
     ];
 
     /**
@@ -363,6 +369,7 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('root', $data ?? [], null);
         $this->setIfExists('special', $data ?? [], null);
         $this->setIfExists('at_libre_graph_has_trashed_items', $data ?? [], null);
+        $this->setIfExists('at_ui_extension', $data ?? [], null);
     }
 
     /**
@@ -910,6 +917,33 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable at_libre_graph_has_trashed_items cannot be null');
         }
         $this->container['at_libre_graph_has_trashed_items'] = $at_libre_graph_has_trashed_items;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_ui_extension
+     *
+     * @return string|null
+     */
+    public function getAtUiExtension(): ?string
+    {
+        return $this->container['at_ui_extension'];
+    }
+
+    /**
+     * Sets at_ui_extension
+     *
+     * @param string|null $at_ui_extension Specifier for the web client that a drive has an associated extension that could potentially be opened by a specific web app (like a file extension).
+     *
+     * @return $this
+     */
+    public function setAtUiExtension(?string $at_ui_extension): static
+    {
+        if (is_null($at_ui_extension)) {
+            throw new InvalidArgumentException('non-nullable at_ui_extension cannot be null');
+        }
+        $this->container['at_ui_extension'] = $at_ui_extension;
 
         return $this;
     }
