@@ -240,9 +240,9 @@ class DriveUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "at_ui_extension"
+     * Test attribute "at_libre_graph_content_type"
      */
-    public function testPropertyAtUiExtension()
+    public function testPropertyAtLibreGraphContentType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

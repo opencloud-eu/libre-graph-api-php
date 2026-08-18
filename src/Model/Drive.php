@@ -77,7 +77,7 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'root' => '\OpenAPI\Client\Model\DriveItem',
         'special' => '\OpenAPI\Client\Model\DriveItem[]',
         'at_libre_graph_has_trashed_items' => 'bool',
-        'at_ui_extension' => 'string'
+        'at_libre_graph_content_type' => 'string'
     ];
 
     /**
@@ -104,7 +104,7 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'root' => null,
         'special' => null,
         'at_libre_graph_has_trashed_items' => null,
-        'at_ui_extension' => null
+        'at_libre_graph_content_type' => null
     ];
 
     /**
@@ -131,7 +131,7 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'root' => false,
         'special' => false,
         'at_libre_graph_has_trashed_items' => false,
-        'at_ui_extension' => false
+        'at_libre_graph_content_type' => false
     ];
 
     /**
@@ -238,7 +238,7 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'root' => 'root',
         'special' => 'special',
         'at_libre_graph_has_trashed_items' => '@libre.graph.hasTrashedItems',
-        'at_ui_extension' => '@UI.extension'
+        'at_libre_graph_content_type' => '@libre.graph.contentType'
     ];
 
     /**
@@ -265,7 +265,7 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'root' => 'setRoot',
         'special' => 'setSpecial',
         'at_libre_graph_has_trashed_items' => 'setAtLibreGraphHasTrashedItems',
-        'at_ui_extension' => 'setAtUiExtension'
+        'at_libre_graph_content_type' => 'setAtLibreGraphContentType'
     ];
 
     /**
@@ -292,7 +292,7 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         'root' => 'getRoot',
         'special' => 'getSpecial',
         'at_libre_graph_has_trashed_items' => 'getAtLibreGraphHasTrashedItems',
-        'at_ui_extension' => 'getAtUiExtension'
+        'at_libre_graph_content_type' => 'getAtLibreGraphContentType'
     ];
 
     /**
@@ -369,7 +369,7 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('root', $data ?? [], null);
         $this->setIfExists('special', $data ?? [], null);
         $this->setIfExists('at_libre_graph_has_trashed_items', $data ?? [], null);
-        $this->setIfExists('at_ui_extension', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_content_type', $data ?? [], null);
     }
 
     /**
@@ -922,28 +922,28 @@ class Drive implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets at_ui_extension
+     * Gets at_libre_graph_content_type
      *
      * @return string|null
      */
-    public function getAtUiExtension(): ?string
+    public function getAtLibreGraphContentType(): ?string
     {
-        return $this->container['at_ui_extension'];
+        return $this->container['at_libre_graph_content_type'];
     }
 
     /**
-     * Sets at_ui_extension
+     * Sets at_libre_graph_content_type
      *
-     * @param string|null $at_ui_extension Specifier for the web client that a drive has an associated extension that could potentially be opened by a specific web app (like a file extension).
+     * @param string|null $at_libre_graph_content_type Specifier for the web client that a drive is of a certain content type that could potentially be opened by a specific web app. Example: `application/vnd.opencloud.vault`, indicating the drive can be opened by the rclone-crypt web app.
      *
      * @return $this
      */
-    public function setAtUiExtension(?string $at_ui_extension): static
+    public function setAtLibreGraphContentType(?string $at_libre_graph_content_type): static
     {
-        if (is_null($at_ui_extension)) {
-            throw new InvalidArgumentException('non-nullable at_ui_extension cannot be null');
+        if (is_null($at_libre_graph_content_type)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_content_type cannot be null');
         }
-        $this->container['at_ui_extension'] = $at_ui_extension;
+        $this->container['at_libre_graph_content_type'] = $at_libre_graph_content_type;
 
         return $this;
     }
