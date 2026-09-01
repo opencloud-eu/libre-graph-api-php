@@ -72,6 +72,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'content' => 'string',
         'c_tag' => 'string',
         'deleted' => '\OpenAPI\Client\Model\Deleted',
+        'pending_operations' => '\OpenAPI\Client\Model\PendingOperations',
         'file' => '\OpenAPI\Client\Model\OpenGraphFile',
         'file_system_info' => '\OpenAPI\Client\Model\FileSystemInfo',
         'folder' => '\OpenAPI\Client\Model\Folder',
@@ -118,6 +119,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'content' => 'base64url',
         'c_tag' => null,
         'deleted' => null,
+        'pending_operations' => null,
         'file' => null,
         'file_system_info' => null,
         'folder' => null,
@@ -164,6 +166,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'content' => false,
         'c_tag' => false,
         'deleted' => false,
+        'pending_operations' => false,
         'file' => false,
         'file_system_info' => false,
         'folder' => false,
@@ -290,6 +293,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'content' => 'content',
         'c_tag' => 'cTag',
         'deleted' => 'deleted',
+        'pending_operations' => 'pendingOperations',
         'file' => 'file',
         'file_system_info' => 'fileSystemInfo',
         'folder' => 'folder',
@@ -336,6 +340,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'content' => 'setContent',
         'c_tag' => 'setCTag',
         'deleted' => 'setDeleted',
+        'pending_operations' => 'setPendingOperations',
         'file' => 'setFile',
         'file_system_info' => 'setFileSystemInfo',
         'folder' => 'setFolder',
@@ -382,6 +387,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'content' => 'getContent',
         'c_tag' => 'getCTag',
         'deleted' => 'getDeleted',
+        'pending_operations' => 'getPendingOperations',
         'file' => 'getFile',
         'file_system_info' => 'getFileSystemInfo',
         'folder' => 'getFolder',
@@ -478,6 +484,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('content', $data ?? [], null);
         $this->setIfExists('c_tag', $data ?? [], null);
         $this->setIfExists('deleted', $data ?? [], null);
+        $this->setIfExists('pending_operations', $data ?? [], null);
         $this->setIfExists('file', $data ?? [], null);
         $this->setIfExists('file_system_info', $data ?? [], null);
         $this->setIfExists('folder', $data ?? [], null);
@@ -912,6 +919,33 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable deleted cannot be null');
         }
         $this->container['deleted'] = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Gets pending_operations
+     *
+     * @return \OpenAPI\Client\Model\PendingOperations|null
+     */
+    public function getPendingOperations(): ?\OpenAPI\Client\Model\PendingOperations
+    {
+        return $this->container['pending_operations'];
+    }
+
+    /**
+     * Sets pending_operations
+     *
+     * @param \OpenAPI\Client\Model\PendingOperations|null $pending_operations pending_operations
+     *
+     * @return $this
+     */
+    public function setPendingOperations(?\OpenAPI\Client\Model\PendingOperations $pending_operations): static
+    {
+        if (is_null($pending_operations)) {
+            throw new InvalidArgumentException('non-nullable pending_operations cannot be null');
+        }
+        $this->container['pending_operations'] = $pending_operations;
 
         return $this;
     }

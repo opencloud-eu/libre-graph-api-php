@@ -195,6 +195,15 @@ class DriveItemTest extends TestCase
     }
 
     /**
+     * Test attribute "pending_operations"
+     */
+    public function testPropertyPendingOperations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "file"
      */
     public function testPropertyFile()

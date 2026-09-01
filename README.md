@@ -248,6 +248,8 @@ Class | Method | HTTP request | Description
 - [OpenGraphFile](docs/Model/OpenGraphFile.md)
 - [PasswordChange](docs/Model/PasswordChange.md)
 - [PasswordProfile](docs/Model/PasswordProfile.md)
+- [PendingOperations](docs/Model/PendingOperations.md)
+- [PendingOperationsPendingContentUpdate](docs/Model/PendingOperationsPendingContentUpdate.md)
 - [Permission](docs/Model/Permission.md)
 - [Photo](docs/Model/Photo.md)
 - [Quota](docs/Model/Quota.md)

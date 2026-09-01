@@ -97,6 +97,8 @@ docs/Model/OdataErrorMain.md
 docs/Model/OpenGraphFile.md
 docs/Model/PasswordChange.md
 docs/Model/PasswordProfile.md
+docs/Model/PendingOperations.md
+docs/Model/PendingOperationsPendingContentUpdate.md
 docs/Model/Permission.md
 docs/Model/Photo.md
 docs/Model/Quota.md
@@ -219,6 +221,8 @@ src/Model/OdataErrorMain.php
 src/Model/OpenGraphFile.php
 src/Model/PasswordChange.php
 src/Model/PasswordProfile.php
+src/Model/PendingOperations.php
+src/Model/PendingOperationsPendingContentUpdate.php
 src/Model/Permission.php
 src/Model/Photo.php
 src/Model/Quota.php
@@ -335,6 +339,8 @@ tests/Model/OdataErrorTest.php
 tests/Model/OpenGraphFileTest.php
 tests/Model/PasswordChangeTest.php
 tests/Model/PasswordProfileTest.php
+tests/Model/PendingOperationsPendingContentUpdateTest.php
+tests/Model/PendingOperationsTest.php
 tests/Model/PermissionTest.php
 tests/Model/PhotoTest.php
 tests/Model/QuotaTest.php
