@@ -234,7 +234,7 @@ class DrivesRootApi
             }
 
             switch($statusCode) {
-                case 200:
+                case 201:
                     if ('\OpenAPI\Client\Model\DriveItem' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -320,7 +320,7 @@ class DrivesRootApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\DriveItem',

@@ -97,7 +97,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_ui_hidden' => 'bool',
         'at_libre_graph_me_following' => 'bool',
         'at_libre_graph_tags' => 'string[]',
-        'at_libre_graph_permissions_actions_allowed_values' => 'string[]'
+        'at_libre_graph_permissions_actions_allowed_values' => 'string[]',
+        'at_libre_graph_share_types' => 'string[]'
     ];
 
     /**
@@ -144,7 +145,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_ui_hidden' => null,
         'at_libre_graph_me_following' => null,
         'at_libre_graph_tags' => null,
-        'at_libre_graph_permissions_actions_allowed_values' => null
+        'at_libre_graph_permissions_actions_allowed_values' => null,
+        'at_libre_graph_share_types' => null
     ];
 
     /**
@@ -191,7 +193,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_ui_hidden' => false,
         'at_libre_graph_me_following' => false,
         'at_libre_graph_tags' => false,
-        'at_libre_graph_permissions_actions_allowed_values' => false
+        'at_libre_graph_permissions_actions_allowed_values' => false,
+        'at_libre_graph_share_types' => false
     ];
 
     /**
@@ -318,7 +321,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_ui_hidden' => '@UI.Hidden',
         'at_libre_graph_me_following' => '@libre.graph.me.following',
         'at_libre_graph_tags' => '@libre.graph.tags',
-        'at_libre_graph_permissions_actions_allowed_values' => '@libre.graph.permissions.actions.allowedValues'
+        'at_libre_graph_permissions_actions_allowed_values' => '@libre.graph.permissions.actions.allowedValues',
+        'at_libre_graph_share_types' => '@libre.graph.shareTypes'
     ];
 
     /**
@@ -365,7 +369,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_ui_hidden' => 'setAtUiHidden',
         'at_libre_graph_me_following' => 'setAtLibreGraphMeFollowing',
         'at_libre_graph_tags' => 'setAtLibreGraphTags',
-        'at_libre_graph_permissions_actions_allowed_values' => 'setAtLibreGraphPermissionsActionsAllowedValues'
+        'at_libre_graph_permissions_actions_allowed_values' => 'setAtLibreGraphPermissionsActionsAllowedValues',
+        'at_libre_graph_share_types' => 'setAtLibreGraphShareTypes'
     ];
 
     /**
@@ -412,7 +417,8 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'at_ui_hidden' => 'getAtUiHidden',
         'at_libre_graph_me_following' => 'getAtLibreGraphMeFollowing',
         'at_libre_graph_tags' => 'getAtLibreGraphTags',
-        'at_libre_graph_permissions_actions_allowed_values' => 'getAtLibreGraphPermissionsActionsAllowedValues'
+        'at_libre_graph_permissions_actions_allowed_values' => 'getAtLibreGraphPermissionsActionsAllowedValues',
+        'at_libre_graph_share_types' => 'getAtLibreGraphShareTypes'
     ];
 
     /**
@@ -456,6 +462,25 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const AT_LIBRE_GRAPH_SHARE_TYPES_USER = 'user';
+    public const AT_LIBRE_GRAPH_SHARE_TYPES_GROUP = 'group';
+    public const AT_LIBRE_GRAPH_SHARE_TYPES_LINK = 'link';
+    public const AT_LIBRE_GRAPH_SHARE_TYPES_REMOTE = 'remote';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public static function getAtLibreGraphShareTypesAllowableValues()
+    {
+        return [
+            self::AT_LIBRE_GRAPH_SHARE_TYPES_USER,
+            self::AT_LIBRE_GRAPH_SHARE_TYPES_GROUP,
+            self::AT_LIBRE_GRAPH_SHARE_TYPES_LINK,
+            self::AT_LIBRE_GRAPH_SHARE_TYPES_REMOTE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -510,6 +535,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('at_libre_graph_me_following', $data ?? [], null);
         $this->setIfExists('at_libre_graph_tags', $data ?? [], null);
         $this->setIfExists('at_libre_graph_permissions_actions_allowed_values', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_share_types', $data ?? [], null);
     }
 
     /**
@@ -1621,6 +1647,42 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable at_libre_graph_permissions_actions_allowed_values cannot be null');
         }
         $this->container['at_libre_graph_permissions_actions_allowed_values'] = $at_libre_graph_permissions_actions_allowed_values;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_libre_graph_share_types
+     *
+     * @return string[]|null
+     */
+    public function getAtLibreGraphShareTypes(): ?array
+    {
+        return $this->container['at_libre_graph_share_types'];
+    }
+
+    /**
+     * Sets at_libre_graph_share_types
+     *
+     * @param string[]|null $at_libre_graph_share_types The types of shares existing on this item, aggregated over all of its grants. Absent or empty if the item is not shared.  This is a summary of the item's `permissions` collection. For the full grants use the permissions endpoints, for the caller's own capabilities use `@libre.graph.permissions.actions.allowedValues`.  Only returned when explicitly requested via `$select`.
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphShareTypes(?array $at_libre_graph_share_types): static
+    {
+        if (is_null($at_libre_graph_share_types)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_share_types cannot be null');
+        }
+        $allowedValues = $this->getAtLibreGraphShareTypesAllowableValues();
+        if (array_diff($at_libre_graph_share_types, $allowedValues)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'at_libre_graph_share_types', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['at_libre_graph_share_types'] = $at_libre_graph_share_types;
 
         return $this;
     }

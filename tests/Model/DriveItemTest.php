@@ -427,4 +427,13 @@ class DriveItemTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "at_libre_graph_share_types"
+     */
+    public function testPropertyAtLibreGraphShareTypes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
