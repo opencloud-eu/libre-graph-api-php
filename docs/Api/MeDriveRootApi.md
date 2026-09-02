@@ -10,7 +10,7 @@ All URIs are relative to https://localhost:9200/graph, except if the operation d
 ## `homeGetRoot()`
 
 ```php
-homeGetRoot($select): \OpenAPI\Client\Model\DriveItem
+homeGetRoot($select, $expand): \OpenAPI\Client\Model\DriveItem
 ```
 
 Get root from personal space
@@ -36,9 +36,10 @@ $apiInstance = new OpenAPI\Client\Api\MeDriveRootApi(
     $config
 );
 $select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
+$expand = ["children"]; // string[] | Expand related entities to be returned.
 
 try {
-    $result = $apiInstance->homeGetRoot($select);
+    $result = $apiInstance->homeGetRoot($select, $expand);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeDriveRootApi->homeGetRoot: ', $e->getMessage(), PHP_EOL;
@@ -50,6 +51,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
+| **expand** | [**string[]**](../Model/string.md)| Expand related entities to be returned. | [optional] |
 
 ### Return type
 

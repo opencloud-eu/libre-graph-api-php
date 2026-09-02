@@ -128,6 +128,7 @@ class MeDriveRootApi
      * Get root from personal space
      *
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetRoot'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -136,10 +137,11 @@ class MeDriveRootApi
      */
     public function homeGetRoot(
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['homeGetRoot'][0]
     )
     {
-        list($response) = $this->homeGetRootWithHttpInfo($select, $contentType);
+        list($response) = $this->homeGetRootWithHttpInfo($select, $expand, $contentType);
         return $response;
     }
 
@@ -149,6 +151,7 @@ class MeDriveRootApi
      * Get root from personal space
      *
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetRoot'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -157,10 +160,11 @@ class MeDriveRootApi
      */
     public function homeGetRootWithHttpInfo(
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['homeGetRoot'][0]
     ): array
     {
-        $request = $this->homeGetRootRequest($select, $contentType);
+        $request = $this->homeGetRootRequest($select, $expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -311,6 +315,7 @@ class MeDriveRootApi
      * Get root from personal space
      *
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -318,10 +323,11 @@ class MeDriveRootApi
      */
     public function homeGetRootAsync(
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['homeGetRoot'][0]
     ): PromiseInterface
     {
-        return $this->homeGetRootAsyncWithHttpInfo($select, $contentType)
+        return $this->homeGetRootAsyncWithHttpInfo($select, $expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -335,6 +341,7 @@ class MeDriveRootApi
      * Get root from personal space
      *
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -342,11 +349,12 @@ class MeDriveRootApi
      */
     public function homeGetRootAsyncWithHttpInfo(
         $select = null,
+        $expand = null,
         string $contentType = self::contentTypes['homeGetRoot'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\DriveItem';
-        $request = $this->homeGetRootRequest($select, $contentType);
+        $request = $this->homeGetRootRequest($select, $expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -388,6 +396,7 @@ class MeDriveRootApi
      * Create request for operation 'homeGetRoot'
      *
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['homeGetRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -395,10 +404,12 @@ class MeDriveRootApi
      */
     public function homeGetRootRequest(
         $select = null,
+        $expand = null,
         string $contentType = self::contentTypes['homeGetRoot'][0]
     ): Request
     {
 
+        
         
 
         $resourcePath = '/v1.0/me/drive/root';
@@ -412,6 +423,15 @@ class MeDriveRootApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $select,
             '$select', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            '$expand', // param base name
             'array', // openApiType
             'form', // style
             false, // explode

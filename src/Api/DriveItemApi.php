@@ -1019,6 +1019,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItem'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -1029,10 +1030,11 @@ class DriveItemApi
         string $drive_id,
         string $item_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getDriveItem'][0]
     )
     {
-        list($response) = $this->getDriveItemWithHttpInfo($drive_id, $item_id, $select, $contentType);
+        list($response) = $this->getDriveItemWithHttpInfo($drive_id, $item_id, $select, $expand, $contentType);
         return $response;
     }
 
@@ -1044,6 +1046,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItem'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -1054,10 +1057,11 @@ class DriveItemApi
         string $drive_id,
         string $item_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getDriveItem'][0]
     ): array
     {
-        $request = $this->getDriveItemRequest($drive_id, $item_id, $select, $contentType);
+        $request = $this->getDriveItemRequest($drive_id, $item_id, $select, $expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1210,6 +1214,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItem'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1219,10 +1224,11 @@ class DriveItemApi
         string $drive_id,
         string $item_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getDriveItem'][0]
     ): PromiseInterface
     {
-        return $this->getDriveItemAsyncWithHttpInfo($drive_id, $item_id, $select, $contentType)
+        return $this->getDriveItemAsyncWithHttpInfo($drive_id, $item_id, $select, $expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1238,6 +1244,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItem'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1247,11 +1254,12 @@ class DriveItemApi
         $drive_id,
         $item_id,
         $select = null,
+        $expand = null,
         string $contentType = self::contentTypes['getDriveItem'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\DriveItem';
-        $request = $this->getDriveItemRequest($drive_id, $item_id, $select, $contentType);
+        $request = $this->getDriveItemRequest($drive_id, $item_id, $select, $expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1295,6 +1303,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItem'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1304,6 +1313,7 @@ class DriveItemApi
         $drive_id,
         $item_id,
         $select = null,
+        $expand = null,
         string $contentType = self::contentTypes['getDriveItem'][0]
     ): Request
     {
@@ -1323,6 +1333,7 @@ class DriveItemApi
         }
 
         
+        
 
         $resourcePath = '/v1beta1/drives/{drive-id}/items/{item-id}';
         $formParams = [];
@@ -1335,6 +1346,15 @@ class DriveItemApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $select,
             '$select', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            '$expand', // param base name
             'array', // openApiType
             'form', // style
             false, // explode
@@ -2217,6 +2237,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItemV1'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -2227,10 +2248,11 @@ class DriveItemApi
         string $drive_id,
         string $item_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getDriveItemV1'][0]
     )
     {
-        list($response) = $this->getDriveItemV1WithHttpInfo($drive_id, $item_id, $select, $contentType);
+        list($response) = $this->getDriveItemV1WithHttpInfo($drive_id, $item_id, $select, $expand, $contentType);
         return $response;
     }
 
@@ -2242,6 +2264,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItemV1'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -2252,10 +2275,11 @@ class DriveItemApi
         string $drive_id,
         string $item_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getDriveItemV1'][0]
     ): array
     {
-        $request = $this->getDriveItemV1Request($drive_id, $item_id, $select, $contentType);
+        $request = $this->getDriveItemV1Request($drive_id, $item_id, $select, $expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2408,6 +2432,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItemV1'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -2417,10 +2442,11 @@ class DriveItemApi
         string $drive_id,
         string $item_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getDriveItemV1'][0]
     ): PromiseInterface
     {
-        return $this->getDriveItemV1AsyncWithHttpInfo($drive_id, $item_id, $select, $contentType)
+        return $this->getDriveItemV1AsyncWithHttpInfo($drive_id, $item_id, $select, $expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2436,6 +2462,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItemV1'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -2445,11 +2472,12 @@ class DriveItemApi
         $drive_id,
         $item_id,
         $select = null,
+        $expand = null,
         string $contentType = self::contentTypes['getDriveItemV1'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\DriveItem';
-        $request = $this->getDriveItemV1Request($drive_id, $item_id, $select, $contentType);
+        $request = $this->getDriveItemV1Request($drive_id, $item_id, $select, $expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2493,6 +2521,7 @@ class DriveItemApi
      * @param  string $drive_id key: id of drive (required)
      * @param  string $item_id key: id of item (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveItemV1'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -2502,6 +2531,7 @@ class DriveItemApi
         $drive_id,
         $item_id,
         $select = null,
+        $expand = null,
         string $contentType = self::contentTypes['getDriveItemV1'][0]
     ): Request
     {
@@ -2521,6 +2551,7 @@ class DriveItemApi
         }
 
         
+        
 
         $resourcePath = '/v1.0/drives/{drive-id}/items/{item-id}';
         $formParams = [];
@@ -2533,6 +2564,15 @@ class DriveItemApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $select,
             '$select', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            '$expand', // param base name
             'array', // openApiType
             'form', // style
             false, // explode

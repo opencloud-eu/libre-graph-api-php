@@ -151,7 +151,7 @@ void (empty response body)
 ## `getDriveItem()`
 
 ```php
-getDriveItem($drive_id, $item_id, $select): \OpenAPI\Client\Model\DriveItem
+getDriveItem($drive_id, $item_id, $select, $expand): \OpenAPI\Client\Model\DriveItem
 ```
 
 Get a DriveItem.
@@ -181,9 +181,10 @@ $apiInstance = new OpenAPI\Client\Api\DriveItemApi(
 $drive_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668; // string | key: id of drive
 $item_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668!share-id; // string | key: id of item
 $select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
+$expand = ["children"]; // string[] | Expand related entities to be returned.
 
 try {
-    $result = $apiInstance->getDriveItem($drive_id, $item_id, $select);
+    $result = $apiInstance->getDriveItem($drive_id, $item_id, $select, $expand);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DriveItemApi->getDriveItem: ', $e->getMessage(), PHP_EOL;
@@ -197,6 +198,7 @@ try {
 | **drive_id** | **string**| key: id of drive | |
 | **item_id** | **string**| key: id of item | |
 | **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
+| **expand** | [**string[]**](../Model/string.md)| Expand related entities to be returned. | [optional] |
 
 ### Return type
 
@@ -350,7 +352,7 @@ try {
 ## `getDriveItemV1()`
 
 ```php
-getDriveItemV1($drive_id, $item_id, $select): \OpenAPI\Client\Model\DriveItem
+getDriveItemV1($drive_id, $item_id, $select, $expand): \OpenAPI\Client\Model\DriveItem
 ```
 
 Get a DriveItem.
@@ -380,9 +382,10 @@ $apiInstance = new OpenAPI\Client\Api\DriveItemApi(
 $drive_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668; // string | key: id of drive
 $item_id = a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668!item-id; // string | key: id of item
 $select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
+$expand = ["children"]; // string[] | Expand related entities to be returned.
 
 try {
-    $result = $apiInstance->getDriveItemV1($drive_id, $item_id, $select);
+    $result = $apiInstance->getDriveItemV1($drive_id, $item_id, $select, $expand);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DriveItemApi->getDriveItemV1: ', $e->getMessage(), PHP_EOL;
@@ -396,6 +399,7 @@ try {
 | **drive_id** | **string**| key: id of drive | |
 | **item_id** | **string**| key: id of item | |
 | **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
+| **expand** | [**string[]**](../Model/string.md)| Expand related entities to be returned. | [optional] |
 
 ### Return type
 

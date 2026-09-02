@@ -281,7 +281,7 @@ try {
 ## `getRoot()`
 
 ```php
-getRoot($drive_id, $select): \OpenAPI\Client\Model\DriveItem
+getRoot($drive_id, $select, $expand): \OpenAPI\Client\Model\DriveItem
 ```
 
 Get root from arbitrary space
@@ -308,9 +308,10 @@ $apiInstance = new OpenAPI\Client\Api\DrivesRootApi(
 );
 $drive_id = 'drive_id_example'; // string | key: id of drive
 $select = ["@microsoft.graph.downloadUrl"]; // string[] | Select additional properties to be returned.
+$expand = ["children"]; // string[] | Expand related entities to be returned.
 
 try {
-    $result = $apiInstance->getRoot($drive_id, $select);
+    $result = $apiInstance->getRoot($drive_id, $select, $expand);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DrivesRootApi->getRoot: ', $e->getMessage(), PHP_EOL;
@@ -323,6 +324,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **drive_id** | **string**| key: id of drive | |
 | **select** | [**string[]**](../Model/string.md)| Select additional properties to be returned. | [optional] |
+| **expand** | [**string[]**](../Model/string.md)| Expand related entities to be returned. | [optional] |
 
 ### Return type
 

@@ -1618,6 +1618,7 @@ class DrivesRootApi
      *
      * @param  string $drive_id key: id of drive (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoot'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -1627,10 +1628,11 @@ class DrivesRootApi
     public function getRoot(
         string $drive_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getRoot'][0]
     )
     {
-        list($response) = $this->getRootWithHttpInfo($drive_id, $select, $contentType);
+        list($response) = $this->getRootWithHttpInfo($drive_id, $select, $expand, $contentType);
         return $response;
     }
 
@@ -1641,6 +1643,7 @@ class DrivesRootApi
      *
      * @param  string $drive_id key: id of drive (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoot'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -1650,10 +1653,11 @@ class DrivesRootApi
     public function getRootWithHttpInfo(
         string $drive_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getRoot'][0]
     ): array
     {
-        $request = $this->getRootRequest($drive_id, $select, $contentType);
+        $request = $this->getRootRequest($drive_id, $select, $expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1805,6 +1809,7 @@ class DrivesRootApi
      *
      * @param  string $drive_id key: id of drive (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1813,10 +1818,11 @@ class DrivesRootApi
     public function getRootAsync(
         string $drive_id,
         ??array $select = null,
+        ??array $expand = null,
         string $contentType = self::contentTypes['getRoot'][0]
     ): PromiseInterface
     {
-        return $this->getRootAsyncWithHttpInfo($drive_id, $select, $contentType)
+        return $this->getRootAsyncWithHttpInfo($drive_id, $select, $expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1831,6 +1837,7 @@ class DrivesRootApi
      *
      * @param  string $drive_id key: id of drive (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1839,11 +1846,12 @@ class DrivesRootApi
     public function getRootAsyncWithHttpInfo(
         $drive_id,
         $select = null,
+        $expand = null,
         string $contentType = self::contentTypes['getRoot'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\DriveItem';
-        $request = $this->getRootRequest($drive_id, $select, $contentType);
+        $request = $this->getRootRequest($drive_id, $select, $expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1886,6 +1894,7 @@ class DrivesRootApi
      *
      * @param  string $drive_id key: id of drive (required)
      * @param  string[]|null $select Select additional properties to be returned. (optional)
+     * @param  string[]|null $expand Expand related entities to be returned. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoot'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1894,6 +1903,7 @@ class DrivesRootApi
     public function getRootRequest(
         $drive_id,
         $select = null,
+        $expand = null,
         string $contentType = self::contentTypes['getRoot'][0]
     ): Request
     {
@@ -1905,6 +1915,7 @@ class DrivesRootApi
             );
         }
 
+        
         
 
         $resourcePath = '/v1.0/drives/{drive-id}/root';
@@ -1918,6 +1929,15 @@ class DrivesRootApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $select,
             '$select', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            '$expand', // param base name
             'array', // openApiType
             'form', // style
             false, // explode
