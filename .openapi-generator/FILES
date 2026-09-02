@@ -88,6 +88,7 @@ docs/Model/Invitation.md
 docs/Model/InvitedUserMessageInfo.md
 docs/Model/ItemReference.md
 docs/Model/LivePhoto.md
+docs/Model/LockInfo.md
 docs/Model/MemberReference.md
 docs/Model/MotionPhoto.md
 docs/Model/ObjectIdentity.md
@@ -211,6 +212,7 @@ src/Model/Invitation.php
 src/Model/InvitedUserMessageInfo.php
 src/Model/ItemReference.php
 src/Model/LivePhoto.php
+src/Model/LockInfo.php
 src/Model/MemberReference.php
 src/Model/ModelInterface.php
 src/Model/MotionPhoto.php
@@ -330,6 +332,7 @@ tests/Model/InvitationTest.php
 tests/Model/InvitedUserMessageInfoTest.php
 tests/Model/ItemReferenceTest.php
 tests/Model/LivePhotoTest.php
+tests/Model/LockInfoTest.php
 tests/Model/MemberReferenceTest.php
 tests/Model/MotionPhotoTest.php
 tests/Model/ObjectIdentityTest.php

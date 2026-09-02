@@ -239,6 +239,7 @@ Class | Method | HTTP request | Description
 - [InvitedUserMessageInfo](docs/Model/InvitedUserMessageInfo.md)
 - [ItemReference](docs/Model/ItemReference.md)
 - [LivePhoto](docs/Model/LivePhoto.md)
+- [LockInfo](docs/Model/LockInfo.md)
 - [MemberReference](docs/Model/MemberReference.md)
 - [MotionPhoto](docs/Model/MotionPhoto.md)
 - [ObjectIdentity](docs/Model/ObjectIdentity.md)

@@ -375,6 +375,15 @@ class DriveItemTest extends TestCase
     }
 
     /**
+     * Test attribute "lock_info"
+     */
+    public function testPropertyLockInfo()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "at_client_synchronize"
      */
     public function testPropertyAtClientSynchronize()

@@ -92,6 +92,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'video' => '\OpenAPI\Client\Model\Video',
         'at_libre_graph_motion_photo' => '\OpenAPI\Client\Model\MotionPhoto',
         'at_libre_graph_live_photo' => '\OpenAPI\Client\Model\LivePhoto',
+        'lock_info' => '\OpenAPI\Client\Model\LockInfo',
         'at_client_synchronize' => 'bool',
         'at_microsoft_graph_download_url' => 'string',
         'at_ui_hidden' => 'bool',
@@ -140,6 +141,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'video' => null,
         'at_libre_graph_motion_photo' => null,
         'at_libre_graph_live_photo' => null,
+        'lock_info' => null,
         'at_client_synchronize' => null,
         'at_microsoft_graph_download_url' => null,
         'at_ui_hidden' => null,
@@ -188,6 +190,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'video' => false,
         'at_libre_graph_motion_photo' => false,
         'at_libre_graph_live_photo' => false,
+        'lock_info' => false,
         'at_client_synchronize' => false,
         'at_microsoft_graph_download_url' => false,
         'at_ui_hidden' => false,
@@ -316,6 +319,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'video' => 'video',
         'at_libre_graph_motion_photo' => '@libre.graph.motionPhoto',
         'at_libre_graph_live_photo' => '@libre.graph.livePhoto',
+        'lock_info' => 'lockInfo',
         'at_client_synchronize' => '@client.synchronize',
         'at_microsoft_graph_download_url' => '@microsoft.graph.downloadUrl',
         'at_ui_hidden' => '@UI.Hidden',
@@ -364,6 +368,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'video' => 'setVideo',
         'at_libre_graph_motion_photo' => 'setAtLibreGraphMotionPhoto',
         'at_libre_graph_live_photo' => 'setAtLibreGraphLivePhoto',
+        'lock_info' => 'setLockInfo',
         'at_client_synchronize' => 'setAtClientSynchronize',
         'at_microsoft_graph_download_url' => 'setAtMicrosoftGraphDownloadUrl',
         'at_ui_hidden' => 'setAtUiHidden',
@@ -412,6 +417,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         'video' => 'getVideo',
         'at_libre_graph_motion_photo' => 'getAtLibreGraphMotionPhoto',
         'at_libre_graph_live_photo' => 'getAtLibreGraphLivePhoto',
+        'lock_info' => 'getLockInfo',
         'at_client_synchronize' => 'getAtClientSynchronize',
         'at_microsoft_graph_download_url' => 'getAtMicrosoftGraphDownloadUrl',
         'at_ui_hidden' => 'getAtUiHidden',
@@ -529,6 +535,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('video', $data ?? [], null);
         $this->setIfExists('at_libre_graph_motion_photo', $data ?? [], null);
         $this->setIfExists('at_libre_graph_live_photo', $data ?? [], null);
+        $this->setIfExists('lock_info', $data ?? [], null);
         $this->setIfExists('at_client_synchronize', $data ?? [], null);
         $this->setIfExists('at_microsoft_graph_download_url', $data ?? [], null);
         $this->setIfExists('at_ui_hidden', $data ?? [], null);
@@ -1485,6 +1492,33 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable at_libre_graph_live_photo cannot be null');
         }
         $this->container['at_libre_graph_live_photo'] = $at_libre_graph_live_photo;
+
+        return $this;
+    }
+
+    /**
+     * Gets lock_info
+     *
+     * @return \OpenAPI\Client\Model\LockInfo|null
+     */
+    public function getLockInfo(): ?\OpenAPI\Client\Model\LockInfo
+    {
+        return $this->container['lock_info'];
+    }
+
+    /**
+     * Sets lock_info
+     *
+     * @param \OpenAPI\Client\Model\LockInfo|null $lock_info lock_info
+     *
+     * @return $this
+     */
+    public function setLockInfo(?\OpenAPI\Client\Model\LockInfo $lock_info): static
+    {
+        if (is_null($lock_info)) {
+            throw new InvalidArgumentException('non-nullable lock_info cannot be null');
+        }
+        $this->container['lock_info'] = $lock_info;
 
         return $this;
     }
