@@ -59,6 +59,7 @@ class DriveRecipient implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
+        'email' => 'string',
         'object_id' => 'string',
         'at_libre_graph_recipient_type' => 'string'
     ];
@@ -69,6 +70,7 @@ class DriveRecipient implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
+        'email' => null,
         'object_id' => null,
         'at_libre_graph_recipient_type' => null
     ];
@@ -79,6 +81,7 @@ class DriveRecipient implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
+        'email' => false,
         'object_id' => false,
         'at_libre_graph_recipient_type' => false
     ];
@@ -169,6 +172,7 @@ class DriveRecipient implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $attributeMap = [
+        'email' => 'email',
         'object_id' => 'objectId',
         'at_libre_graph_recipient_type' => '@libre.graph.recipient.type'
     ];
@@ -179,6 +183,7 @@ class DriveRecipient implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $setters = [
+        'email' => 'setEmail',
         'object_id' => 'setObjectId',
         'at_libre_graph_recipient_type' => 'setAtLibreGraphRecipientType'
     ];
@@ -189,6 +194,7 @@ class DriveRecipient implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $getters = [
+        'email' => 'getEmail',
         'object_id' => 'getObjectId',
         'at_libre_graph_recipient_type' => 'getAtLibreGraphRecipientType'
     ];
@@ -249,6 +255,7 @@ class DriveRecipient implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('object_id', $data ?? [], null);
         $this->setIfExists('at_libre_graph_recipient_type', $data ?? [], 'user');
     }
@@ -294,6 +301,33 @@ class DriveRecipient implements ModelInterface, ArrayAccess, JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email The email address for the recipient, if the recipient has an associated email address.
+     *
+     * @return $this
+     */
+    public function setEmail(?string $email): static
+    {
+        if (is_null($email)) {
+            throw new InvalidArgumentException('non-nullable email cannot be null');
+        }
+        $this->container['email'] = $email;
+
+        return $this;
+    }
 
     /**
      * Gets object_id

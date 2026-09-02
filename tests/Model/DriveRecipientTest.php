@@ -78,6 +78,15 @@ class DriveRecipientTest extends TestCase
     }
 
     /**
+     * Test attribute "email"
+     */
+    public function testPropertyEmail()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "object_id"
      */
     public function testPropertyObjectId()
