@@ -36,7 +36,7 @@ use OpenAPI\Client\ObjectSerializer;
 /**
  * AggregationOption Class Doc Comment
  *
- * @description Specifies an aggregation that should be computed and returned alongside search results. Follows the [MS Graph aggregationOption](https://learn.microsoft.com/en-us/graph/api/resources/aggregationoption) resource type.  For string fields, terms aggregations return the distinct values and their counts. For numeric and date fields, range aggregations can be defined using the &#x60;ranges&#x60; property of &#x60;bucketDefinition&#x60;.
+ * @description Specifies an aggregation that should be computed and returned alongside search results. Follows the [MS Graph aggregationOption](https://learn.microsoft.com/en-us/graph/api/resources/aggregationoption) resource type.  For string fields, terms aggregations return the distinct values and their counts. For numeric and date fields, range aggregations can be defined using the &#x60;ranges&#x60; property of &#x60;bucketDefinition&#x60;.  At most one of &#x60;bucketDefinition&#x60;, &#x60;@libre.graph.metricDefinition&#x60; and &#x60;@libre.graph.geohashDefinition&#x60; may be set; requests specifying more than one are rejected with &#x60;invalidRequest&#x60;.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -63,7 +63,8 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
         'size' => 'int',
         'bucket_definition' => '\OpenAPI\Client\Model\BucketDefinition',
         'at_libre_graph_sub_aggregations' => '\OpenAPI\Client\Model\AggregationOption[]',
-        'at_libre_graph_metric_definition' => '\OpenAPI\Client\Model\MetricDefinition'
+        'at_libre_graph_metric_definition' => '\OpenAPI\Client\Model\MetricDefinition',
+        'at_libre_graph_geohash_definition' => '\OpenAPI\Client\Model\GeohashDefinition'
     ];
 
     /**
@@ -76,7 +77,8 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
         'size' => 'int32',
         'bucket_definition' => null,
         'at_libre_graph_sub_aggregations' => null,
-        'at_libre_graph_metric_definition' => null
+        'at_libre_graph_metric_definition' => null,
+        'at_libre_graph_geohash_definition' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
         'size' => false,
         'bucket_definition' => false,
         'at_libre_graph_sub_aggregations' => false,
-        'at_libre_graph_metric_definition' => false
+        'at_libre_graph_metric_definition' => false,
+        'at_libre_graph_geohash_definition' => false
     ];
 
     /**
@@ -182,7 +185,8 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
         'size' => 'size',
         'bucket_definition' => 'bucketDefinition',
         'at_libre_graph_sub_aggregations' => '@libre.graph.subAggregations',
-        'at_libre_graph_metric_definition' => '@libre.graph.metricDefinition'
+        'at_libre_graph_metric_definition' => '@libre.graph.metricDefinition',
+        'at_libre_graph_geohash_definition' => '@libre.graph.geohashDefinition'
     ];
 
     /**
@@ -195,7 +199,8 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
         'size' => 'setSize',
         'bucket_definition' => 'setBucketDefinition',
         'at_libre_graph_sub_aggregations' => 'setAtLibreGraphSubAggregations',
-        'at_libre_graph_metric_definition' => 'setAtLibreGraphMetricDefinition'
+        'at_libre_graph_metric_definition' => 'setAtLibreGraphMetricDefinition',
+        'at_libre_graph_geohash_definition' => 'setAtLibreGraphGeohashDefinition'
     ];
 
     /**
@@ -208,7 +213,8 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
         'size' => 'getSize',
         'bucket_definition' => 'getBucketDefinition',
         'at_libre_graph_sub_aggregations' => 'getAtLibreGraphSubAggregations',
-        'at_libre_graph_metric_definition' => 'getAtLibreGraphMetricDefinition'
+        'at_libre_graph_metric_definition' => 'getAtLibreGraphMetricDefinition',
+        'at_libre_graph_geohash_definition' => 'getAtLibreGraphGeohashDefinition'
     ];
 
     /**
@@ -272,6 +278,7 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('bucket_definition', $data ?? [], null);
         $this->setIfExists('at_libre_graph_sub_aggregations', $data ?? [], null);
         $this->setIfExists('at_libre_graph_metric_definition', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_geohash_definition', $data ?? [], null);
     }
 
     /**
@@ -363,7 +370,7 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets size
      *
-     * @param int|null $size The number of `searchBucket` resources to be returned. This is optional and only applies to terms aggregations. Combined with `bucketDefinition.sortBy` and `bucketDefinition.isDescending` to produce the top N results by count or key. When not specified, all buckets are returned.
+     * @param int|null $size The number of `searchBucket` resources to be returned. This is optional and only applies to terms and geohash aggregations. For terms aggregations it combines with `bucketDefinition.sortBy` and `bucketDefinition.isDescending` to produce the top N results by count or key; for geohash aggregations it limits the buckets to the top N cells by count. When not specified, all buckets are returned.
      *
      * @return $this
      */
@@ -459,6 +466,33 @@ class AggregationOption implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable at_libre_graph_metric_definition cannot be null');
         }
         $this->container['at_libre_graph_metric_definition'] = $at_libre_graph_metric_definition;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_libre_graph_geohash_definition
+     *
+     * @return \OpenAPI\Client\Model\GeohashDefinition|null
+     */
+    public function getAtLibreGraphGeohashDefinition(): ?\OpenAPI\Client\Model\GeohashDefinition
+    {
+        return $this->container['at_libre_graph_geohash_definition'];
+    }
+
+    /**
+     * Sets at_libre_graph_geohash_definition
+     *
+     * @param \OpenAPI\Client\Model\GeohashDefinition|null $at_libre_graph_geohash_definition at_libre_graph_geohash_definition
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphGeohashDefinition(?\OpenAPI\Client\Model\GeohashDefinition $at_libre_graph_geohash_definition): static
+    {
+        if (is_null($at_libre_graph_geohash_definition)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_geohash_definition cannot be null');
+        }
+        $this->container['at_libre_graph_geohash_definition'] = $at_libre_graph_geohash_definition;
 
         return $this;
     }

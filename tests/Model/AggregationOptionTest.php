@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * AggregationOptionTest Class Doc Comment
  *
- * @description Specifies an aggregation that should be computed and returned alongside search results. Follows the [MS Graph aggregationOption](https://learn.microsoft.com/en-us/graph/api/resources/aggregationoption) resource type.  For string fields, terms aggregations return the distinct values and their counts. For numeric and date fields, range aggregations can be defined using the &#x60;ranges&#x60; property of &#x60;bucketDefinition&#x60;.
+ * @description Specifies an aggregation that should be computed and returned alongside search results. Follows the [MS Graph aggregationOption](https://learn.microsoft.com/en-us/graph/api/resources/aggregationoption) resource type.  For string fields, terms aggregations return the distinct values and their counts. For numeric and date fields, range aggregations can be defined using the &#x60;ranges&#x60; property of &#x60;bucketDefinition&#x60;.  At most one of &#x60;bucketDefinition&#x60;, &#x60;@libre.graph.metricDefinition&#x60; and &#x60;@libre.graph.geohashDefinition&#x60; may be set; requests specifying more than one are rejected with &#x60;invalidRequest&#x60;.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -117,6 +117,15 @@ class AggregationOptionTest extends TestCase
      * Test attribute "at_libre_graph_metric_definition"
      */
     public function testPropertyAtLibreGraphMetricDefinition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "at_libre_graph_geohash_definition"
+     */
+    public function testPropertyAtLibreGraphGeohashDefinition()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -322,7 +322,7 @@ class SearchBucket implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets key
      *
-     * @param string|null $key The discrete value of the field that was used to compute the aggregation. For terms aggregations this is the field value. For range aggregations this is a string representation of the range.
+     * @param string|null $key The discrete value of the field that was used to compute the aggregation. For terms aggregations this is the field value. For range aggregations this is a string representation of the range. For geohash aggregations this is a geohash cell.
      *
      * @return $this
      */
@@ -376,7 +376,7 @@ class SearchBucket implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets aggregation_filter_token
      *
-     * @param string|null $aggregation_filter_token A token containing the encoded filter that narrows search matches to this bucket. To use it, pass it as part of the `aggregationFilters` property of a subsequent `searchRequest` in the format `{field}:{aggregationFilterToken}`. The filter matches the bucket `key` exactly and case-sensitively, so the narrowed result set is the set of matches counted in this bucket.  For terms buckets the token is the key encoded as lowercase hex of its UTF-8 bytes, prefixed with `ǂǂ` (U+01C2 twice) and wrapped in double quotes, e.g. `\"ǂǂ5361786f6e\"` for the key `Saxon`. For range buckets the token is `range({from}, {to})` with the bounds of the matching `bucketAggregationRange`; an open lower bound is written as `min`, an open upper bound as `max` followed by `to=\"le\"`, e.g. `range(min, 1980)`, `range(1980, 1990)` and `range(2010, max, to=\"le\")`. This is the same encoding MS Graph uses.
+     * @param string|null $aggregation_filter_token A token containing the encoded filter that narrows search matches to this bucket. To use it, pass it as part of the `aggregationFilters` property of a subsequent `searchRequest` in the format `{field}:{aggregationFilterToken}`. The filter matches the bucket `key` exactly and case-sensitively, so the narrowed result set is the set of matches counted in this bucket.  For terms buckets the token is the key encoded as lowercase hex of its UTF-8 bytes, prefixed with `ǂǂ` (U+01C2 twice) and wrapped in double quotes, e.g. `\"ǂǂ5361786f6e\"` for the key `Saxon`. For range buckets the token is `range({from}, {to})` with the bounds of the matching `bucketAggregationRange`; an open lower bound is written as `min`, an open upper bound as `max` followed by `to=\"le\"`, e.g. `range(min, 1980)`, `range(1980, 1990)` and `range(2010, max, to=\"le\")`. This is the same encoding MS Graph uses. Geohash buckets carry no token; narrow by location through the search query instead.
      *
      * @return $this
      */

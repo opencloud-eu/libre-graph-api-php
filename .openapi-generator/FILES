@@ -84,6 +84,7 @@ docs/Model/FileSystemInfo.md
 docs/Model/Folder.md
 docs/Model/FolderView.md
 docs/Model/GeoCoordinates.md
+docs/Model/GeohashDefinition.md
 docs/Model/Group.md
 docs/Model/GuestLinkError.md
 docs/Model/GuestLinkRedeemRequest.md
@@ -228,6 +229,7 @@ src/Model/FileSystemInfo.php
 src/Model/Folder.php
 src/Model/FolderView.php
 src/Model/GeoCoordinates.php
+src/Model/GeohashDefinition.php
 src/Model/Group.php
 src/Model/GuestLinkError.php
 src/Model/GuestLinkRedeemRequest.php
@@ -368,6 +370,7 @@ tests/Model/FileSystemInfoTest.php
 tests/Model/FolderTest.php
 tests/Model/FolderViewTest.php
 tests/Model/GeoCoordinatesTest.php
+tests/Model/GeohashDefinitionTest.php
 tests/Model/GroupTest.php
 tests/Model/GuestLinkErrorTest.php
 tests/Model/GuestLinkRedeemRequestTest.php

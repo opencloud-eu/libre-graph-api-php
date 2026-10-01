@@ -1,6 +1,6 @@
 <?php
 /**
- * MetricDefinition
+ * GeohashDefinition
  *
  * PHP version 8.1
  *
@@ -34,15 +34,15 @@ use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * MetricDefinition Class Doc Comment
+ * GeohashDefinition Class Doc Comment
  *
- * @description Provides the details of how to compute a scalar metric over the aggregation &#x60;field&#x60;, the counterpart of &#x60;bucketDefinition&#x60; for metric aggregations. When set on an &#x60;aggregationOption&#x60;, &#x60;size&#x60; is ignored, and the corresponding &#x60;searchAggregation&#x60; in the response carries a &#x60;@libre.graph.metric&#x60; rather than &#x60;buckets&#x60;. Libregraph extension not present in MS Graph.
+ * @description Provides the details of how to compute a geohash-grid aggregation over &#x60;field&#x60;, which must resolve to a geo-point field (e.g. &#x60;location&#x60;). When set on an &#x60;aggregationOption&#x60;, each &#x60;searchBucket&#x60; of the corresponding &#x60;searchAggregation&#x60; carries a geohash cell as its &#x60;key&#x60;, with &#x60;count&#x60; holding the number of matches in the cell, suitable for density/heatmap rendering. &#x60;size&#x60; limits the buckets to the top N cells by count. Libregraph extension not present in MS Graph.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
+class GeohashDefinition implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'metricDefinition';
+    protected static string $openAPIModelName = 'geohashDefinition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,7 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'kind' => 'string'
+        'precision' => 'int'
     ];
 
     /**
@@ -68,7 +68,7 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'kind' => null
+        'precision' => 'int32'
     ];
 
     /**
@@ -77,7 +77,7 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
-        'kind' => false
+        'precision' => false
     ];
 
     /**
@@ -166,7 +166,7 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $attributeMap = [
-        'kind' => 'kind'
+        'precision' => 'precision'
     ];
 
     /**
@@ -175,7 +175,7 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $setters = [
-        'kind' => 'setKind'
+        'precision' => 'setPrecision'
     ];
 
     /**
@@ -184,7 +184,7 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $getters = [
-        'kind' => 'getKind'
+        'precision' => 'getPrecision'
     ];
 
     /**
@@ -228,25 +228,6 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const KIND_SUM = 'sum';
-    public const KIND_MIN = 'min';
-    public const KIND_MAX = 'max';
-    public const KIND_AVG = 'avg';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public static function getKindAllowableValues()
-    {
-        return [
-            self::KIND_SUM,
-            self::KIND_MIN,
-            self::KIND_MAX,
-            self::KIND_AVG,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -262,7 +243,7 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('kind', $data ?? [], null);
+        $this->setIfExists('precision', $data ?? [], null);
     }
 
     /**
@@ -292,16 +273,15 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['kind'] === null) {
-            $invalidProperties[] = "'kind' can't be null";
+        if ($this->container['precision'] === null) {
+            $invalidProperties[] = "'precision' can't be null";
         }
-        $allowedValues = $this->getKindAllowableValues();
-        if (!is_null($this->container['kind']) && !in_array($this->container['kind'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'kind', must be one of '%s'",
-                $this->container['kind'],
-                implode("', '", $allowedValues)
-            );
+        if (($this->container['precision'] > 12)) {
+            $invalidProperties[] = "invalid value for 'precision', must be smaller than or equal to 12.";
+        }
+
+        if (($this->container['precision'] < 1)) {
+            $invalidProperties[] = "invalid value for 'precision', must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -320,38 +300,36 @@ class MetricDefinition implements ModelInterface, ArrayAccess, JsonSerializable
 
 
     /**
-     * Gets kind
+     * Gets precision
      *
-     * @return string
+     * @return int
      */
-    public function getKind(): string
+    public function getPrecision(): int
     {
-        return $this->container['kind'];
+        return $this->container['precision'];
     }
 
     /**
-     * Sets kind
+     * Sets precision
      *
-     * @param string $kind The reducer applied to the field values of all matches. Required.  `avg` is not a simple reducer (averages of averages are not averages): the backend carries `(sum, count)` internally and emits only the final value on the outermost merge.
+     * @param int $precision The geohash length of the returned cells (1-12); higher means finer cells. Required.
      *
      * @return $this
      */
-    public function setKind(string $kind): static
+    public function setPrecision(int $precision): static
     {
-        if (is_null($kind)) {
-            throw new InvalidArgumentException('non-nullable kind cannot be null');
+        if (is_null($precision)) {
+            throw new InvalidArgumentException('non-nullable precision cannot be null');
         }
-        $allowedValues = $this->getKindAllowableValues();
-        if (!in_array($kind, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'kind', must be one of '%s'",
-                    $kind,
-                    implode("', '", $allowedValues)
-                )
-            );
+
+        if (($precision > 12)) {
+            throw new InvalidArgumentException('invalid value for $precision when calling GeohashDefinition., must be smaller than or equal to 12.');
         }
-        $this->container['kind'] = $kind;
+        if (($precision < 1)) {
+            throw new InvalidArgumentException('invalid value for $precision when calling GeohashDefinition., must be bigger than or equal to 1.');
+        }
+
+        $this->container['precision'] = $precision;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * MetricDefinitionTest
+ * GeohashDefinitionTest
  *
  * PHP version 8.1
  *
@@ -30,14 +30,14 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * MetricDefinitionTest Class Doc Comment
+ * GeohashDefinitionTest Class Doc Comment
  *
- * @description Provides the details of how to compute a scalar metric over the aggregation &#x60;field&#x60;, the counterpart of &#x60;bucketDefinition&#x60; for metric aggregations. When set on an &#x60;aggregationOption&#x60;, &#x60;size&#x60; is ignored, and the corresponding &#x60;searchAggregation&#x60; in the response carries a &#x60;@libre.graph.metric&#x60; rather than &#x60;buckets&#x60;. Libregraph extension not present in MS Graph.
+ * @description Provides the details of how to compute a geohash-grid aggregation over &#x60;field&#x60;, which must resolve to a geo-point field (e.g. &#x60;location&#x60;). When set on an &#x60;aggregationOption&#x60;, each &#x60;searchBucket&#x60; of the corresponding &#x60;searchAggregation&#x60; carries a geohash cell as its &#x60;key&#x60;, with &#x60;count&#x60; holding the number of matches in the cell, suitable for density/heatmap rendering. &#x60;size&#x60; limits the buckets to the top N cells by count. Libregraph extension not present in MS Graph.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class MetricDefinitionTest extends TestCase
+class GeohashDefinitionTest extends TestCase
 {
 
     /**
@@ -69,18 +69,18 @@ class MetricDefinitionTest extends TestCase
     }
 
     /**
-     * Test "MetricDefinition"
+     * Test "GeohashDefinition"
      */
-    public function testMetricDefinition()
+    public function testGeohashDefinition()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "kind"
+     * Test attribute "precision"
      */
-    public function testPropertyKind()
+    public function testPropertyPrecision()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

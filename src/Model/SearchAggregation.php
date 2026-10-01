@@ -342,7 +342,7 @@ class SearchAggregation implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets buckets
      *
-     * @param \OpenAPI\Client\Model\SearchBucket[]|null $buckets Defines the computed buckets for this aggregation. Buckets are sorted according to the `sortBy` and `isDescending` specified in the `bucketDefinition` of the corresponding `aggregationOption`.
+     * @param \OpenAPI\Client\Model\SearchBucket[]|null $buckets Defines the computed buckets for this aggregation. For bucket aggregations they are sorted according to the `sortBy` and `isDescending` specified in the `bucketDefinition` of the corresponding `aggregationOption`; for geohash aggregations they are ordered by `count`, descending.
      *
      * @return $this
      */
