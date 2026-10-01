@@ -167,6 +167,7 @@ Class | Method | HTTP request | Description
 *MeUserApi* | [**updateOwnUser**](docs/Api/MeUserApi.md#updateownuser) | **PATCH** /v1.0/me | Update the current user
 *RoleManagementApi* | [**getPermissionRoleDefinition**](docs/Api/RoleManagementApi.md#getpermissionroledefinition) | **GET** /v1beta1/roleManagement/permissions/roleDefinitions/{role-id} | Get unifiedRoleDefinition
 *RoleManagementApi* | [**listPermissionRoleDefinitions**](docs/Api/RoleManagementApi.md#listpermissionroledefinitions) | **GET** /v1beta1/roleManagement/permissions/roleDefinitions | List roleDefinitions
+*SearchApi* | [**searchQuery**](docs/Api/SearchApi.md#searchquery) | **POST** /v1beta1/search/query | Search for resources
 *TagsApi* | [**assignTags**](docs/Api/TagsApi.md#assigntags) | **PUT** /v1.0/extensions/org.libregraph/tags | Assign tags to a resource
 *TagsApi* | [**getTags**](docs/Api/TagsApi.md#gettags) | **GET** /v1.0/extensions/org.libregraph/tags | Get all known tags
 *TagsApi* | [**unassignTags**](docs/Api/TagsApi.md#unassigntags) | **DELETE** /v1.0/extensions/org.libregraph/tags | Unassign tags from a resource
@@ -189,10 +190,13 @@ Class | Method | HTTP request | Description
 - [ActivityTemplate](docs/Model/ActivityTemplate.md)
 - [ActivityTimes](docs/Model/ActivityTimes.md)
 - [ActivityTopic](docs/Model/ActivityTopic.md)
+- [AggregationOption](docs/Model/AggregationOption.md)
 - [AppRole](docs/Model/AppRole.md)
 - [AppRoleAssignment](docs/Model/AppRoleAssignment.md)
 - [Application](docs/Model/Application.md)
 - [Audio](docs/Model/Audio.md)
+- [BucketAggregationRange](docs/Model/BucketAggregationRange.md)
+- [BucketDefinition](docs/Model/BucketDefinition.md)
 - [ClassMemberReference](docs/Model/ClassMemberReference.md)
 - [ClassReference](docs/Model/ClassReference.md)
 - [ClassTeacherReference](docs/Model/ClassTeacherReference.md)
@@ -245,6 +249,7 @@ Class | Method | HTTP request | Description
 - [LivePhoto](docs/Model/LivePhoto.md)
 - [LockInfo](docs/Model/LockInfo.md)
 - [MemberReference](docs/Model/MemberReference.md)
+- [MetricDefinition](docs/Model/MetricDefinition.md)
 - [MotionPhoto](docs/Model/MotionPhoto.md)
 - [ObjectIdentity](docs/Model/ObjectIdentity.md)
 - [OdataError](docs/Model/OdataError.md)
@@ -260,6 +265,16 @@ Class | Method | HTTP request | Description
 - [Quota](docs/Model/Quota.md)
 - [Recipient](docs/Model/Recipient.md)
 - [RemoteItem](docs/Model/RemoteItem.md)
+- [SearchAggregation](docs/Model/SearchAggregation.md)
+- [SearchBucket](docs/Model/SearchBucket.md)
+- [SearchHit](docs/Model/SearchHit.md)
+- [SearchHitsContainer](docs/Model/SearchHitsContainer.md)
+- [SearchMetric](docs/Model/SearchMetric.md)
+- [SearchQuery](docs/Model/SearchQuery.md)
+- [SearchQuery200Response](docs/Model/SearchQuery200Response.md)
+- [SearchQueryRequest](docs/Model/SearchQueryRequest.md)
+- [SearchRequest](docs/Model/SearchRequest.md)
+- [SearchResponse](docs/Model/SearchResponse.md)
 - [SharePointIdentitySet](docs/Model/SharePointIdentitySet.md)
 - [SharingInvitation](docs/Model/SharingInvitation.md)
 - [SharingLink](docs/Model/SharingLink.md)
