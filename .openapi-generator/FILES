@@ -17,6 +17,7 @@ docs/Api/EducationSchoolApi.md
 docs/Api/EducationUserApi.md
 docs/Api/GroupApi.md
 docs/Api/GroupsApi.md
+docs/Api/GuestLinksApi.md
 docs/Api/InvitationsApi.md
 docs/Api/MeChangepasswordApi.md
 docs/Api/MeDriveApi.md
@@ -80,6 +81,9 @@ docs/Model/Folder.md
 docs/Model/FolderView.md
 docs/Model/GeoCoordinates.md
 docs/Model/Group.md
+docs/Model/GuestLinkError.md
+docs/Model/GuestLinkRedeemRequest.md
+docs/Model/GuestLinkRedeemResponse.md
 docs/Model/Hashes.md
 docs/Model/Identity.md
 docs/Model/IdentitySet.md
@@ -137,6 +141,7 @@ src/Api/EducationSchoolApi.php
 src/Api/EducationUserApi.php
 src/Api/GroupApi.php
 src/Api/GroupsApi.php
+src/Api/GuestLinksApi.php
 src/Api/InvitationsApi.php
 src/Api/MeChangepasswordApi.php
 src/Api/MeDriveApi.php
@@ -204,6 +209,9 @@ src/Model/Folder.php
 src/Model/FolderView.php
 src/Model/GeoCoordinates.php
 src/Model/Group.php
+src/Model/GuestLinkError.php
+src/Model/GuestLinkRedeemRequest.php
+src/Model/GuestLinkRedeemResponse.php
 src/Model/Hashes.php
 src/Model/Identity.php
 src/Model/IdentitySet.php
@@ -261,6 +269,7 @@ tests/Api/EducationSchoolApiTest.php
 tests/Api/EducationUserApiTest.php
 tests/Api/GroupApiTest.php
 tests/Api/GroupsApiTest.php
+tests/Api/GuestLinksApiTest.php
 tests/Api/InvitationsApiTest.php
 tests/Api/MeChangepasswordApiTest.php
 tests/Api/MeDriveApiTest.php
@@ -324,6 +333,9 @@ tests/Model/FolderTest.php
 tests/Model/FolderViewTest.php
 tests/Model/GeoCoordinatesTest.php
 tests/Model/GroupTest.php
+tests/Model/GuestLinkErrorTest.php
+tests/Model/GuestLinkRedeemRequestTest.php
+tests/Model/GuestLinkRedeemResponseTest.php
 tests/Model/HashesTest.php
 tests/Model/IdentitySetTest.php
 tests/Model/IdentityTest.php
