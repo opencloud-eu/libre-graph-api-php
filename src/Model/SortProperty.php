@@ -1,6 +1,6 @@
 <?php
 /**
- * SearchHitsContainer
+ * SortProperty
  *
  * PHP version 8.1
  *
@@ -34,15 +34,15 @@ use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * SearchHitsContainer Class Doc Comment
+ * SortProperty Class Doc Comment
  *
- * @description Contains a collection of search results. Follows the [MS Graph searchHitsContainer](https://learn.microsoft.com/en-us/graph/api/resources/searchhitscontainer) resource type.
+ * @description Indicates the order to sort search results in. Follows the [MS Graph sortProperty](https://learn.microsoft.com/en-us/graph/api/resources/sortproperty) resource type.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializable
+class SortProperty implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'searchHitsContainer';
+    protected static string $openAPIModelName = 'sortProperty';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +59,8 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'hits' => '\OpenAPI\Client\Model\SearchHit[]',
-        'total' => 'int',
-        'more_results_available' => 'bool',
-        'aggregations' => '\OpenAPI\Client\Model\SearchAggregation[]'
+        'name' => 'string',
+        'is_descending' => 'bool'
     ];
 
     /**
@@ -71,10 +69,8 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'hits' => null,
-        'total' => 'int64',
-        'more_results_available' => null,
-        'aggregations' => null
+        'name' => null,
+        'is_descending' => null
     ];
 
     /**
@@ -83,10 +79,8 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
-        'hits' => false,
-        'total' => false,
-        'more_results_available' => false,
-        'aggregations' => false
+        'name' => false,
+        'is_descending' => false
     ];
 
     /**
@@ -175,10 +169,8 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
      * @var array<string, string>
      */
     protected static array $attributeMap = [
-        'hits' => 'hits',
-        'total' => 'total',
-        'more_results_available' => 'moreResultsAvailable',
-        'aggregations' => 'aggregations'
+        'name' => 'name',
+        'is_descending' => 'isDescending'
     ];
 
     /**
@@ -187,10 +179,8 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
      * @var array<string, string>
      */
     protected static array $setters = [
-        'hits' => 'setHits',
-        'total' => 'setTotal',
-        'more_results_available' => 'setMoreResultsAvailable',
-        'aggregations' => 'setAggregations'
+        'name' => 'setName',
+        'is_descending' => 'setIsDescending'
     ];
 
     /**
@@ -199,10 +189,8 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
      * @var array<string, string>
      */
     protected static array $getters = [
-        'hits' => 'getHits',
-        'total' => 'getTotal',
-        'more_results_available' => 'getMoreResultsAvailable',
-        'aggregations' => 'getAggregations'
+        'name' => 'getName',
+        'is_descending' => 'getIsDescending'
     ];
 
     /**
@@ -261,10 +249,8 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('hits', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
-        $this->setIfExists('more_results_available', $data ?? [], null);
-        $this->setIfExists('aggregations', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('is_descending', $data ?? [], false);
     }
 
     /**
@@ -294,6 +280,9 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -310,109 +299,55 @@ class SearchHitsContainer implements ModelInterface, ArrayAccess, JsonSerializab
 
 
     /**
-     * Gets hits
+     * Gets name
      *
-     * @return \OpenAPI\Client\Model\SearchHit[]|null
+     * @return string
      */
-    public function getHits(): ?array
+    public function getName(): string
     {
-        return $this->container['hits'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets hits
+     * Sets name
      *
-     * @param \OpenAPI\Client\Model\SearchHit[]|null $hits A collection of the search results, ordered by relevance or, when the request specifies `sortProperties`, by those properties.
+     * @param string $name The name of the property to sort the search results by. Required.  Sortable are the scalar search fields of the search hit's resource: `name`, `size`, `lastModifiedDateTime`, `mimeType` and the scalar facet properties such as `photo.takenDateTime`, `photo.iso`, `audio.artist`, `audio.year` or `image.width`. Strings sort lexicographically, numbers and dates by value. Multivalued properties (e.g. `@libre.graph.tags`) and unknown properties are rejected with `invalidRequest`.
      *
      * @return $this
      */
-    public function setHits(?array $hits): static
+    public function setName(string $name): static
     {
-        if (is_null($hits)) {
-            throw new InvalidArgumentException('non-nullable hits cannot be null');
+        if (is_null($name)) {
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['hits'] = $hits;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets total
-     *
-     * @return int|null
-     */
-    public function getTotal(): ?int
-    {
-        return $this->container['total'];
-    }
-
-    /**
-     * Sets total
-     *
-     * @param int|null $total The total number of results. Note this is not the number of results on the page, but the total number of results satisfying the query.
-     *
-     * @return $this
-     */
-    public function setTotal(?int $total): static
-    {
-        if (is_null($total)) {
-            throw new InvalidArgumentException('non-nullable total cannot be null');
-        }
-        $this->container['total'] = $total;
-
-        return $this;
-    }
-
-    /**
-     * Gets more_results_available
+     * Gets is_descending
      *
      * @return bool|null
      */
-    public function getMoreResultsAvailable(): ?bool
+    public function getIsDescending(): ?bool
     {
-        return $this->container['more_results_available'];
+        return $this->container['is_descending'];
     }
 
     /**
-     * Sets more_results_available
+     * Sets is_descending
      *
-     * @param bool|null $more_results_available Provides information if more results are available. Based on this information, you can adjust the `from` and `size` properties of the `searchRequest` accordingly.
+     * @param bool|null $is_descending Set to `true` to specify the sort order as descending. Optional, defaults to `false` (ascending).
      *
      * @return $this
      */
-    public function setMoreResultsAvailable(?bool $more_results_available): static
+    public function setIsDescending(?bool $is_descending): static
     {
-        if (is_null($more_results_available)) {
-            throw new InvalidArgumentException('non-nullable more_results_available cannot be null');
+        if (is_null($is_descending)) {
+            throw new InvalidArgumentException('non-nullable is_descending cannot be null');
         }
-        $this->container['more_results_available'] = $more_results_available;
-
-        return $this;
-    }
-
-    /**
-     * Gets aggregations
-     *
-     * @return \OpenAPI\Client\Model\SearchAggregation[]|null
-     */
-    public function getAggregations(): ?array
-    {
-        return $this->container['aggregations'];
-    }
-
-    /**
-     * Sets aggregations
-     *
-     * @param \OpenAPI\Client\Model\SearchAggregation[]|null $aggregations Contains the collection of aggregations computed based on the provided `aggregationOption` definitions in the request.
-     *
-     * @return $this
-     */
-    public function setAggregations(?array $aggregations): static
-    {
-        if (is_null($aggregations)) {
-            throw new InvalidArgumentException('non-nullable aggregations cannot be null');
-        }
-        $this->container['aggregations'] = $aggregations;
+        $this->container['is_descending'] = $is_descending;
 
         return $this;
     }

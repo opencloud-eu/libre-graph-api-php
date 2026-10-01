@@ -1,6 +1,6 @@
 <?php
 /**
- * SearchRequestTest
+ * SortPropertyTest
  *
  * PHP version 8.1
  *
@@ -30,14 +30,14 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SearchRequestTest Class Doc Comment
+ * SortPropertyTest Class Doc Comment
  *
- * @description Represents an individual search request within a search query. Follows the [MS Graph searchRequest](https://learn.microsoft.com/en-us/graph/api/resources/searchrequest) resource type.
+ * @description Indicates the order to sort search results in. Follows the [MS Graph sortProperty](https://learn.microsoft.com/en-us/graph/api/resources/sortproperty) resource type.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SearchRequestTest extends TestCase
+class SortPropertyTest extends TestCase
 {
 
     /**
@@ -69,72 +69,27 @@ class SearchRequestTest extends TestCase
     }
 
     /**
-     * Test "SearchRequest"
+     * Test "SortProperty"
      */
-    public function testSearchRequest()
+    public function testSortProperty()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "entity_types"
+     * Test attribute "name"
      */
-    public function testPropertyEntityTypes()
+    public function testPropertyName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "query"
+     * Test attribute "is_descending"
      */
-    public function testPropertyQuery()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "from"
-     */
-    public function testPropertyFrom()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "size"
-     */
-    public function testPropertySize()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "aggregations"
-     */
-    public function testPropertyAggregations()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "aggregation_filters"
-     */
-    public function testPropertyAggregationFilters()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sort_properties"
-     */
-    public function testPropertySortProperties()
+    public function testPropertyIsDescending()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

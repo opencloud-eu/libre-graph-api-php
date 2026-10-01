@@ -15,7 +15,7 @@ searchQuery($search_query_request, $expand): \OpenAPI\Client\Model\SearchQuery20
 
 Search for resources
 
-Run a specified search query. Search results are provided in the response.  The search endpoint allows clients to search for resources across all accessible spaces and retrieve aggregated metadata (facets) about the result set.  Aggregations can be used to group results by properties such as file type, author, or any indexed metadata field. This is useful for building faceted search UIs or computing statistics about the result set.  The query string uses KQL (Keyword Query Language) syntax for filtering.  Modeled on the MS Graph search query endpoint (https://learn.microsoft.com/en-us/graph/api/search-query). Request and response follow the MS Graph resource types; Libregraph additions carry the `@libre.graph.` prefix.
+Run a specified search query. Search results are provided in the response.  The search endpoint allows clients to search for resources across all accessible spaces and retrieve aggregated metadata (facets) about the result set.  Aggregations can be used to group results by properties such as file type, author, or any indexed metadata field. This is useful for building faceted search UIs or computing statistics about the result set.  The query string uses KQL (Keyword Query Language) syntax for filtering. Results are sorted by relevance unless the request specifies `sortProperties`.  Modeled on the MS Graph search query endpoint (https://learn.microsoft.com/en-us/graph/api/search-query). Request and response follow the MS Graph resource types; Libregraph additions carry the `@libre.graph.` prefix.
 
 ### Example
 

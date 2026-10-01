@@ -64,7 +64,8 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
         'from' => 'int',
         'size' => 'int',
         'aggregations' => '\OpenAPI\Client\Model\AggregationOption[]',
-        'aggregation_filters' => 'string[]'
+        'aggregation_filters' => 'string[]',
+        'sort_properties' => '\OpenAPI\Client\Model\SortProperty[]'
     ];
 
     /**
@@ -78,7 +79,8 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
         'from' => 'int32',
         'size' => 'int32',
         'aggregations' => null,
-        'aggregation_filters' => null
+        'aggregation_filters' => null,
+        'sort_properties' => null
     ];
 
     /**
@@ -92,7 +94,8 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
         'from' => false,
         'size' => false,
         'aggregations' => false,
-        'aggregation_filters' => false
+        'aggregation_filters' => false,
+        'sort_properties' => false
     ];
 
     /**
@@ -186,7 +189,8 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
         'from' => 'from',
         'size' => 'size',
         'aggregations' => 'aggregations',
-        'aggregation_filters' => 'aggregationFilters'
+        'aggregation_filters' => 'aggregationFilters',
+        'sort_properties' => 'sortProperties'
     ];
 
     /**
@@ -200,7 +204,8 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
         'from' => 'setFrom',
         'size' => 'setSize',
         'aggregations' => 'setAggregations',
-        'aggregation_filters' => 'setAggregationFilters'
+        'aggregation_filters' => 'setAggregationFilters',
+        'sort_properties' => 'setSortProperties'
     ];
 
     /**
@@ -214,7 +219,8 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
         'from' => 'getFrom',
         'size' => 'getSize',
         'aggregations' => 'getAggregations',
-        'aggregation_filters' => 'getAggregationFilters'
+        'aggregation_filters' => 'getAggregationFilters',
+        'sort_properties' => 'getSortProperties'
     ];
 
     /**
@@ -292,6 +298,7 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('size', $data ?? [], 25);
         $this->setIfExists('aggregations', $data ?? [], null);
         $this->setIfExists('aggregation_filters', $data ?? [], null);
+        $this->setIfExists('sort_properties', $data ?? [], null);
     }
 
     /**
@@ -341,6 +348,10 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
 
         if (!is_null($this->container['size']) && ($this->container['size'] < 0)) {
             $invalidProperties[] = "invalid value for 'size', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['sort_properties']) && (count($this->container['sort_properties']) > 5)) {
+            $invalidProperties[] = "invalid value for 'sort_properties', number of items must be less than or equal to 5.";
         }
 
         return $invalidProperties;
@@ -543,6 +554,37 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable aggregation_filters cannot be null');
         }
         $this->container['aggregation_filters'] = $aggregation_filters;
+
+        return $this;
+    }
+
+    /**
+     * Gets sort_properties
+     *
+     * @return \OpenAPI\Client\Model\SortProperty[]|null
+     */
+    public function getSortProperties(): ?array
+    {
+        return $this->container['sort_properties'];
+    }
+
+    /**
+     * Sets sort_properties
+     *
+     * @param \OpenAPI\Client\Model\SortProperty[]|null $sort_properties Contains the ordered collection of fields to sort the results on, primary sort key first. At most 5 sort properties. If absent, the results are sorted by relevance. See `sortProperty.name` for the set of sortable fields. Ties are broken by relevance, and results missing the sort property are placed last. Optional.
+     *
+     * @return $this
+     */
+    public function setSortProperties(?array $sort_properties): static
+    {
+        if (is_null($sort_properties)) {
+            throw new InvalidArgumentException('non-nullable sort_properties cannot be null');
+        }
+
+        if ((count($sort_properties) > 5)) {
+            throw new InvalidArgumentException('invalid value for $sort_properties when calling SearchRequest., number of items must be less than or equal to 5.');
+        }
+        $this->container['sort_properties'] = $sort_properties;
 
         return $this;
     }

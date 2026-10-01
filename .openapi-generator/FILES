@@ -130,6 +130,7 @@ docs/Model/SharingLink.md
 docs/Model/SharingLinkPassword.md
 docs/Model/SharingLinkType.md
 docs/Model/SignInActivity.md
+docs/Model/SortProperty.md
 docs/Model/SpecialFolder.md
 docs/Model/TagAssignment.md
 docs/Model/TagUnassignment.md
@@ -274,6 +275,7 @@ src/Model/SharingLink.php
 src/Model/SharingLinkPassword.php
 src/Model/SharingLinkType.php
 src/Model/SignInActivity.php
+src/Model/SortProperty.php
 src/Model/SpecialFolder.php
 src/Model/TagAssignment.php
 src/Model/TagUnassignment.php
@@ -412,6 +414,7 @@ tests/Model/SharingLinkPasswordTest.php
 tests/Model/SharingLinkTest.php
 tests/Model/SharingLinkTypeTest.php
 tests/Model/SignInActivityTest.php
+tests/Model/SortPropertyTest.php
 tests/Model/SpecialFolderTest.php
 tests/Model/TagAssignmentTest.php
 tests/Model/TagUnassignmentTest.php

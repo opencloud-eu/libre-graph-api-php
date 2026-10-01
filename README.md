@@ -281,6 +281,7 @@ Class | Method | HTTP request | Description
 - [SharingLinkPassword](docs/Model/SharingLinkPassword.md)
 - [SharingLinkType](docs/Model/SharingLinkType.md)
 - [SignInActivity](docs/Model/SignInActivity.md)
+- [SortProperty](docs/Model/SortProperty.md)
 - [SpecialFolder](docs/Model/SpecialFolder.md)
 - [TagAssignment](docs/Model/TagAssignment.md)
 - [TagUnassignment](docs/Model/TagUnassignment.md)
