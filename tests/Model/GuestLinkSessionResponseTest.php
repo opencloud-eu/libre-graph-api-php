@@ -1,6 +1,6 @@
 <?php
 /**
- * GuestLinkRedeemRequestTest
+ * GuestLinkSessionResponseTest
  *
  * PHP version 8.1
  *
@@ -30,14 +30,14 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * GuestLinkRedeemRequestTest Class Doc Comment
+ * GuestLinkSessionResponseTest Class Doc Comment
  *
- * @description Request body for redeeming a guest link token.
+ * @description Response body for a successful guest link authentication: the share (permission) id the guest was invited to. A session cookie is set via the Set-Cookie header.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class GuestLinkRedeemRequestTest extends TestCase
+class GuestLinkSessionResponseTest extends TestCase
 {
 
     /**
@@ -69,18 +69,18 @@ class GuestLinkRedeemRequestTest extends TestCase
     }
 
     /**
-     * Test "GuestLinkRedeemRequest"
+     * Test "GuestLinkSessionResponse"
      */
-    public function testGuestLinkRedeemRequest()
+    public function testGuestLinkSessionResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "token"
+     * Test attribute "permission_id"
      */
-    public function testPropertyToken()
+    public function testPropertyPermissionId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

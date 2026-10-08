@@ -1,6 +1,6 @@
 <?php
 /**
- * GuestLinkError
+ * GuestLinkRenewRequest
  *
  * PHP version 8.1
  *
@@ -34,15 +34,15 @@ use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * GuestLinkError Class Doc Comment
+ * GuestLinkRenewRequest Class Doc Comment
  *
- * @description Error returned by a guest link endpoint.
+ * @description Request body for renewing a guest link. Besides the share (permission) id, the previous guest link token or a (possibly expired) guest session cookie is required to authorize the renewal.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
+class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'guestLinkError';
+    protected static string $openAPIModelName = 'guestLinkRenewRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'error_type' => 'string',
-        'message' => 'string',
-        'permission_id' => 'string'
+        'permission_id' => 'string',
+        'token' => 'string'
     ];
 
     /**
@@ -70,9 +69,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'error_type' => null,
-        'message' => null,
-        'permission_id' => null
+        'permission_id' => null,
+        'token' => null
     ];
 
     /**
@@ -81,9 +79,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
-        'error_type' => false,
-        'message' => false,
-        'permission_id' => false
+        'permission_id' => false,
+        'token' => false
     ];
 
     /**
@@ -172,9 +169,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $attributeMap = [
-        'error_type' => 'errorType',
-        'message' => 'message',
-        'permission_id' => 'permissionId'
+        'permission_id' => 'permissionId',
+        'token' => 'token'
     ];
 
     /**
@@ -183,9 +179,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $setters = [
-        'error_type' => 'setErrorType',
-        'message' => 'setMessage',
-        'permission_id' => 'setPermissionId'
+        'permission_id' => 'setPermissionId',
+        'token' => 'setToken'
     ];
 
     /**
@@ -194,9 +189,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $getters = [
-        'error_type' => 'getErrorType',
-        'message' => 'getMessage',
-        'permission_id' => 'getPermissionId'
+        'permission_id' => 'getPermissionId',
+        'token' => 'getToken'
     ];
 
     /**
@@ -240,41 +234,6 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const ERROR_TYPE_TOKEN_INVALID = 'tokenInvalid';
-    public const ERROR_TYPE_TOKEN_NOT_FOUND = 'tokenNotFound';
-    public const ERROR_TYPE_TOKEN_EXPIRED = 'tokenExpired';
-    public const ERROR_TYPE_TOKEN_ALREADY_REDEEMED = 'tokenAlreadyRedeemed';
-    public const ERROR_TYPE_SESSION_INVALID = 'sessionInvalid';
-    public const ERROR_TYPE_SHARE_NOT_FOUND = 'shareNotFound';
-    public const ERROR_TYPE_SHARE_EXPIRED = 'shareExpired';
-    public const ERROR_TYPE_PIN_INVALID = 'pinInvalid';
-    public const ERROR_TYPE_PIN_EXPIRED = 'pinExpired';
-    public const ERROR_TYPE_SERVICE_UNAVAILABLE = 'serviceUnavailable';
-    public const ERROR_TYPE_INVALID_REQUEST = 'invalidRequest';
-    public const ERROR_TYPE_INTERNAL_ERROR = 'internalError';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public static function getErrorTypeAllowableValues()
-    {
-        return [
-            self::ERROR_TYPE_TOKEN_INVALID,
-            self::ERROR_TYPE_TOKEN_NOT_FOUND,
-            self::ERROR_TYPE_TOKEN_EXPIRED,
-            self::ERROR_TYPE_TOKEN_ALREADY_REDEEMED,
-            self::ERROR_TYPE_SESSION_INVALID,
-            self::ERROR_TYPE_SHARE_NOT_FOUND,
-            self::ERROR_TYPE_SHARE_EXPIRED,
-            self::ERROR_TYPE_PIN_INVALID,
-            self::ERROR_TYPE_PIN_EXPIRED,
-            self::ERROR_TYPE_SERVICE_UNAVAILABLE,
-            self::ERROR_TYPE_INVALID_REQUEST,
-            self::ERROR_TYPE_INTERNAL_ERROR,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -290,9 +249,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('error_type', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
         $this->setIfExists('permission_id', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
     }
 
     /**
@@ -322,21 +280,6 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['error_type'] === null) {
-            $invalidProperties[] = "'error_type' can't be null";
-        }
-        $allowedValues = $this->getErrorTypeAllowableValues();
-        if (!is_null($this->container['error_type']) && !in_array($this->container['error_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'error_type', must be one of '%s'",
-                $this->container['error_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
         if ($this->container['permission_id'] === null) {
             $invalidProperties[] = "'permission_id' can't be null";
         }
@@ -356,70 +299,6 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
 
 
     /**
-     * Gets error_type
-     *
-     * @return string
-     */
-    public function getErrorType(): string
-    {
-        return $this->container['error_type'];
-    }
-
-    /**
-     * Sets error_type
-     *
-     * @param string $error_type Machine-readable error identifier.
-     *
-     * @return $this
-     */
-    public function setErrorType(string $error_type): static
-    {
-        if (is_null($error_type)) {
-            throw new InvalidArgumentException('non-nullable error_type cannot be null');
-        }
-        $allowedValues = $this->getErrorTypeAllowableValues();
-        if (!in_array($error_type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'error_type', must be one of '%s'",
-                    $error_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['error_type'] = $error_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage(): string
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Human-readable error message.
-     *
-     * @return $this
-     */
-    public function setMessage(string $message): static
-    {
-        if (is_null($message)) {
-            throw new InvalidArgumentException('non-nullable message cannot be null');
-        }
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-
-    /**
      * Gets permission_id
      *
      * @return string
@@ -432,7 +311,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets permission_id
      *
-     * @param string $permission_id Permission (share) identifier related to the error, when known.
+     * @param string $permission_id Identifier of the share (permission) the guest was invited to.
      *
      * @return $this
      */
@@ -442,6 +321,33 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable permission_id cannot be null');
         }
         $this->container['permission_id'] = $permission_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets token
+     *
+     * @return string|null
+     */
+    public function getToken(): ?string
+    {
+        return $this->container['token'];
+    }
+
+    /**
+     * Sets token
+     *
+     * @param string|null $token Previous guest link token. Optional when the guest session cookie is sent instead.
+     *
+     * @return $this
+     */
+    public function setToken(?string $token): static
+    {
+        if (is_null($token)) {
+            throw new InvalidArgumentException('non-nullable token cannot be null');
+        }
+        $this->container['token'] = $token;
 
         return $this;
     }

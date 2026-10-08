@@ -145,7 +145,9 @@ Class | Method | HTTP request | Description
 *GroupApi* | [**updateGroup**](docs/Api/GroupApi.md#updategroup) | **PATCH** /v1.0/groups/{group-id} | Update entity in groups
 *GroupsApi* | [**createGroup**](docs/Api/GroupsApi.md#creategroup) | **POST** /v1.0/groups | Add new entity to groups
 *GroupsApi* | [**listGroups**](docs/Api/GroupsApi.md#listgroups) | **GET** /v1.0/groups | Get entities from groups
-*GuestLinksApi* | [**redeemGuestLink**](docs/Api/GuestLinksApi.md#redeemguestlink) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/redeem | Redeem a guest link token
+*GuestLinksApi* | [**renewGuestLink**](docs/Api/GuestLinksApi.md#renewguestlink) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/renew | Renew a guest link
+*GuestLinksApi* | [**verifyGuestLinkPin**](docs/Api/GuestLinksApi.md#verifyguestlinkpin) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/verify/pin | Verify a guest link PIN
+*GuestLinksApi* | [**verifyGuestLinkToken**](docs/Api/GuestLinksApi.md#verifyguestlinktoken) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/verify/token | Verify a guest link token
 *InvitationsApi* | [**createInvitation**](docs/Api/InvitationsApi.md#createinvitation) | **POST** /v1.0/invitations | Create a new invitation
 *InvitationsApi* | [**getInvitation**](docs/Api/InvitationsApi.md#getinvitation) | **GET** /v1.0/invitations/{invitation-id} | Get an invitation by key
 *InvitationsApi* | [**listInvitations**](docs/Api/InvitationsApi.md#listinvitations) | **GET** /v1.0/invitations | Get a list of invitations
@@ -238,8 +240,10 @@ Class | Method | HTTP request | Description
 - [GeohashDefinition](docs/Model/GeohashDefinition.md)
 - [Group](docs/Model/Group.md)
 - [GuestLinkError](docs/Model/GuestLinkError.md)
-- [GuestLinkRedeemRequest](docs/Model/GuestLinkRedeemRequest.md)
-- [GuestLinkRedeemResponse](docs/Model/GuestLinkRedeemResponse.md)
+- [GuestLinkRenewRequest](docs/Model/GuestLinkRenewRequest.md)
+- [GuestLinkSessionResponse](docs/Model/GuestLinkSessionResponse.md)
+- [GuestLinkVerifyPinRequest](docs/Model/GuestLinkVerifyPinRequest.md)
+- [GuestLinkVerifyTokenRequest](docs/Model/GuestLinkVerifyTokenRequest.md)
 - [Hashes](docs/Model/Hashes.md)
 - [Identity](docs/Model/Identity.md)
 - [IdentitySet](docs/Model/IdentitySet.md)

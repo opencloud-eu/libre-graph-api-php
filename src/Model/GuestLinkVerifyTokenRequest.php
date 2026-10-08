@@ -1,6 +1,6 @@
 <?php
 /**
- * GuestLinkRedeemRequest
+ * GuestLinkVerifyTokenRequest
  *
  * PHP version 8.1
  *
@@ -34,15 +34,15 @@ use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * GuestLinkRedeemRequest Class Doc Comment
+ * GuestLinkVerifyTokenRequest Class Doc Comment
  *
- * @description Request body for redeeming a guest link token.
+ * @description Request body for verifying a guest link token.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class GuestLinkRedeemRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class GuestLinkVerifyTokenRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class GuestLinkRedeemRequest implements ModelInterface, ArrayAccess, JsonSeriali
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'guestLinkRedeemRequest';
+    protected static string $openAPIModelName = 'guestLinkVerifyTokenRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

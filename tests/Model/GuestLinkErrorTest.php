@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * GuestLinkErrorTest Class Doc Comment
  *
- * @description Error returned by the guest link redeem endpoint.
+ * @description Error returned by a guest link endpoint.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

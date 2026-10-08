@@ -1,6 +1,6 @@
 <?php
 /**
- * GuestLinkRedeemResponse
+ * GuestLinkSessionResponse
  *
  * PHP version 8.1
  *
@@ -34,15 +34,15 @@ use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * GuestLinkRedeemResponse Class Doc Comment
+ * GuestLinkSessionResponse Class Doc Comment
  *
- * @description Response body for a successful guest link redemption.
+ * @description Response body for a successful guest link authentication: the share (permission) id the guest was invited to. A session cookie is set via the Set-Cookie header.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class GuestLinkRedeemResponse implements ModelInterface, ArrayAccess, JsonSerializable
+class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class GuestLinkRedeemResponse implements ModelInterface, ArrayAccess, JsonSerial
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'guestLinkRedeemResponse';
+    protected static string $openAPIModelName = 'guestLinkSessionResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

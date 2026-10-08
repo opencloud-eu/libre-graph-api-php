@@ -1,6 +1,6 @@
 <?php
 /**
- * GuestLinkError
+ * GuestLinkVerifyPinRequest
  *
  * PHP version 8.1
  *
@@ -34,15 +34,15 @@ use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * GuestLinkError Class Doc Comment
+ * GuestLinkVerifyPinRequest Class Doc Comment
  *
- * @description Error returned by a guest link endpoint.
+ * @description Request body for verifying a guest link PIN.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
+class GuestLinkVerifyPinRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'guestLinkError';
+    protected static string $openAPIModelName = 'guestLinkVerifyPinRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,8 +59,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'error_type' => 'string',
-        'message' => 'string',
+        'pin' => 'string',
         'permission_id' => 'string'
     ];
 
@@ -70,8 +69,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'error_type' => null,
-        'message' => null,
+        'pin' => null,
         'permission_id' => null
     ];
 
@@ -81,8 +79,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
-        'error_type' => false,
-        'message' => false,
+        'pin' => false,
         'permission_id' => false
     ];
 
@@ -172,8 +169,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $attributeMap = [
-        'error_type' => 'errorType',
-        'message' => 'message',
+        'pin' => 'pin',
         'permission_id' => 'permissionId'
     ];
 
@@ -183,8 +179,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $setters = [
-        'error_type' => 'setErrorType',
-        'message' => 'setMessage',
+        'pin' => 'setPin',
         'permission_id' => 'setPermissionId'
     ];
 
@@ -194,8 +189,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $getters = [
-        'error_type' => 'getErrorType',
-        'message' => 'getMessage',
+        'pin' => 'getPin',
         'permission_id' => 'getPermissionId'
     ];
 
@@ -240,41 +234,6 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const ERROR_TYPE_TOKEN_INVALID = 'tokenInvalid';
-    public const ERROR_TYPE_TOKEN_NOT_FOUND = 'tokenNotFound';
-    public const ERROR_TYPE_TOKEN_EXPIRED = 'tokenExpired';
-    public const ERROR_TYPE_TOKEN_ALREADY_REDEEMED = 'tokenAlreadyRedeemed';
-    public const ERROR_TYPE_SESSION_INVALID = 'sessionInvalid';
-    public const ERROR_TYPE_SHARE_NOT_FOUND = 'shareNotFound';
-    public const ERROR_TYPE_SHARE_EXPIRED = 'shareExpired';
-    public const ERROR_TYPE_PIN_INVALID = 'pinInvalid';
-    public const ERROR_TYPE_PIN_EXPIRED = 'pinExpired';
-    public const ERROR_TYPE_SERVICE_UNAVAILABLE = 'serviceUnavailable';
-    public const ERROR_TYPE_INVALID_REQUEST = 'invalidRequest';
-    public const ERROR_TYPE_INTERNAL_ERROR = 'internalError';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public static function getErrorTypeAllowableValues()
-    {
-        return [
-            self::ERROR_TYPE_TOKEN_INVALID,
-            self::ERROR_TYPE_TOKEN_NOT_FOUND,
-            self::ERROR_TYPE_TOKEN_EXPIRED,
-            self::ERROR_TYPE_TOKEN_ALREADY_REDEEMED,
-            self::ERROR_TYPE_SESSION_INVALID,
-            self::ERROR_TYPE_SHARE_NOT_FOUND,
-            self::ERROR_TYPE_SHARE_EXPIRED,
-            self::ERROR_TYPE_PIN_INVALID,
-            self::ERROR_TYPE_PIN_EXPIRED,
-            self::ERROR_TYPE_SERVICE_UNAVAILABLE,
-            self::ERROR_TYPE_INVALID_REQUEST,
-            self::ERROR_TYPE_INTERNAL_ERROR,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -290,8 +249,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('error_type', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('pin', $data ?? [], null);
         $this->setIfExists('permission_id', $data ?? [], null);
     }
 
@@ -322,20 +280,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['error_type'] === null) {
-            $invalidProperties[] = "'error_type' can't be null";
-        }
-        $allowedValues = $this->getErrorTypeAllowableValues();
-        if (!is_null($this->container['error_type']) && !in_array($this->container['error_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'error_type', must be one of '%s'",
-                $this->container['error_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['pin'] === null) {
+            $invalidProperties[] = "'pin' can't be null";
         }
         if ($this->container['permission_id'] === null) {
             $invalidProperties[] = "'permission_id' can't be null";
@@ -356,65 +302,28 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
 
 
     /**
-     * Gets error_type
+     * Gets pin
      *
      * @return string
      */
-    public function getErrorType(): string
+    public function getPin(): string
     {
-        return $this->container['error_type'];
+        return $this->container['pin'];
     }
 
     /**
-     * Sets error_type
+     * Sets pin
      *
-     * @param string $error_type Machine-readable error identifier.
+     * @param string $pin One-time PIN received from the renewed guest link.
      *
      * @return $this
      */
-    public function setErrorType(string $error_type): static
+    public function setPin(string $pin): static
     {
-        if (is_null($error_type)) {
-            throw new InvalidArgumentException('non-nullable error_type cannot be null');
+        if (is_null($pin)) {
+            throw new InvalidArgumentException('non-nullable pin cannot be null');
         }
-        $allowedValues = $this->getErrorTypeAllowableValues();
-        if (!in_array($error_type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'error_type', must be one of '%s'",
-                    $error_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['error_type'] = $error_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage(): string
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Human-readable error message.
-     *
-     * @return $this
-     */
-    public function setMessage(string $message): static
-    {
-        if (is_null($message)) {
-            throw new InvalidArgumentException('non-nullable message cannot be null');
-        }
-        $this->container['message'] = $message;
+        $this->container['pin'] = $pin;
 
         return $this;
     }
@@ -432,7 +341,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets permission_id
      *
-     * @param string $permission_id Permission (share) identifier related to the error, when known.
+     * @param string $permission_id Identifier of the share (permission) the guest was invited to.
      *
      * @return $this
      */

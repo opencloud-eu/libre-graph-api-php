@@ -1,6 +1,6 @@
 <?php
 /**
- * GuestLinkRedeemResponseTest
+ * GuestLinkVerifyPinRequestTest
  *
  * PHP version 8.1
  *
@@ -30,14 +30,14 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * GuestLinkRedeemResponseTest Class Doc Comment
+ * GuestLinkVerifyPinRequestTest Class Doc Comment
  *
- * @description Response body for a successful guest link redemption.
+ * @description Request body for verifying a guest link PIN.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class GuestLinkRedeemResponseTest extends TestCase
+class GuestLinkVerifyPinRequestTest extends TestCase
 {
 
     /**
@@ -69,9 +69,18 @@ class GuestLinkRedeemResponseTest extends TestCase
     }
 
     /**
-     * Test "GuestLinkRedeemResponse"
+     * Test "GuestLinkVerifyPinRequest"
      */
-    public function testGuestLinkRedeemResponse()
+    public function testGuestLinkVerifyPinRequest()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "pin"
+     */
+    public function testPropertyPin()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

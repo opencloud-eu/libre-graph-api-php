@@ -71,7 +71,13 @@ class GuestLinksApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'redeemGuestLink' => [
+        'renewGuestLink' => [
+            'application/json',
+        ],
+        'verifyGuestLinkPin' => [
+            'application/json',
+        ],
+        'verifyGuestLinkToken' => [
             'application/json',
         ],
     ];
@@ -123,44 +129,347 @@ class GuestLinksApi
     }
 
     /**
-     * Operation redeemGuestLink
+     * Operation renewGuestLink
      *
-     * Redeem a guest link token
+     * Renew a guest link
      *
-     * @param  \OpenAPI\Client\Model\GuestLinkRedeemRequest $guest_link_redeem_request guest_link_redeem_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['redeemGuestLink'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\GuestLinkRenewRequest $guest_link_renew_request guest_link_renew_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['renewGuestLink'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GuestLinkRedeemResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError
+     * @return void
      */
-    public function redeemGuestLink(
-        \OpenAPI\Client\Model\GuestLinkRedeemRequest $guest_link_redeem_request,
-        string $contentType = self::contentTypes['redeemGuestLink'][0]
+    public function renewGuestLink(
+        \OpenAPI\Client\Model\GuestLinkRenewRequest $guest_link_renew_request,
+        string $contentType = self::contentTypes['renewGuestLink'][0]
     )
     {
-        list($response) = $this->redeemGuestLinkWithHttpInfo($guest_link_redeem_request, $contentType);
+        $this->renewGuestLinkWithHttpInfo($guest_link_renew_request, $contentType);
+    }
+
+    /**
+     * Operation renewGuestLinkWithHttpInfo
+     *
+     * Renew a guest link
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkRenewRequest $guest_link_renew_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['renewGuestLink'] to see the possible values for this operation
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function renewGuestLinkWithHttpInfo(
+        \OpenAPI\Client\Model\GuestLinkRenewRequest $guest_link_renew_request,
+        string $contentType = self::contentTypes['renewGuestLink'][0]
+    ): array
+    {
+        $request = $this->renewGuestLinkRequest($guest_link_renew_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 410:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OdataError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation renewGuestLinkAsync
+     *
+     * Renew a guest link
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkRenewRequest $guest_link_renew_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['renewGuestLink'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
+     */
+    public function renewGuestLinkAsync(
+        \OpenAPI\Client\Model\GuestLinkRenewRequest $guest_link_renew_request,
+        string $contentType = self::contentTypes['renewGuestLink'][0]
+    ): PromiseInterface
+    {
+        return $this->renewGuestLinkAsyncWithHttpInfo($guest_link_renew_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation renewGuestLinkAsyncWithHttpInfo
+     *
+     * Renew a guest link
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkRenewRequest $guest_link_renew_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['renewGuestLink'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
+     */
+    public function renewGuestLinkAsyncWithHttpInfo(
+        $guest_link_renew_request,
+        string $contentType = self::contentTypes['renewGuestLink'][0]
+    ): PromiseInterface
+    {
+        $returnType = '';
+        $request = $this->renewGuestLinkRequest($guest_link_renew_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'renewGuestLink'
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkRenewRequest $guest_link_renew_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['renewGuestLink'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function renewGuestLinkRequest(
+        $guest_link_renew_request,
+        string $contentType = self::contentTypes['renewGuestLink'][0]
+    ): Request
+    {
+
+        // verify the required parameter 'guest_link_renew_request' is set
+        if ($guest_link_renew_request === null || (is_array($guest_link_renew_request) && count($guest_link_renew_request) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $guest_link_renew_request when calling renewGuestLink'
+            );
+        }
+
+
+        $resourcePath = '/v1beta1/extensions/org.libregraph/guestLinks/renew';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($guest_link_renew_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($guest_link_renew_request));
+            } else {
+                $httpBody = $guest_link_renew_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation verifyGuestLinkPin
+     *
+     * Verify a guest link PIN
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request guest_link_verify_pin_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GuestLinkSessionResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError
+     */
+    public function verifyGuestLinkPin(
+        \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request,
+        string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
+    )
+    {
+        list($response) = $this->verifyGuestLinkPinWithHttpInfo($guest_link_verify_pin_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation redeemGuestLinkWithHttpInfo
+     * Operation verifyGuestLinkPinWithHttpInfo
      *
-     * Redeem a guest link token
+     * Verify a guest link PIN
      *
-     * @param  \OpenAPI\Client\Model\GuestLinkRedeemRequest $guest_link_redeem_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['redeemGuestLink'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GuestLinkRedeemResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\GuestLinkSessionResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function redeemGuestLinkWithHttpInfo(
-        \OpenAPI\Client\Model\GuestLinkRedeemRequest $guest_link_redeem_request,
-        string $contentType = self::contentTypes['redeemGuestLink'][0]
+    public function verifyGuestLinkPinWithHttpInfo(
+        \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request,
+        string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
     ): array
     {
-        $request = $this->redeemGuestLinkRequest($guest_link_redeem_request, $contentType);
+        $request = $this->verifyGuestLinkPinRequest($guest_link_verify_pin_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -199,11 +508,11 @@ class GuestLinksApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\GuestLinkRedeemResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\GuestLinkSessionResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\GuestLinkRedeemResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\GuestLinkSessionResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -221,7 +530,542 @@ class GuestLinksApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkRedeemResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkSessionResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\GuestLinkError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GuestLinkError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\GuestLinkError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GuestLinkError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\OpenAPI\Client\Model\GuestLinkError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GuestLinkError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 410:
+                    if ('\OpenAPI\Client\Model\GuestLinkError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GuestLinkError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\GuestLinkError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GuestLinkError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                default:
+                    if ('\OpenAPI\Client\Model\OdataError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OdataError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OdataError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GuestLinkSessionResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                         );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkSessionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 410:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OdataError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation verifyGuestLinkPinAsync
+     *
+     * Verify a guest link PIN
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
+     */
+    public function verifyGuestLinkPinAsync(
+        \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request,
+        string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
+    ): PromiseInterface
+    {
+        return $this->verifyGuestLinkPinAsyncWithHttpInfo($guest_link_verify_pin_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation verifyGuestLinkPinAsyncWithHttpInfo
+     *
+     * Verify a guest link PIN
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
+     */
+    public function verifyGuestLinkPinAsyncWithHttpInfo(
+        $guest_link_verify_pin_request,
+        string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
+    ): PromiseInterface
+    {
+        $returnType = '\OpenAPI\Client\Model\GuestLinkSessionResponse';
+        $request = $this->verifyGuestLinkPinRequest($guest_link_verify_pin_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'verifyGuestLinkPin'
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function verifyGuestLinkPinRequest(
+        $guest_link_verify_pin_request,
+        string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
+    ): Request
+    {
+
+        // verify the required parameter 'guest_link_verify_pin_request' is set
+        if ($guest_link_verify_pin_request === null || (is_array($guest_link_verify_pin_request) && count($guest_link_verify_pin_request) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $guest_link_verify_pin_request when calling verifyGuestLinkPin'
+            );
+        }
+
+
+        $resourcePath = '/v1beta1/extensions/org.libregraph/guestLinks/verify/pin';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($guest_link_verify_pin_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($guest_link_verify_pin_request));
+            } else {
+                $httpBody = $guest_link_verify_pin_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation verifyGuestLinkToken
+     *
+     * Verify a guest link token
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyTokenRequest $guest_link_verify_token_request guest_link_verify_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkToken'] to see the possible values for this operation
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GuestLinkSessionResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError
+     */
+    public function verifyGuestLinkToken(
+        \OpenAPI\Client\Model\GuestLinkVerifyTokenRequest $guest_link_verify_token_request,
+        string $contentType = self::contentTypes['verifyGuestLinkToken'][0]
+    )
+    {
+        list($response) = $this->verifyGuestLinkTokenWithHttpInfo($guest_link_verify_token_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation verifyGuestLinkTokenWithHttpInfo
+     *
+     * Verify a guest link token
+     *
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyTokenRequest $guest_link_verify_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkToken'] to see the possible values for this operation
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GuestLinkSessionResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function verifyGuestLinkTokenWithHttpInfo(
+        \OpenAPI\Client\Model\GuestLinkVerifyTokenRequest $guest_link_verify_token_request,
+        string $contentType = self::contentTypes['verifyGuestLinkToken'][0]
+    ): array
+    {
+        $request = $this->verifyGuestLinkTokenRequest($guest_link_verify_token_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GuestLinkSessionResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GuestLinkSessionResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkSessionResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -416,7 +1260,7 @@ class GuestLinksApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\GuestLinkRedeemResponse';
+            $returnType = '\OpenAPI\Client\Model\GuestLinkSessionResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -449,7 +1293,7 @@ class GuestLinksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GuestLinkRedeemResponse',
+                        '\OpenAPI\Client\Model\GuestLinkSessionResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -516,22 +1360,22 @@ class GuestLinksApi
     }
 
     /**
-     * Operation redeemGuestLinkAsync
+     * Operation verifyGuestLinkTokenAsync
      *
-     * Redeem a guest link token
+     * Verify a guest link token
      *
-     * @param  \OpenAPI\Client\Model\GuestLinkRedeemRequest $guest_link_redeem_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['redeemGuestLink'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyTokenRequest $guest_link_verify_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkToken'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function redeemGuestLinkAsync(
-        \OpenAPI\Client\Model\GuestLinkRedeemRequest $guest_link_redeem_request,
-        string $contentType = self::contentTypes['redeemGuestLink'][0]
+    public function verifyGuestLinkTokenAsync(
+        \OpenAPI\Client\Model\GuestLinkVerifyTokenRequest $guest_link_verify_token_request,
+        string $contentType = self::contentTypes['verifyGuestLinkToken'][0]
     ): PromiseInterface
     {
-        return $this->redeemGuestLinkAsyncWithHttpInfo($guest_link_redeem_request, $contentType)
+        return $this->verifyGuestLinkTokenAsyncWithHttpInfo($guest_link_verify_token_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -540,23 +1384,23 @@ class GuestLinksApi
     }
 
     /**
-     * Operation redeemGuestLinkAsyncWithHttpInfo
+     * Operation verifyGuestLinkTokenAsyncWithHttpInfo
      *
-     * Redeem a guest link token
+     * Verify a guest link token
      *
-     * @param  \OpenAPI\Client\Model\GuestLinkRedeemRequest $guest_link_redeem_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['redeemGuestLink'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyTokenRequest $guest_link_verify_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkToken'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function redeemGuestLinkAsyncWithHttpInfo(
-        $guest_link_redeem_request,
-        string $contentType = self::contentTypes['redeemGuestLink'][0]
+    public function verifyGuestLinkTokenAsyncWithHttpInfo(
+        $guest_link_verify_token_request,
+        string $contentType = self::contentTypes['verifyGuestLinkToken'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\GuestLinkRedeemResponse';
-        $request = $this->redeemGuestLinkRequest($guest_link_redeem_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\GuestLinkSessionResponse';
+        $request = $this->verifyGuestLinkTokenRequest($guest_link_verify_token_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -595,29 +1439,29 @@ class GuestLinksApi
     }
 
     /**
-     * Create request for operation 'redeemGuestLink'
+     * Create request for operation 'verifyGuestLinkToken'
      *
-     * @param  \OpenAPI\Client\Model\GuestLinkRedeemRequest $guest_link_redeem_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['redeemGuestLink'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\GuestLinkVerifyTokenRequest $guest_link_verify_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkToken'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function redeemGuestLinkRequest(
-        $guest_link_redeem_request,
-        string $contentType = self::contentTypes['redeemGuestLink'][0]
+    public function verifyGuestLinkTokenRequest(
+        $guest_link_verify_token_request,
+        string $contentType = self::contentTypes['verifyGuestLinkToken'][0]
     ): Request
     {
 
-        // verify the required parameter 'guest_link_redeem_request' is set
-        if ($guest_link_redeem_request === null || (is_array($guest_link_redeem_request) && count($guest_link_redeem_request) === 0)) {
+        // verify the required parameter 'guest_link_verify_token_request' is set
+        if ($guest_link_verify_token_request === null || (is_array($guest_link_verify_token_request) && count($guest_link_verify_token_request) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $guest_link_redeem_request when calling redeemGuestLink'
+                'Missing the required parameter $guest_link_verify_token_request when calling verifyGuestLinkToken'
             );
         }
 
 
-        $resourcePath = '/v1beta1/extensions/org.libregraph/guestLinks/redeem';
+        $resourcePath = '/v1beta1/extensions/org.libregraph/guestLinks/verify/token';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -635,12 +1479,12 @@ class GuestLinksApi
         );
 
         // for model (json/xml)
-        if (isset($guest_link_redeem_request)) {
+        if (isset($guest_link_verify_token_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($guest_link_redeem_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($guest_link_verify_token_request));
             } else {
-                $httpBody = $guest_link_redeem_request;
+                $httpBody = $guest_link_verify_token_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
