@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * GuestLinkSessionResponseTest Class Doc Comment
  *
- * @description Response body for a successful guest link authentication: the share (permission) id the guest was invited to. A session cookie is set via the Set-Cookie header.
+ * @description Response body for a successful guest link authentication: the share (permission) id the guest was invited to and the expiry of the guest session. A session cookie is set via the Set-Cookie header.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -81,6 +81,15 @@ class GuestLinkSessionResponseTest extends TestCase
      * Test attribute "permission_id"
      */
     public function testPropertyPermissionId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "expiration_date_time"
+     */
+    public function testPropertyExpirationDateTime()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

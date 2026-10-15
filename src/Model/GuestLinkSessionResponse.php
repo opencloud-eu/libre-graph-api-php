@@ -36,7 +36,7 @@ use OpenAPI\Client\ObjectSerializer;
 /**
  * GuestLinkSessionResponse Class Doc Comment
  *
- * @description Response body for a successful guest link authentication: the share (permission) id the guest was invited to. A session cookie is set via the Set-Cookie header.
+ * @description Response body for a successful guest link authentication: the share (permission) id the guest was invited to and the expiry of the guest session. A session cookie is set via the Set-Cookie header.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -59,7 +59,8 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'permission_id' => 'string'
+        'permission_id' => 'string',
+        'expiration_date_time' => '\DateTime'
     ];
 
     /**
@@ -68,7 +69,8 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'permission_id' => null
+        'permission_id' => null,
+        'expiration_date_time' => 'date-time'
     ];
 
     /**
@@ -77,7 +79,8 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
-        'permission_id' => false
+        'permission_id' => false,
+        'expiration_date_time' => false
     ];
 
     /**
@@ -166,7 +169,8 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
      * @var array<string, string>
      */
     protected static array $attributeMap = [
-        'permission_id' => 'permissionId'
+        'permission_id' => 'permissionId',
+        'expiration_date_time' => 'expirationDateTime'
     ];
 
     /**
@@ -175,7 +179,8 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
      * @var array<string, string>
      */
     protected static array $setters = [
-        'permission_id' => 'setPermissionId'
+        'permission_id' => 'setPermissionId',
+        'expiration_date_time' => 'setExpirationDateTime'
     ];
 
     /**
@@ -184,7 +189,8 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
      * @var array<string, string>
      */
     protected static array $getters = [
-        'permission_id' => 'getPermissionId'
+        'permission_id' => 'getPermissionId',
+        'expiration_date_time' => 'getExpirationDateTime'
     ];
 
     /**
@@ -244,6 +250,7 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function __construct(?array $data = null)
     {
         $this->setIfExists('permission_id', $data ?? [], null);
+        $this->setIfExists('expiration_date_time', $data ?? [], null);
     }
 
     /**
@@ -275,6 +282,9 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
 
         if ($this->container['permission_id'] === null) {
             $invalidProperties[] = "'permission_id' can't be null";
+        }
+        if ($this->container['expiration_date_time'] === null) {
+            $invalidProperties[] = "'expiration_date_time' can't be null";
         }
         return $invalidProperties;
     }
@@ -314,6 +324,33 @@ class GuestLinkSessionResponse implements ModelInterface, ArrayAccess, JsonSeria
             throw new InvalidArgumentException('non-nullable permission_id cannot be null');
         }
         $this->container['permission_id'] = $permission_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiration_date_time
+     *
+     * @return \DateTime
+     */
+    public function getExpirationDateTime(): \DateTime
+    {
+        return $this->container['expiration_date_time'];
+    }
+
+    /**
+     * Sets expiration_date_time
+     *
+     * @param \DateTime $expiration_date_time The date and time when the guest session expires, in UTC. After that the guest has to renew the guest link.
+     *
+     * @return $this
+     */
+    public function setExpirationDateTime(\DateTime $expiration_date_time): static
+    {
+        if (is_null($expiration_date_time)) {
+            throw new InvalidArgumentException('non-nullable expiration_date_time cannot be null');
+        }
+        $this->container['expiration_date_time'] = $expiration_date_time;
 
         return $this;
     }
