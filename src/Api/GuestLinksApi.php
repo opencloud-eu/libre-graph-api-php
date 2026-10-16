@@ -214,14 +214,6 @@ class GuestLinksApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GuestLinkError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -230,7 +222,23 @@ class GuestLinksApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 410:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\GuestLinkError',
@@ -436,19 +444,21 @@ class GuestLinksApi
      *
      * Verify a guest link PIN
      *
+     * @param  string $__host_oc_guest_nonce Per-share nonce cookie set by the renew endpoint (&#x60;__Host-oc_guest_nonce_&lt;share-hash&gt;&#x60;), binding the PIN to the browser that renewed the link. (required)
      * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request guest_link_verify_pin_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GuestLinkSessionResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError
+     * @return \OpenAPI\Client\Model\GuestLinkSessionResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError
      */
     public function verifyGuestLinkPin(
+        string $__host_oc_guest_nonce,
         \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request,
         string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
     )
     {
-        list($response) = $this->verifyGuestLinkPinWithHttpInfo($guest_link_verify_pin_request, $contentType);
+        list($response) = $this->verifyGuestLinkPinWithHttpInfo($__host_oc_guest_nonce, $guest_link_verify_pin_request, $contentType);
         return $response;
     }
 
@@ -457,19 +467,21 @@ class GuestLinksApi
      *
      * Verify a guest link PIN
      *
+     * @param  string $__host_oc_guest_nonce Per-share nonce cookie set by the renew endpoint (&#x60;__Host-oc_guest_nonce_&lt;share-hash&gt;&#x60;), binding the PIN to the browser that renewed the link. (required)
      * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GuestLinkSessionResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\GuestLinkSessionResponse|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\GuestLinkError|\OpenAPI\Client\Model\OdataError, HTTP status code, HTTP response headers (array of strings)
      */
     public function verifyGuestLinkPinWithHttpInfo(
+        string $__host_oc_guest_nonce,
         \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request,
         string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
     ): array
     {
-        $request = $this->verifyGuestLinkPinRequest($guest_link_verify_pin_request, $contentType);
+        $request = $this->verifyGuestLinkPinRequest($__host_oc_guest_nonce, $guest_link_verify_pin_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -642,6 +654,33 @@ class GuestLinksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 429:
+                    if ('\OpenAPI\Client\Model\GuestLinkError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GuestLinkError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GuestLinkError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 500:
                     if ('\OpenAPI\Client\Model\GuestLinkError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -768,6 +807,14 @@ class GuestLinksApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 429:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GuestLinkError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -794,6 +841,7 @@ class GuestLinksApi
      *
      * Verify a guest link PIN
      *
+     * @param  string $__host_oc_guest_nonce Per-share nonce cookie set by the renew endpoint (&#x60;__Host-oc_guest_nonce_&lt;share-hash&gt;&#x60;), binding the PIN to the browser that renewed the link. (required)
      * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
      *
@@ -801,11 +849,12 @@ class GuestLinksApi
      * @return PromiseInterface
      */
     public function verifyGuestLinkPinAsync(
+        string $__host_oc_guest_nonce,
         \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request,
         string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
     ): PromiseInterface
     {
-        return $this->verifyGuestLinkPinAsyncWithHttpInfo($guest_link_verify_pin_request, $contentType)
+        return $this->verifyGuestLinkPinAsyncWithHttpInfo($__host_oc_guest_nonce, $guest_link_verify_pin_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -818,6 +867,7 @@ class GuestLinksApi
      *
      * Verify a guest link PIN
      *
+     * @param  string $__host_oc_guest_nonce Per-share nonce cookie set by the renew endpoint (&#x60;__Host-oc_guest_nonce_&lt;share-hash&gt;&#x60;), binding the PIN to the browser that renewed the link. (required)
      * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
      *
@@ -825,12 +875,13 @@ class GuestLinksApi
      * @return PromiseInterface
      */
     public function verifyGuestLinkPinAsyncWithHttpInfo(
+        $__host_oc_guest_nonce,
         $guest_link_verify_pin_request,
         string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\GuestLinkSessionResponse';
-        $request = $this->verifyGuestLinkPinRequest($guest_link_verify_pin_request, $contentType);
+        $request = $this->verifyGuestLinkPinRequest($__host_oc_guest_nonce, $guest_link_verify_pin_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -871,6 +922,7 @@ class GuestLinksApi
     /**
      * Create request for operation 'verifyGuestLinkPin'
      *
+     * @param  string $__host_oc_guest_nonce Per-share nonce cookie set by the renew endpoint (&#x60;__Host-oc_guest_nonce_&lt;share-hash&gt;&#x60;), binding the PIN to the browser that renewed the link. (required)
      * @param  \OpenAPI\Client\Model\GuestLinkVerifyPinRequest $guest_link_verify_pin_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyGuestLinkPin'] to see the possible values for this operation
      *
@@ -878,10 +930,18 @@ class GuestLinksApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function verifyGuestLinkPinRequest(
+        $__host_oc_guest_nonce,
         $guest_link_verify_pin_request,
         string $contentType = self::contentTypes['verifyGuestLinkPin'][0]
     ): Request
     {
+
+        // verify the required parameter '__host_oc_guest_nonce' is set
+        if ($__host_oc_guest_nonce === null || (is_array($__host_oc_guest_nonce) && count($__host_oc_guest_nonce) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $__host_oc_guest_nonce when calling verifyGuestLinkPin'
+            );
+        }
 
         // verify the required parameter 'guest_link_verify_pin_request' is set
         if ($guest_link_verify_pin_request === null || (is_array($guest_link_verify_pin_request) && count($guest_link_verify_pin_request) === 0)) {

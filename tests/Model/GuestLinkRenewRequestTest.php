@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * GuestLinkRenewRequestTest Class Doc Comment
  *
- * @description Request body for renewing a guest link. Besides the share (permission) id, the previous guest link token or a (possibly expired) guest session cookie is required to authorize the renewal.
+ * @description Request body for renewing a guest link. Only the share (permission) id is sent; the request is authorized by the guest session cookie when one is present.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -81,15 +81,6 @@ class GuestLinkRenewRequestTest extends TestCase
      * Test attribute "permission_id"
      */
     public function testPropertyPermissionId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "token"
-     */
-    public function testPropertyToken()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

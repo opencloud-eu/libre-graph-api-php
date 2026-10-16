@@ -103,4 +103,13 @@ class GuestLinkErrorTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "retry_after"
+     */
+    public function testPropertyRetryAfter()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

@@ -17,7 +17,7 @@ renewGuestLink($guest_link_renew_request)
 
 Renew a guest link
 
-Generate a new guest link token and PIN for an existing guest link and publish the renewal event so the guest can be notified.
+Renew a guest link. When the request carries a valid guest session cookie (possibly expired), a new link token and PIN are generated, the renewal event is published so the guest can be notified, and the nonce cookie that binds the PIN to the browser is set. Without a valid session the link token is rotated silently: no new PIN is generated, no nonce cookie is set, and the request is rate limited.
 
 ### Example
 
@@ -39,7 +39,7 @@ $apiInstance = new OpenAPI\Client\Api\GuestLinksApi(
     new GuzzleHttp\Client(),
     $config
 );
-$guest_link_renew_request = {"permissionId":"d14f9f65-2e9b-4fd6-bf6b-6748f229f2a2","token":"v1.5d41402abc4b2a76b9719d911017c5923c3a5a1e1f4e5d6c"}; // \OpenAPI\Client\Model\GuestLinkRenewRequest
+$guest_link_renew_request = {"permissionId":"d14f9f65-2e9b-4fd6-bf6b-6748f229f2a2"}; // \OpenAPI\Client\Model\GuestLinkRenewRequest
 
 try {
     $apiInstance->renewGuestLink($guest_link_renew_request);
@@ -74,7 +74,7 @@ void (empty response body)
 ## `verifyGuestLinkPin()`
 
 ```php
-verifyGuestLinkPin($guest_link_verify_pin_request): \OpenAPI\Client\Model\GuestLinkSessionResponse
+verifyGuestLinkPin($__host_oc_guest_nonce, $guest_link_verify_pin_request): \OpenAPI\Client\Model\GuestLinkSessionResponse
 ```
 
 Verify a guest link PIN
@@ -101,10 +101,11 @@ $apiInstance = new OpenAPI\Client\Api\GuestLinksApi(
     new GuzzleHttp\Client(),
     $config
 );
+$__host_oc_guest_nonce = '__host_oc_guest_nonce_example'; // string | Per-share nonce cookie set by the renew endpoint (`__Host-oc_guest_nonce_<share-hash>`), binding the PIN to the browser that renewed the link.
 $guest_link_verify_pin_request = {"pin":"123456","permissionId":"d14f9f65-2e9b-4fd6-bf6b-6748f229f2a2"}; // \OpenAPI\Client\Model\GuestLinkVerifyPinRequest
 
 try {
-    $result = $apiInstance->verifyGuestLinkPin($guest_link_verify_pin_request);
+    $result = $apiInstance->verifyGuestLinkPin($__host_oc_guest_nonce, $guest_link_verify_pin_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GuestLinksApi->verifyGuestLinkPin: ', $e->getMessage(), PHP_EOL;
@@ -115,6 +116,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **__host_oc_guest_nonce** | **string**| Per-share nonce cookie set by the renew endpoint (&#x60;__Host-oc_guest_nonce_&lt;share-hash&gt;&#x60;), binding the PIN to the browser that renewed the link. | |
 | **guest_link_verify_pin_request** | [**\OpenAPI\Client\Model\GuestLinkVerifyPinRequest**](../Model/GuestLinkVerifyPinRequest.md)|  | |
 
 ### Return type

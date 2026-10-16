@@ -61,7 +61,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPITypes = [
         'error_type' => 'string',
         'message' => 'string',
-        'permission_id' => 'string'
+        'permission_id' => 'string',
+        'retry_after' => 'int'
     ];
 
     /**
@@ -72,7 +73,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPIFormats = [
         'error_type' => null,
         'message' => null,
-        'permission_id' => null
+        'permission_id' => null,
+        'retry_after' => null
     ];
 
     /**
@@ -83,7 +85,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPINullables = [
         'error_type' => false,
         'message' => false,
-        'permission_id' => false
+        'permission_id' => false,
+        'retry_after' => false
     ];
 
     /**
@@ -174,7 +177,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $attributeMap = [
         'error_type' => 'errorType',
         'message' => 'message',
-        'permission_id' => 'permissionId'
+        'permission_id' => 'permissionId',
+        'retry_after' => 'retryAfter'
     ];
 
     /**
@@ -185,7 +189,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $setters = [
         'error_type' => 'setErrorType',
         'message' => 'setMessage',
-        'permission_id' => 'setPermissionId'
+        'permission_id' => 'setPermissionId',
+        'retry_after' => 'setRetryAfter'
     ];
 
     /**
@@ -196,7 +201,8 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $getters = [
         'error_type' => 'getErrorType',
         'message' => 'getMessage',
-        'permission_id' => 'getPermissionId'
+        'permission_id' => 'getPermissionId',
+        'retry_after' => 'getRetryAfter'
     ];
 
     /**
@@ -244,11 +250,14 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
     public const ERROR_TYPE_TOKEN_NOT_FOUND = 'tokenNotFound';
     public const ERROR_TYPE_TOKEN_EXPIRED = 'tokenExpired';
     public const ERROR_TYPE_TOKEN_ALREADY_REDEEMED = 'tokenAlreadyRedeemed';
-    public const ERROR_TYPE_SESSION_INVALID = 'sessionInvalid';
     public const ERROR_TYPE_SHARE_NOT_FOUND = 'shareNotFound';
     public const ERROR_TYPE_SHARE_EXPIRED = 'shareExpired';
     public const ERROR_TYPE_PIN_INVALID = 'pinInvalid';
     public const ERROR_TYPE_PIN_EXPIRED = 'pinExpired';
+    public const ERROR_TYPE_NONCE_INVALID = 'nonceInvalid';
+    public const ERROR_TYPE_NONCE_EXPIRED = 'nonceExpired';
+    public const ERROR_TYPE_CONFLICT = 'conflict';
+    public const ERROR_TYPE_TOO_MANY_REQUESTS = 'tooManyRequests';
     public const ERROR_TYPE_SERVICE_UNAVAILABLE = 'serviceUnavailable';
     public const ERROR_TYPE_INVALID_REQUEST = 'invalidRequest';
     public const ERROR_TYPE_INTERNAL_ERROR = 'internalError';
@@ -265,11 +274,14 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
             self::ERROR_TYPE_TOKEN_NOT_FOUND,
             self::ERROR_TYPE_TOKEN_EXPIRED,
             self::ERROR_TYPE_TOKEN_ALREADY_REDEEMED,
-            self::ERROR_TYPE_SESSION_INVALID,
             self::ERROR_TYPE_SHARE_NOT_FOUND,
             self::ERROR_TYPE_SHARE_EXPIRED,
             self::ERROR_TYPE_PIN_INVALID,
             self::ERROR_TYPE_PIN_EXPIRED,
+            self::ERROR_TYPE_NONCE_INVALID,
+            self::ERROR_TYPE_NONCE_EXPIRED,
+            self::ERROR_TYPE_CONFLICT,
+            self::ERROR_TYPE_TOO_MANY_REQUESTS,
             self::ERROR_TYPE_SERVICE_UNAVAILABLE,
             self::ERROR_TYPE_INVALID_REQUEST,
             self::ERROR_TYPE_INTERNAL_ERROR,
@@ -293,6 +305,7 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('error_type', $data ?? [], null);
         $this->setIfExists('message', $data ?? [], null);
         $this->setIfExists('permission_id', $data ?? [], null);
+        $this->setIfExists('retry_after', $data ?? [], null);
     }
 
     /**
@@ -442,6 +455,33 @@ class GuestLinkError implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable permission_id cannot be null');
         }
         $this->container['permission_id'] = $permission_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets retry_after
+     *
+     * @return int|null
+     */
+    public function getRetryAfter(): ?int
+    {
+        return $this->container['retry_after'];
+    }
+
+    /**
+     * Sets retry_after
+     *
+     * @param int|null $retry_after Number of seconds the client should wait before retrying. Present on rate-limited (429) responses and mirrored in the Retry-After response header.
+     *
+     * @return $this
+     */
+    public function setRetryAfter(?int $retry_after): static
+    {
+        if (is_null($retry_after)) {
+            throw new InvalidArgumentException('non-nullable retry_after cannot be null');
+        }
+        $this->container['retry_after'] = $retry_after;
 
         return $this;
     }

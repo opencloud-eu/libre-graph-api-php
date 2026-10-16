@@ -36,7 +36,7 @@ use OpenAPI\Client\ObjectSerializer;
 /**
  * GuestLinkRenewRequest Class Doc Comment
  *
- * @description Request body for renewing a guest link. Besides the share (permission) id, the previous guest link token or a (possibly expired) guest session cookie is required to authorize the renewal.
+ * @description Request body for renewing a guest link. Only the share (permission) id is sent; the request is authorized by the guest session cookie when one is present.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -59,8 +59,7 @@ class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializ
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'permission_id' => 'string',
-        'token' => 'string'
+        'permission_id' => 'string'
     ];
 
     /**
@@ -69,8 +68,7 @@ class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializ
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'permission_id' => null,
-        'token' => null
+        'permission_id' => null
     ];
 
     /**
@@ -79,8 +77,7 @@ class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializ
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
-        'permission_id' => false,
-        'token' => false
+        'permission_id' => false
     ];
 
     /**
@@ -169,8 +166,7 @@ class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializ
      * @var array<string, string>
      */
     protected static array $attributeMap = [
-        'permission_id' => 'permissionId',
-        'token' => 'token'
+        'permission_id' => 'permissionId'
     ];
 
     /**
@@ -179,8 +175,7 @@ class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializ
      * @var array<string, string>
      */
     protected static array $setters = [
-        'permission_id' => 'setPermissionId',
-        'token' => 'setToken'
+        'permission_id' => 'setPermissionId'
     ];
 
     /**
@@ -189,8 +184,7 @@ class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializ
      * @var array<string, string>
      */
     protected static array $getters = [
-        'permission_id' => 'getPermissionId',
-        'token' => 'getToken'
+        'permission_id' => 'getPermissionId'
     ];
 
     /**
@@ -250,7 +244,6 @@ class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializ
     public function __construct(?array $data = null)
     {
         $this->setIfExists('permission_id', $data ?? [], null);
-        $this->setIfExists('token', $data ?? [], null);
     }
 
     /**
@@ -321,33 +314,6 @@ class GuestLinkRenewRequest implements ModelInterface, ArrayAccess, JsonSerializ
             throw new InvalidArgumentException('non-nullable permission_id cannot be null');
         }
         $this->container['permission_id'] = $permission_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets token
-     *
-     * @return string|null
-     */
-    public function getToken(): ?string
-    {
-        return $this->container['token'];
-    }
-
-    /**
-     * Sets token
-     *
-     * @param string|null $token Previous guest link token. Optional when the guest session cookie is sent instead.
-     *
-     * @return $this
-     */
-    public function setToken(?string $token): static
-    {
-        if (is_null($token)) {
-            throw new InvalidArgumentException('non-nullable token cannot be null');
-        }
-        $this->container['token'] = $token;
 
         return $this;
     }
