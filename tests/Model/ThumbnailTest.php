@@ -121,4 +121,13 @@ class ThumbnailTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "at_libre_graph_mime_type"
+     */
+    public function testPropertyAtLibreGraphMimeType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

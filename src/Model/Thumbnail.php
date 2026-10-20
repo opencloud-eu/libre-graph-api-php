@@ -63,7 +63,8 @@ class Thumbnail implements ModelInterface, ArrayAccess, JsonSerializable
         'height' => 'int',
         'source_item_id' => 'string',
         'url' => 'string',
-        'width' => 'int'
+        'width' => 'int',
+        'at_libre_graph_mime_type' => 'string'
     ];
 
     /**
@@ -76,7 +77,8 @@ class Thumbnail implements ModelInterface, ArrayAccess, JsonSerializable
         'height' => 'int32',
         'source_item_id' => null,
         'url' => null,
-        'width' => 'int32'
+        'width' => 'int32',
+        'at_libre_graph_mime_type' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class Thumbnail implements ModelInterface, ArrayAccess, JsonSerializable
         'height' => false,
         'source_item_id' => false,
         'url' => false,
-        'width' => false
+        'width' => false,
+        'at_libre_graph_mime_type' => false
     ];
 
     /**
@@ -182,7 +185,8 @@ class Thumbnail implements ModelInterface, ArrayAccess, JsonSerializable
         'height' => 'height',
         'source_item_id' => 'sourceItemId',
         'url' => 'url',
-        'width' => 'width'
+        'width' => 'width',
+        'at_libre_graph_mime_type' => '@libre.graph.mimeType'
     ];
 
     /**
@@ -195,7 +199,8 @@ class Thumbnail implements ModelInterface, ArrayAccess, JsonSerializable
         'height' => 'setHeight',
         'source_item_id' => 'setSourceItemId',
         'url' => 'setUrl',
-        'width' => 'setWidth'
+        'width' => 'setWidth',
+        'at_libre_graph_mime_type' => 'setAtLibreGraphMimeType'
     ];
 
     /**
@@ -208,7 +213,8 @@ class Thumbnail implements ModelInterface, ArrayAccess, JsonSerializable
         'height' => 'getHeight',
         'source_item_id' => 'getSourceItemId',
         'url' => 'getUrl',
-        'width' => 'getWidth'
+        'width' => 'getWidth',
+        'at_libre_graph_mime_type' => 'getAtLibreGraphMimeType'
     ];
 
     /**
@@ -272,6 +278,7 @@ class Thumbnail implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('source_item_id', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('width', $data ?? [], null);
+        $this->setIfExists('at_libre_graph_mime_type', $data ?? [], null);
     }
 
     /**
@@ -447,6 +454,33 @@ class Thumbnail implements ModelInterface, ArrayAccess, JsonSerializable
             throw new InvalidArgumentException('non-nullable width cannot be null');
         }
         $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets at_libre_graph_mime_type
+     *
+     * @return string|null
+     */
+    public function getAtLibreGraphMimeType(): ?string
+    {
+        return $this->container['at_libre_graph_mime_type'];
+    }
+
+    /**
+     * Sets at_libre_graph_mime_type
+     *
+     * @param string|null $at_libre_graph_mime_type The mime type the thumbnail is served in, e.g. `image/png`. It can differ from the mime type of the item the thumbnail belongs to, for example when the thumbnail is an image taken from inside the item, such as the cover art of an audio file.
+     *
+     * @return $this
+     */
+    public function setAtLibreGraphMimeType(?string $at_libre_graph_mime_type): static
+    {
+        if (is_null($at_libre_graph_mime_type)) {
+            throw new InvalidArgumentException('non-nullable at_libre_graph_mime_type cannot be null');
+        }
+        $this->container['at_libre_graph_mime_type'] = $at_libre_graph_mime_type;
 
         return $this;
     }
