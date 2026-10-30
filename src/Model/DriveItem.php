@@ -470,6 +470,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     public const AT_LIBRE_GRAPH_SHARE_TYPES_USER = 'user';
     public const AT_LIBRE_GRAPH_SHARE_TYPES_GROUP = 'group';
+    public const AT_LIBRE_GRAPH_SHARE_TYPES_GUEST = 'guest';
     public const AT_LIBRE_GRAPH_SHARE_TYPES_LINK = 'link';
     public const AT_LIBRE_GRAPH_SHARE_TYPES_REMOTE = 'remote';
 
@@ -483,6 +484,7 @@ class DriveItem implements ModelInterface, ArrayAccess, JsonSerializable
         return [
             self::AT_LIBRE_GRAPH_SHARE_TYPES_USER,
             self::AT_LIBRE_GRAPH_SHARE_TYPES_GROUP,
+            self::AT_LIBRE_GRAPH_SHARE_TYPES_GUEST,
             self::AT_LIBRE_GRAPH_SHARE_TYPES_LINK,
             self::AT_LIBRE_GRAPH_SHARE_TYPES_REMOTE,
         ];
