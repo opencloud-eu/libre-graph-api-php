@@ -145,6 +145,7 @@ Class | Method | HTTP request | Description
 *GroupApi* | [**updateGroup**](docs/Api/GroupApi.md#updategroup) | **PATCH** /v1.0/groups/{group-id} | Update entity in groups
 *GroupsApi* | [**createGroup**](docs/Api/GroupsApi.md#creategroup) | **POST** /v1.0/groups | Add new entity to groups
 *GroupsApi* | [**listGroups**](docs/Api/GroupsApi.md#listgroups) | **GET** /v1.0/groups | Get entities from groups
+*GuestLinksApi* | [**logoutGuestLink**](docs/Api/GuestLinksApi.md#logoutguestlink) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/logout | Log out of a guest session
 *GuestLinksApi* | [**renewGuestLink**](docs/Api/GuestLinksApi.md#renewguestlink) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/renew | Renew a guest link
 *GuestLinksApi* | [**verifyGuestLinkPin**](docs/Api/GuestLinksApi.md#verifyguestlinkpin) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/verify/pin | Verify a guest link PIN
 *GuestLinksApi* | [**verifyGuestLinkToken**](docs/Api/GuestLinksApi.md#verifyguestlinktoken) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/verify/token | Verify a guest link token

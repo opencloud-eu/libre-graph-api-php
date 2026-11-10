@@ -4,10 +4,70 @@ All URIs are relative to https://localhost:9200/graph, except if the operation d
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**logoutGuestLink()**](GuestLinksApi.md#logoutGuestLink) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/logout | Log out of a guest session |
 | [**renewGuestLink()**](GuestLinksApi.md#renewGuestLink) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/renew | Renew a guest link |
 | [**verifyGuestLinkPin()**](GuestLinksApi.md#verifyGuestLinkPin) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/verify/pin | Verify a guest link PIN |
 | [**verifyGuestLinkToken()**](GuestLinksApi.md#verifyGuestLinkToken) | **POST** /v1beta1/extensions/org.libregraph/guestLinks/verify/token | Verify a guest link token |
 
+
+## `logoutGuestLink()`
+
+```php
+logoutGuestLink()
+```
+
+Log out of a guest session
+
+End the guest session in this browser by clearing the guest session cookie. The session token itself stays valid until it expires. The request succeeds without a session cookie as well.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new OpenAPI\Client\Api\GuestLinksApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $apiInstance->logoutGuestLink();
+} catch (Exception $e) {
+    echo 'Exception when calling GuestLinksApi->logoutGuestLink: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[openId](../../README.md#openId), [basicAuth](../../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `renewGuestLink()`
 

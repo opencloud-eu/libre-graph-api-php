@@ -70,6 +70,18 @@ class GuestLinksApiTest extends TestCase
     }
 
     /**
+     * Test case for logoutGuestLink
+     *
+     * Log out of a guest session.
+     *
+     */
+    public function testLogoutGuestLink()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for renewGuestLink
      *
      * Renew a guest link.
